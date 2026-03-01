@@ -1,21 +1,29 @@
-import NavBar from "./components/navbar";
+import NavBar from "./components/layout/NavBar";
 import { theme } from "./components/theme";
-import { BrowserRouter,Routes,Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homepage";
-import EventPage from "./pages/EventPage"
+import EventPage from "./pages/EventPage";
+import HistoryPage from "./pages/HistoryPage";
+import HostNewPage from "./pages/HostNewPage";
 import Layout from "./Layout";
 import ScrollToTop from "./components/ScrollToTop";
-const App =()=>{
+import { PageProvider } from "./context/PageContext";
+
+const App = () => {
   return (
-    <BrowserRouter>
-       <ScrollToTop/>
-         <Routes >
-          <Route element={<Layout/>}>
-            <Route path='/' element={<HomePage/>}/>
-            <Route path="/event/:id" element={<EventPage/>}/>
+    <PageProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/event/:id" element={<EventPage />} />
+            <Route path="/history" element={<HistoryPage />} />
+            <Route path="/hostnew" element={<HostNewPage />} />
           </Route>
         </Routes>
-  </BrowserRouter>
-);
-}
-export default App
+      </BrowserRouter>
+    </PageProvider>
+  );
+};
+export default App;

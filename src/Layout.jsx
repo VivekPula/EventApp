@@ -1,14 +1,35 @@
-import { Outlet } from "react-router-dom";
-import NavBar from "./components/navbar";
-import Footer from "./components/footer";
+import { Outlet, useLocation } from "react-router-dom";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
+import SideBar from "./components/layout/SideBar";
+import { useEffect } from "react";
+import { usePage } from "./context/PageContext";
 
-const Layout=()=>{
-    return(
-        <main className=" overflow-y-auto overflow-x-auto no-scrollbar block">
-            <NavBar/>
-            <Outlet/>
-            <Footer/>
-        </main>
-    );
-}
+const Layout = () => {
+  const location = useLocation();
+  const { setCurrentPage } = usePage();
+
+  useEffect(() => {
+    const path = location.pathname;
+    let name = "";
+    if (path === "/") name = "Home";
+    else if (path.startsWith("/event")) name = "Event";
+    else if (path === "/history") name = "History";
+    else if (path === "/hostnew") name = "Host Event";
+    setCurrentPage(name);
+  }, [location.pathname, setCurrentPage]);
+
+  return (
+    <main className="relative pt-16">
+      <NavBar />
+      <div className="flex">
+        <SideBar />
+        <div className="flex-1 ml-50 p-4 min-h-[calc(100vh-4rem)]">
+          <Outlet />
+        </div>
+      </div>
+      <Footer />
+    </main>
+  );
+};
 export default Layout;
