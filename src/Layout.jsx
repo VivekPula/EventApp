@@ -1,3 +1,4 @@
+
 import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
@@ -16,6 +17,7 @@ const Layout = () => {
     else if (path.startsWith("/event")) name = "Event";
     else if (path === "/history") name = "History";
     else if (path === "/hostnew") name = "Host Event";
+    else if (path === "/myevents") name = "MyEvents";
     setCurrentPage(name);
   }, [location.pathname, setCurrentPage]);
 
