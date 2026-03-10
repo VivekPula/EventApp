@@ -20,11 +20,11 @@ const Layout = () => {
   }, [location.pathname, setCurrentPage]);
 
   return (
-    <main className="relative pt-16">
+    <main className="relative pt-16 w-full">
       <NavBar />
-      <div className="flex">
-        <SideBar />
-        <div className="flex-1 ml-50 p-4 min-h-[calc(100vh-4rem)]">
+      <div className="flex justify-between">
+        <SideBar/>
+        <div className="flex ml-50 p-4 min-h-[calc(100vh-4rem)]">
           <Outlet />
         </div>
       </div>

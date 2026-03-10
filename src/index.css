@@ -3,4 +3,18 @@
 body::-webkit-scrollbar {
   display: none; /* Hide scrollbar for WebKit browsers */
 }
+.react-dropdown-select-option {
+  background-color: #8000ff80 !important;
+  color: white !important;
+  border-radius: 6px !important;
+}
+
+.react-dropdown-select-option-remove {
+  color: white !important;
+}
+.react-dropdown-select-dropdown {
+  background: #ffffff !important;
+  border: 1px solid #ccc;
+  border-radius: 10px !important ;
+}
 

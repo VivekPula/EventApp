@@ -1,7 +1,7 @@
 import NavBar from "./components/layout/NavBar";
 import { theme } from "./components/theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/homepage";
+import HomePage from "./pages/HomePage";
 import EventPage from "./pages/EventPage";
 import HistoryPage from "./pages/HistoryPage";
 import HostNewPage from "./pages/HostNewPage";
