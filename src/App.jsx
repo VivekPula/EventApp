@@ -8,6 +8,7 @@ import HostNewPage from "./pages/HostNewPage";
 import Layout from "./Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import { PageProvider } from "./context/PageContext";
+import MyEvents from './pages/MyEvents';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/event/:id" element={<EventPage />} />
             <Route path="/history" element={<HistoryPage />} />
             <Route path="/hostnew" element={<HostNewPage />} />
+             <Route path="/myevents" element={<MyEvents/>} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -9,7 +9,10 @@ function SideBar() {
   const options = [
     { name: "Home", icon: "HomeIcon", path: "/" },
     { name: "Host Event", icon: "CirclePlus", path: "/hostnew" },
+    // need to change myevents icon
+    { name: "MyEvents", icon: "HistoryIcon", path: "/myevents" },
     { name: "History", icon: "HistoryIcon", path: "/history" },
+
   ];
   return (
     <div
