@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
-body::-webkit-scrollbar {
+ body::-webkit-scrollbar {
   display: none; /* Hide scrollbar for WebKit browsers */
-}
+} 
+
+
 .react-dropdown-select-option {
   background-color: #8000ff80 !important;
   color: white !important;
