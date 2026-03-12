@@ -19,13 +19,13 @@ const EventPage = ()=>{
             <div className="ml-auto mr-auto w-15/16 ">
                 <p className="text-4xl font-medium border-b pb-2 border-b-gray-200" style={{color:theme.primaryColor(0.8)}}>Details</p>
                 <div className="flex flex-wrap">
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>Conducted by :</span> by person {id} </p>
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>Type :</span> {x}</p>
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>Contributors :</span> {id} people</p>
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>Volunteers :</span> {id} people</p>
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>Availabe slots :</span> {id} </p>
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>Location :</span> {id} at that location</p>
-                    <p className="text-xl mt-2 flex-1/2"><span className="font-semibold" style={{color:theme.primaryColor(0.7)}}>About :</span> about doing that thing that they are doing </p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >Conducted by :</span> by person {id} </p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >Type :</span> {x}</p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >Contributors :</span> {id} people</p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >Volunteers :</span> {id} people</p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >Availabe slots :</span> {id} </p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >Location :</span> {id} at that location</p>
+                    <p className="text-xl mt-2 flex-1/2 "><span className="font-semibold text-(--primaryColor)" >About :</span> about doing that thing that they are doing </p>
                 </div>
             </div>
                     
@@ -76,18 +76,18 @@ const EventPage = ()=>{
             </div>
             </div>
             <div className="flex-1">
-                <div className=" sticky top-24 p-2  rounded-2xl bg-purple-50" style={{color:"black"}}>
-                    <p className="text-5xl font-medium border-b pb-2 border-b-gray-200 text-center" style={{color:theme.primaryColor(0.8)}}>EventTitle {id}</p>
+                <div className=" sticky top-24 p-2  rounded-2xl bg-(--primaryColor)/10 darkMode:bg-(--accentColor)/20" >
+                    <p className="text-5xl font-medium border-b pb-2 border-b-gray-200 text-center text-(--primaryColor)/80 darkMode:text-(--secondaryColor)">EventTitle {id}</p>
                     <div className="flex flex-col gap-5 mt-4 ml-4 text-xl">
-                        <p className="flex gap-2 items-center"> <Calendar style={{color:theme.accentColor(1)}}/> : Date</p>
-                        <p className="flex gap-2 items-center"> <Clock style={{color:theme.accentColor(1)}}/> : {id} pm</p>
-                        <p className="flex gap-2 items-center"> <Hourglass style={{color:theme.accentColor(1)}}/> : Duration</p>
-                        <p className="flex gap-2 items-center"> <Languages style={{color:theme.accentColor(1)}}/> : Languages</p>
-                        <p className="flex gap-2 items-center"> <Grid3x2 style={{color:theme.accentColor(1)}}/> : Category</p>
-                        <p className="flex gap-2 items-center"> <MapPin style={{color:theme.accentColor(1)}}/> : Location</p>
+                        <p className="flex gap-2 items-center"> <Calendar className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Date</p>
+                        <p className="flex gap-2 items-center"> <Clock className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {id} pm</p>
+                        <p className="flex gap-2 items-center"> <Hourglass className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Duration</p>
+                        <p className="flex gap-2 items-center"> <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Languages</p>
+                        <p className="flex gap-2 items-center"> <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Category</p>
+                        <p className="flex gap-2 items-center"> <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Location</p>
                     </div>
                     <div className="flex items-center pl-5 pr-5 justify-between mt-5">
-                        <p className="flex gap-2 items-center text-2xl"> <IndianRupee style={{color:theme.accentColor(1)}}/> : Price</p>
+                        <p className="flex gap-2 items-center text-2xl"> <IndianRupee className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Price</p>
                         <input type="button" className=" text-2xl bg-purple-500 text-purple-50 rounded-2xl p-2" value="Join now!"/>
                     </div>
                     

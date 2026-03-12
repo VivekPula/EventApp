@@ -23,7 +23,7 @@ const Layout = () => {
   }, [location.pathname, setCurrentPage]);
 
   return (
-    <main className="relative pt-16 w-full" style={{color:Mtheme.fg,backgroundColor:Mtheme.bg}}>
+    <main className="relative pt-16 w-full bg-(--bg) text-(--fg)" >
       <NavBar />
       <div className="flex justify-between">
         <SideBar/>

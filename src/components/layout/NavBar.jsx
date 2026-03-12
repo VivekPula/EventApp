@@ -3,11 +3,11 @@ import { theme } from "../theme";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 const NavBar = ({ className = "" }) => {
-  const {Mtheme,toggleMTheme}=useContext(ThemeContext);
+  const {toggleTheme}=useContext(ThemeContext);
   const [themeName,changeThemeName]=useState("light");
   const [iconName,changeIconName]=useState(<Sun/>);
   const changeTheme=()=>{
-    toggleMTheme();
+    toggleTheme();
     changeThemeName(themeName==='light'?'dark':'light');
     changeIconName(themeName==='light'?<Moon/>:<Sun/>);
 
@@ -15,11 +15,7 @@ const NavBar = ({ className = "" }) => {
   return (
     <div
       id="bar"
-      style={{
-        backgroundColor:Mtheme.bg,
-        color:Mtheme.fg,
-      }}
-      className={`fixed top-0 left-0 w-full z-10 ${className}`}
+      className={`fixed top-0 left-0 w-full z-10 ${className} bg-(--bg)`}
     >
       <div
         id="MainBar"
@@ -33,14 +29,13 @@ const NavBar = ({ className = "" }) => {
         </div>
         <div
           id="searchBox"
-          className="flex pl-4 items-center w-6/10  rounded-xl h-10 ml-8 justify-between"
-          style={{ backgroundColor: theme.secondaryColor(0.5) }}
+          className="flex pl-4 items-center w-6/10  rounded-xl h-10 ml-8 justify-between bg-(--secondaryColor)/50"
         >
           <input
             type="text"
             placeholder="Search"
-            className="w-full focus:outline-none"
-            style={{color:Mtheme.fg}}
+            className="w-full border-0 bg-transparent focus:ring-0 text-(--fg) placeholder-(--fg)"
+            
           />
           <Search className="mr-8" size={25} />
         </div>

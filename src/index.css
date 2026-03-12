@@ -1,22 +1,45 @@
 @import "tailwindcss";
-
+@plugin '@tailwindcss/forms';
+@custom-variant darkMode (&:where(.darkMode, .darkMode *));
  body::-webkit-scrollbar {
   display: none; /* Hide scrollbar for WebKit browsers */
 } 
 
-
+:root{
+  --accentColor:#8000ff;
+  --primaryColor:#ab23ff;
+  --secondaryColor:#eedeff;
+  --exColor:#88ff00;
+  --bg:white;
+  --fg:#2c2c2c;
+}
+.darkMode{
+  --bg:#2c2c2c;
+  --fg:white;
+}
 .react-dropdown-select-option {
   background-color: #8000ff80 !important;
   color: white !important;
   border-radius: 6px !important;
 }
-
 .react-dropdown-select-option-remove {
   color: white !important;
 }
 .react-dropdown-select-dropdown {
-  background: #ffffff !important;
-  border: 1px solid #ccc;
+  background: var(--bg) !important;
   border-radius: 10px !important ;
+}
+.react-dropdown-select{
+  background-color: rgb(from var(--primaryColor) r g b / 0.1);
+}
+.darkMode .react-dropdown-select{
+  background-color: rgb(from white r g b / 0.3);
+}
+
+::placeholder{
+  color: var(--fg) !important;
+}
+input{
+  box-shadow: none;
 }
 

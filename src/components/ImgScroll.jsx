@@ -1,6 +1,3 @@
-import { theme } from "./theme";
-import itemImage from "../assets/icon3.jpg"
-import itemImage2 from "../assets/icon.avif"
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -11,7 +8,7 @@ const ImgScroll = ({imgs})=>{
             {
                 imgs.map((item,index) =>{
                     return(
-                        <SwiperSlide index={index}>
+                        <SwiperSlide key={index}>
                             <img  src={item} alt="image" className="object-cover h-full w-full"/>
                         </SwiperSlide>
                     );

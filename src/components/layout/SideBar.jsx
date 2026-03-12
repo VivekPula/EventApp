@@ -3,10 +3,8 @@ import React, { useContext } from "react";
 import { usePage } from "../../context/PageContext";
 import { Link } from "react-router-dom";
 import { theme } from "../theme";
-import { ThemeContext } from "../../context/ThemeContext";
 
 function SideBar() {
-  const {Mtheme} =useContext(ThemeContext);
   const { currentPage } = usePage();
   const options = [
     { name: "Home", icon: "HomeIcon", path: "/" },
@@ -18,8 +16,7 @@ function SideBar() {
   ];
   return (
     <div
-      className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-50 p-5`}
-      style={{ backgroundColor: theme.primaryColor(0.2) }}
+      className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-50 p-5 bg-(--primaryColor)/20 darkMode:bg-(--primaryColor)`}
     >
       <ul className="list-none">
         {options.map((option) => {
@@ -28,13 +25,7 @@ function SideBar() {
           return (
             <li key={option.name} className="my-5">
               <Link
-                className={`p-2 px-4 flex items-center rounded-xl hover:opacity-75`}
-                style={{
-                  backgroundColor: isActive
-                    ? theme.primaryColor(1)
-                    : theme.primaryColor(0),
-                    color: isActive ? Mtheme.bg : Mtheme.fg,
-                }}
+                className={ isActive?"p-2 px-4 flex items-center rounded-xl hover:opacity-75 text-white bg-(--primaryColor) darkMode:text-black darkMode:bg-(--secondaryColor)":"p-2 px-4 flex items-center rounded-xl hover:opacity-75 text-black bg-(--primaryColor)/0 darkMode:bg-(--primaryColor) darkMode:text-white"}
                 to={option.path}
               >
                 {IconComponent ? <IconComponent className="mr-2" /> : null}

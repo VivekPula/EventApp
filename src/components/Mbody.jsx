@@ -26,7 +26,7 @@ const Mbody = () => {
         if (index % 2 == 0) imge = itemImage;
         else imge = itemImage2;
         return (
-          <EventCard item={item} index={index} imge={imge} />
+          <EventCard item={item} key={index} imge={imge} index={index} />
         );
       })}
     </div>
