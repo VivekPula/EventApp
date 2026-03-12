@@ -3,13 +3,14 @@ import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SideBar from "./components/layout/SideBar";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { usePage } from "./context/PageContext";
+import { ThemeContext } from "./context/ThemeContext";
 
 const Layout = () => {
   const location = useLocation();
   const { setCurrentPage } = usePage();
-
+  const {Mtheme}=useContext(ThemeContext);
   useEffect(() => {
     const path = location.pathname;
     let name = "";
@@ -22,7 +23,7 @@ const Layout = () => {
   }, [location.pathname, setCurrentPage]);
 
   return (
-    <main className="relative pt-16 w-full">
+    <main className="relative pt-16 w-full" style={{color:Mtheme.fg,backgroundColor:Mtheme.bg}}>
       <NavBar />
       <div className="flex justify-between">
         <SideBar/>

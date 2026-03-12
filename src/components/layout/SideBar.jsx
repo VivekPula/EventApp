@@ -1,10 +1,12 @@
 import * as Icons from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
 import { usePage } from "../../context/PageContext";
 import { Link } from "react-router-dom";
 import { theme } from "../theme";
+import { ThemeContext } from "../../context/ThemeContext";
 
 function SideBar() {
+  const {Mtheme} =useContext(ThemeContext);
   const { currentPage } = usePage();
   const options = [
     { name: "Home", icon: "HomeIcon", path: "/" },
@@ -31,7 +33,7 @@ function SideBar() {
                   backgroundColor: isActive
                     ? theme.primaryColor(1)
                     : theme.primaryColor(0),
-                  color: isActive ? "white" : "black",
+                    color: isActive ? Mtheme.bg : Mtheme.fg,
                 }}
                 to={option.path}
               >

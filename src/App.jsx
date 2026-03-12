@@ -9,11 +9,13 @@ import Layout from "./Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import { PageProvider } from "./context/PageContext";
 import MyEvents from './pages/MyEvents';
+import { ThemeProvider } from "./context/ThemeContext";
 
 const App = () => {
   return (
     <PageProvider>
-      <BrowserRouter>
+      <ThemeProvider>
+       <BrowserRouter>
         <ScrollToTop />
         <Routes>
           <Route element={<Layout />}>
@@ -24,7 +26,8 @@ const App = () => {
              <Route path="/myevents" element={<MyEvents/>} />
           </Route>
         </Routes>
-      </BrowserRouter>
+       </BrowserRouter>
+      </ThemeProvider>
     </PageProvider>
   );
 };

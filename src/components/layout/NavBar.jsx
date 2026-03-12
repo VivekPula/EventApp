@@ -1,10 +1,25 @@
-import { CircleUserRound, MapPin, Search } from "lucide-react";
+import { CircleUserRound, MapPin, Moon, Search, Sun } from "lucide-react";
 import { theme } from "../theme";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 const NavBar = ({ className = "" }) => {
+  const {Mtheme,toggleMTheme}=useContext(ThemeContext);
+  const [themeName,changeThemeName]=useState("light");
+  const [iconName,changeIconName]=useState(<Sun/>);
+  const changeTheme=()=>{
+    toggleMTheme();
+    changeThemeName(themeName==='light'?'dark':'light');
+    changeIconName(themeName==='light'?<Moon/>:<Sun/>);
+
+  }
   return (
     <div
       id="bar"
-      className={`bg-white fixed top-0 left-0 w-full z-10 ${className}`}
+      style={{
+        backgroundColor:Mtheme.bg,
+        color:Mtheme.fg,
+      }}
+      className={`fixed top-0 left-0 w-full z-10 ${className}`}
     >
       <div
         id="MainBar"
@@ -25,12 +40,17 @@ const NavBar = ({ className = "" }) => {
             type="text"
             placeholder="Search"
             className="w-full focus:outline-none"
+            style={{color:Mtheme.fg}}
           />
           <Search className="mr-8" size={25} />
         </div>
+        <div className="flex justify-around items-center gap-3 ml-auto">
         <div className="ml-auto  flex items-center justify-between text-xl ">
           <MapPin size={30} style={{ color: theme.accentColor(1) }} />
           <p className="ml-1 ">Location</p>
+        </div>
+        <div className="m-5">
+          <button className="rounded-xl flex hover:bg-gray-300 hover:text-black p-2 gap-1" onClick={()=>changeTheme()}>{iconName}{themeName}</button>
         </div>
         <div className="ml-auto ">
           <CircleUserRound
@@ -38,6 +58,7 @@ const NavBar = ({ className = "" }) => {
             style={{ color: theme.accentColor(0.9) }}
             className="mr-4"
           />
+        </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaSearch, FaSlidersH } from "react-icons/fa";
+
 import Mbody from '../components/Mbody';
 const MyEvents = () => {
     return (
@@ -20,7 +20,7 @@ const MyEvents = () => {
                             <input className='search-input   py-[5px] pl-[10px] pr-[30px]  ' type='text' placeholder='Search event location'></input>
                             <div className='py-[10px] px-[20px] '><FaSearch /></div>
                         </div> */}
-                        <div className='fliter text-white bg-blue-600  py-[10px] px-[20px]  '><FaSlidersH /></div>
+                        <div className='fliter text-white bg-blue-600  py-[10px] px-[20px]  '></div>
 
                         <select className='category  bg-white py-[5px] px-[20px]' name='catgories'>
                             <option value={"allcategory"}>all category</option>
