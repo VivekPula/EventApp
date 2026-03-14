@@ -7,7 +7,7 @@ const EventCard =({item,index,imge})=>{
     return(
         <div
             key={index}
-            className="flex-1/4   rounded-3xl m-5 max-w-3/10 gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/50 "
+            className="flex-1/4   rounded-3xl m-5 max-w-3/10 gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
           >
             <Link to={`/event/${index}`}>                                                                           {/* Link to open the eventpage,the index info is sent to that page */}
               <div className="m-2  flex max-h-6/10 rounded-3xl overflow-clip items-center">
@@ -16,7 +16,7 @@ const EventCard =({item,index,imge})=>{
               <div className="m-2 mb-0  pl-2">
                 <div className="flex w-full justify-start ">
                     <p
-                    className="font-semibold text-2xl font-serifs mr-auto text-(--accentColor) darkMode:text-(--exColor)/80"
+                    className="font-semibold text-2xl font-serifs mr-auto text-(--accentColor) darkMode:text-(--exColor)"
                     >{item}</p>
                     <p className="flex mr-2 font-semibold items-center rounded-xl pl-2 pr-2 bg-(--exColor)/40 darkMode:bg-(--exColor)/70 text-(--accentColor) darkMode:text-(--accentColor) " >{" category "}</p>
                     
@@ -37,7 +37,7 @@ const EventCard =({item,index,imge})=>{
             return(
         <div
             key={index}
-            className="flex-1/4   rounded-3xl m-5 max-w-3/10 gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/50 "  
+            className="flex-1/4   rounded-3xl m-5 max-w-3/10 gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "  
           >
             <Link to={`/event/${index}`}>
               <div className="m-2  flex max-h-6/10 rounded-3xl overflow-clip items-center">
@@ -46,9 +46,9 @@ const EventCard =({item,index,imge})=>{
               <div className="m-2 mb-0  pl-2">
                 <div className="flex w-full justify-start ">
                     <p
-                    className="font-semibold text-2xl font-serifs mr-auto text-(--accentColor) darkMode:text-(--exColor)/80"
+                    className="font-semibold text-2xl font-serifs mr-auto text-(--accentColor) darkMode:text-(--exColor)"
                     >{item}</p>
-                    <p className="flex mr-2 font-semibold items-center rounded-xl pl-2 pr-2 bg-(--exColor)/40 darkMode:bg-(--secondaryColor)/60 text-(--accentColor) darkMode:text-(--accentColor)" >{" filling fast! "}</p>
+                    <p className="flex mr-2 font-semibold items-center rounded-xl pl-2 pr-2 bg-(--exColor)/40 darkMode:bg-(--secondaryColor) text-(--accentColor) darkMode:text-(--accentColor)" >{" filling fast! "}</p>
                     <p className="flex mr-2 font-semibold items-center rounded-xl pl-2 pr-2 bg-(--exColor)/40 darkMode:bg-(--exColor)/70 text-(--accentColor) darkMode:text-(--accentColor) " >{" category "}</p>
                     
                 </div>

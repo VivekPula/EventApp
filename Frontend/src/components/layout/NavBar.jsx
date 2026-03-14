@@ -22,8 +22,8 @@ const NavBar = ({ className = "" }) => {
         className="flex  items-center w-19/20 h-20 ml-auto mr-auto  border-b-gray-300 border-b"
       >
         <div
-          style={{ color: theme.primaryColor(1), fontFamily: "pristina" }}
-          className="h-15 text-center pt-2 text-5xl font-serif overflow-clip"
+          style={{ fontFamily: "pristina" }}
+          className="h-15 text-center pt-2 text-5xl font-serif overflow-clip text-(--primaryColor)"
         >
           <p> Event App</p>
         </div>
@@ -41,7 +41,7 @@ const NavBar = ({ className = "" }) => {
         </div>
         <div className="flex justify-around items-center gap-3 ml-auto">
         <div className="ml-auto  flex items-center justify-between text-xl ">
-          <MapPin size={30} style={{ color: theme.accentColor(1) }} />
+          <MapPin size={30} className="text-(--accentColor)"/>
           <p className="ml-1 ">Location</p>
         </div>
         <div className="m-5">
@@ -50,8 +50,7 @@ const NavBar = ({ className = "" }) => {
         <div className="ml-auto ">
           <CircleUserRound
             size={50}
-            style={{ color: theme.accentColor(0.9) }}
-            className="mr-4"
+            className="mr-4 text-(--accentColor)"
           />
         </div>
         </div>
