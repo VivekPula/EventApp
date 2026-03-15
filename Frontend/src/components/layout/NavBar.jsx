@@ -15,7 +15,7 @@ const NavBar = ({ className = "" }) => {
   return (
     <div
       id="bar"
-      className={`fixed top-0 left-0 w-full z-10 ${className} bg-(--bg)`}
+      className={`fixed top-0 left-0 w-full z-999 ${className} bg-(--bg)`}
     >
       <div
         id="MainBar"
