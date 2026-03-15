@@ -28,6 +28,7 @@
 .react-dropdown-select-dropdown {
   background: var(--bg) !important;
   border-radius: 10px !important ;
+  z-index: 999 !important;
 }
 .react-dropdown-select{
   background-color: rgb(from var(--primaryColor) r g b / 0.1);
