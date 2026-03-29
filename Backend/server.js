@@ -1,25 +1,33 @@
+// Importing dependencies
 import express from "express";
 import mongoose from "mongoose";
-import Event from "./Models/Event.js";
-const app = express();
-const port = 5000;
-mongoose.connect("mongodb+srv://admin_db_user:eventApp123@eventapp.gg29yzr.mongodb.net/?appName=EventApp")
-.then(()=>console.log("Db connected"))
-.catch(err=>console.log(err));
-try{
- app.get('/api/data',async (req,res)=>{
-    const events= await Event.find();
-    console.log(events);
-    res.json(events);
- });
- app.get('/api/data/:id',async (req,res)=>{
-    const id=req.params.id;
-    const eventdata = await Event.findById(id);
-    console.log(eventdata);
-    res.json(eventdata);
- });
-}catch(e){console.log(e)};
+import dotenv from "dotenv";
+dotenv.config();
 
- app.listen(port,()=>{
-     console.log(`listening in ${port}`);
- })
+// Importing utils
+import logInfo from "./utils/logInfo.js";
+
+// Importing Routes
+import userRoute from "./Routes/user.js";
+import eventRoute from "./Routes/event.js";
+
+const app = express();
+app.use(express.json());
+const port = 5000;
+mongoose
+  .connect(
+    "mongodb+srv://admin_db_user:eventApp123@eventapp.gg29yzr.mongodb.net/?appName=EventApp",
+  )
+  .then(() => console.log("Db connected"))
+  .catch((err) => console.log(err));
+
+//middleware that logs info
+app.use(logInfo);
+
+//Routes to the matching route-prefix
+app.use("/auth", userRoute); // Requests starting with /auth are redirected to userRoute
+app.use("/api/data", eventRoute); // Requests starting with /api/data are redirected to eventRoute
+
+app.listen(port, () => {
+  console.log(`listening in ${port}`);
+});
