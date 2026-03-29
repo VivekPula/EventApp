@@ -1,8 +1,7 @@
 import * as Icons from "lucide-react";
 import React, { useContext } from "react";
-import { usePage } from "../../context/PageContext";
+import { usePage } from "../../contexts/PageContext";
 import { Link } from "react-router-dom";
-import { theme } from "../theme";
 
 function SideBar() {
   const { currentPage } = usePage();
@@ -12,7 +11,6 @@ function SideBar() {
     // need to change myevents icon
     { name: "MyEvents", icon: "HistoryIcon", path: "/myevents" },
     { name: "History", icon: "HistoryIcon", path: "/history" },
-
   ];
   return (
     <div
@@ -25,7 +23,11 @@ function SideBar() {
           return (
             <li key={option.name} className="my-5">
               <Link
-                className={ isActive?"p-2 px-4 flex items-center rounded-xl hover:opacity-75 text-white bg-(--primaryColor) darkMode:text-black darkMode:bg-(--secondaryColor)":"p-2 px-4 flex items-center rounded-xl hover:opacity-75 text-black bg-(--primaryColor)/0 darkMode:bg-(--primaryColor) darkMode:text-white"}
+                className={
+                  isActive
+                    ? "p-2 px-4 flex items-center rounded-xl hover:opacity-75 text-white bg-(--primaryColor) darkMode:text-black darkMode:bg-(--secondaryColor)"
+                    : "p-2 px-4 flex items-center rounded-xl hover:opacity-75 text-black bg-(--primaryColor)/0 darkMode:bg-(--primaryColor) darkMode:text-white"
+                }
                 to={option.path}
               >
                 {IconComponent ? <IconComponent className="mr-2" /> : null}
