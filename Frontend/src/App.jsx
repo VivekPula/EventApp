@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { PageProvider } from "./context/PageContext";
 import MyEvents from './pages/MyEvents';
 import { ThemeProvider } from "./context/ThemeContext";
+import BookingPage from "./pages/BookingPage";
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
             <Route path="/event/:id" element={<EventPage />} />
             <Route path="/history" element={<HistoryPage />} />
             <Route path="/hostnew" element={<HostNewPage />} />
-             <Route path="/myevents" element={<MyEvents/>} />
+            <Route path="/myevents" element={<MyEvents/>} />
+            <Route path="/bookEvent/:id" element={<BookingPage/>}/>
           </Route>
         </Routes>
        </BrowserRouter>

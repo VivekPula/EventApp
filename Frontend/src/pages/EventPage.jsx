@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { theme } from "../components/theme";
 import itemImage from "../assets/icon3.jpg"
 import itemImage2 from "../assets/icon.avif"
@@ -22,7 +22,7 @@ const EventPage = ()=>{
     return (
         <div className=" w-full h-full flex gap-5 mx-5 pt-4" >
             <div className="flex-3 flex flex-col gap-15">
-            <div className="ml-auto mr-auto h-[65vh] w-full max-w-[130vh] flex rounded-3xl overflow-clip justify-center" >
+            <div className="ml-auto mr-auto h-[65vh] w-full max-w-[60vw] flex rounded-3xl overflow-clip justify-center" >
                 <ImgScroll imgs={imgs}/>
             </div>
             <div className="ml-auto mr-auto w-15/16 ">
@@ -64,7 +64,7 @@ const EventPage = ()=>{
                 <p className="text-4xl font-medium border-b pb-2 border-b-gray-300 mb-1 text-(--primaryColor)/80">Organised by</p>
                 <div className="flex flex-col gap-4 w-full text-xl">
                     <div className="flex   gap-6">
-                        <User className="h-[20vh] w-[20vh] bg-gray-300 rounded-2xl text-gray-600"/>
+                        <User className="h-[20vh] w-[10vw] bg-gray-300 rounded-2xl text-gray-600"/>
                         <div className="mt-2">
                             <p>Name</p>
                             <p>Info</p>
@@ -73,7 +73,7 @@ const EventPage = ()=>{
                         
                     </div>
                     <div className="flex   gap-6">
-                        <User className="h-[20vh] w-[20vh] bg-gray-300 rounded-2xl text-gray-600"/>
+                        <User className="h-[20vh] w-[10vw] bg-gray-300 rounded-2xl text-gray-600"/>
                         <div className="mt-2">
                             <p>Name</p>
                             <p>Info</p>
@@ -97,7 +97,7 @@ const EventPage = ()=>{
                     </div>
                     <div className="flex items-center pl-5 pr-5 justify-between mt-5">
                         <p className="flex gap-2 items-center text-2xl"> <IndianRupee className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.price}</p>
-                        <input type="button" className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2" value="Join now!"/>
+                        <Link to={`/bookEvent/${id}`} ><input type="button" className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2" value="Join now!"/></Link>
                     </div>
                     
                 </div>
