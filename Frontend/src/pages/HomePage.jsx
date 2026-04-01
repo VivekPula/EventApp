@@ -1,9 +1,7 @@
 import Select from "react-dropdown-select";
-import Mbody from "../components/Mbody";
-import DropDownList from "../components/DropDownList";
-import { theme } from "../components/theme";
+import Mbody from "../components/home/Mbody";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 const HomePage = ()=>{
     
     return (

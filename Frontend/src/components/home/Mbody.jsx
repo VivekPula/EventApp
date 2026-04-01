@@ -1,11 +1,10 @@
-import { theme } from "./theme";
-import itemImage from "../assets/icon3.jpg";
-import itemImage2 from "../assets/icon.avif";
+import itemImage from "../../assets/icon3.jpg";
+import itemImage2 from "../../assets/icon.avif";
 import { Link } from "react-router-dom";
-import EventCard from "./EventCard";
+import EventCard from "../common/EventCard";
 import { useEffect } from "react";
 import { useState } from "react";
-import DropDownList from "./DropDownList";
+import DropDownList from "../common/DropDownList";
 const Mbody = () => {
     const Loptions=[{value:1,label:'Telugu'},{value:2,label:'Hindi'},{value:3,label:'English'},{value:4,label:'Tamil'}];
     const Goptions=[{value:1,label:'Comedy'},{value:2,label:'Technological'},{value:3,label:'History'},{value:4,label:'Charity'}];
@@ -26,13 +25,16 @@ const Mbody = () => {
   //   "Event 12",
   //   "Event 13",
   // ];
-  const [data,setData]=useState([]);
-  useEffect(()=>{
+  const [data, setData] = useState([]);
+  useEffect(() => {
     fetch("/api/data")
-    .then(response => response.json())
-    .then(data =>{ console.log(data); setData(data);})
-    .catch(error => console.error("Error :",error));
-  },[]);
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      })
+      .catch((error) => console.error("Error :", error));
+  }, []);
   return (
     <>
     <div className="w-full mt-2 flex p-1"> 
@@ -50,9 +52,7 @@ const Mbody = () => {
         let imge = itemImage;
         if (index % 2 == 0) imge = itemImage;
         else imge = itemImage2;
-        return (
-          <EventCard item={item} key={index} imge={imge} index={index} />
-        );
+        return <EventCard item={item} key={index} imge={imge} index={index} />;
       })}
     </div>
     </>
