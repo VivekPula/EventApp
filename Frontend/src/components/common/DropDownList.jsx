@@ -1,7 +1,16 @@
 import { useState } from "react";
 import Select from "react-dropdown-select";
 import { theme } from "../../utils/Theme";
-const DropDownList = ({ options, placeHolder }) => {
+const acData = (values, ret) =>{
+  let sData = [];
+  console.log(values);
+  for(const data of values){
+    sData.push(data.label);
+  }
+  console.log("changed "+sData);
+  ret(sData);
+}
+const DropDownList = ({ options, placeHolder, ret, }) => {
   const [values, setValues] = useState([]);
   return (
     <div className="flex-1/5 m-1">
@@ -11,7 +20,7 @@ const DropDownList = ({ options, placeHolder }) => {
         placeholder={placeHolder}
         style={{ border: "none", borderRadius: "10px", placeHolder: "white" }}
         values={values}
-        onChange={(val) => setValues(val)}
+        onChange={(val) =>{ setValues(val); acData(val,ret)}}
         portal={document.body}
         itemRenderer={({ item, methods, state }) => {
           const isSelected = state.values.some((v) => v.value === item.value);

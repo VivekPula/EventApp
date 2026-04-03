@@ -1,7 +1,7 @@
 import itemImage from "../../assets/icon3.jpg";
 import itemImage2 from "../../assets/icon.avif";
 import { Link } from "react-router-dom";
-import EventCard from "../common/EventCard";
+import HistoryCard from "../common/HistoryCard";
 import { useEffect } from "react";
 import { useState } from "react";
 import DropDownList from "../common/DropDownList";
@@ -19,7 +19,7 @@ const fetchData = async (query,setData) =>{
       })
       .catch((error) => console.error("Error :", error));
 }
-const Mbody = () => {
+const Hbody = () => {
     const Loptions=[{value:1,label:'Telugu'},{value:2,label:'Hindi'},{value:3,label:'English'},{value:4,label:'Tamil'}];
     const Goptions=[{value:1,label:'Nature'},{value:2,label:'Games'},{value:3,label:'philanthropy'},{value:4,label:'Dance'},{value:5,label:'Music'},{value:6,label:'other'}];
     const Poptions=[{value:1,label:'Rs 1000'},{value:2,label:'Rs 100'},{value:3,label:'Rs 10000'},{value:4,label:'Rs 100000'}];
@@ -50,15 +50,15 @@ const Mbody = () => {
             </div>
             
         </div>
-    <div className="h-20/21 w-20/21 flex flex-wrap m-5">
+    <div className="h-20/21 w-20/21 m-5">
       {data.map((item, index) => {
         let imge = itemImage;
         if (index % 2 == 0) imge = itemImage;
         else imge = itemImage2;
-        return <EventCard item={item} key={index} imge={imge} index={index} />;
+        return <HistoryCard item={item} key={index} imge={imge} index={index} />;
       })}
     </div>
     </>
   );
 };
-export default Mbody;
+export default Hbody;
