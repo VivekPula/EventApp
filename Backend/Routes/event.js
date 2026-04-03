@@ -2,12 +2,32 @@ import express from "express";
 import Event from "../Models/Event.js";
 
 const router = express.Router();
-
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const events = await Event.find();
+    console.log("what");
+    console.log(req.body);
+    const {language,category,prices,type} = req.body || {};
+    let query={};
+    if(language && language.length>0){
+         query.language = {$in : language};
+       }
+    if(category && category.length>0){
+      query.Category = {$in :category};
+    }
+    if(type && type.length>0){
+      query.type = {$in : type}
+    }
+    if(prices&&prices.length>0){
+      prices.sort();
+      query.price={
+        $gte :Number(prices[0].slice(3)),
+        $lte :Number(prices[prices.length-1].slice(3))
+      }
+    }
+      
+    const events = await Event.find(query);
     res.json(events);
-  } catch (e) {
+  }catch (e) {
     console.log(e);
     res.status(500).json({ message: "Some server error: " + e.message });
   }

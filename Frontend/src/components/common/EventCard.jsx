@@ -6,7 +6,7 @@ const EventCard = ({ item, index, imge }) => {
     return (
       <div
         key={index}
-        className="flex-1/4   rounded-3xl m-5 max-w-3/10 gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
+        className="flex-1/4   rounded-3xl m-5 max-w-3/10 h-[55vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
       >
         <Link to={`/event/${item._id}`}>
           {" "}
@@ -50,7 +50,7 @@ const EventCard = ({ item, index, imge }) => {
     return (
       <div
         key={index}
-        className="flex-1/4   rounded-3xl m-5 max-w-3/10 gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
+        className="flex-1/4   rounded-3xl m-5 max-w-3/10 h-[55vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
       >
         <Link to={`/event/${item._id}`}>
           <div className="m-2 relative flex h-6/10 rounded-3xl overflow-clip items-center justify-center">

@@ -1,4 +1,4 @@
-import { Calendar, Clock, Grid3x2, Hourglass, IndianRupee, Languages, MapPin, Ticket } from "lucide-react";
+import { Calendar, Clock, Grid3x2, Hourglass, IndianRupee, Languages, MapPin, Star, Ticket } from "lucide-react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -15,20 +15,26 @@ const BookingPage = () =>{
     },[])
     return (
         <div className="w-full h-full flex justify-center"> 
-        <div className="w-1/2 h-11/12 m-2 p-2  rounded-2xl bg-(--primaryColor)/10 darkMode:bg-(--accentColor)/60" >
+        <div className="flex flex-col  w-1/3 h-11/12 m-2 p-2  rounded-2xl border-4 border-(--primaryColor)/10 darkMode:bg-(--accentColor)/60" >
                     <p className="text-5xl font-medium border-b pb-2 border-b-gray-200 text-center text-(--primaryColor)/80 darkMode:text-(--secondaryColor)">{data.title}</p>
-                    <div className="flex flex-wrap gap-5 mt-4 ml-4 text-xl">
-                        <p className="flex gap-2 items-center min-w-1/4"> <Calendar className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Date</p>
-                        <p className="flex gap-2 items-center min-w-1/4"> <Clock className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots} pm</p>
-                        <p className="flex gap-2 items-center min-w-1/4"> <Hourglass className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Duration</p>
-                        <p className="flex gap-2 items-center min-w-1/4"> <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Languages</p>
-                        <p className="flex gap-2 items-center min-w-1/4"> <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Category}</p>
-                        <p className="flex gap-2 items-center min-w-1/4"> <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Location}</p>
-                        <p className="flex gap-2 items-center min-w-1/4"> <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots}</p>
+                    <div className="flex flex-wrap gap-5 mt-5 text-l">
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Calendar className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Date</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Clock className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots} pm</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Hourglass className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Duration</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Languages</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Category}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Location}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Star className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots}</p>
                     </div>
-                    <div className="flex items-center pl-5 pr-5 justify-between mt-5">
+                    <p className="mt-10 mx-4 text-l">Select Payment Method :</p>
+                    <div className="flex flex-col text-xl mt-3  gap-2 mx-4">
+                        <input type="button" value={"UPI"} className="border-2 border-(--primaryColor)/50 rounded-xl darkMode:border-(--secondaryColor) hover:bg-(--primaryColor)/20 darkMode:hover:bg-(--exColor)/40"/>
+                        <input type="button" value={"Card"} className="border-2 border-(--primaryColor)/50 rounded-xl darkMode:border-(--secondaryColor) hover:bg-(--primaryColor)/20 darkMode:hover:bg-(--exColor)/40"/>
+                    </div>
+                    <div className=" flex items-center px-5 py-2 justify-between mb-4 mt-auto rounded-xl">
                         <p className="flex gap-2 items-center text-2xl"> <IndianRupee className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.price}</p>
-                        <input type="button" className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2" value="Join now!"/>
+                        <input type="button" className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 hover:opacity-80" value="Join now!"/>
                     </div>
                     
                 </div>
