@@ -19,20 +19,26 @@ const EventPage = () => {
   const params = useParams();
   let id = params.id;
   const [data, setData] = useState({});
+  const [img,setImg]=useState(null);
   useEffect(() => {
     console.log(id);
     fetch(`/api/data/${id}`)
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) =>{
+         setData(data);
+         let path=data.coverImagePath;
+        const imge = '/api/img/'+(path.slice(8));
+        setImg(imge);
+        })
       .catch((err) => console.log(err));
   }, []);
-  const imgs = [itemImage, itemImage2];
+  console.log(data);
   let x = id % 2 == 0 ? "voluntary" : "Paid";
   return (
     <div className=" w-full h-full flex gap-5 mx-5 pt-4">
       <div className="flex-3 flex flex-col gap-15">
         <div className="ml-auto mr-auto h-[65vh] w-full max-w-[60vw] flex rounded-3xl overflow-clip justify-center">
-          <ImgScroll imgs={imgs} />
+          <ImgScroll imgs={[img]} />
         </div>
         <div className="ml-auto mr-auto w-15/16 ">
           <p className="text-4xl font-medium border-b pb-2 border-b-gray-200 text-(--primaryColor)/80">
@@ -43,7 +49,7 @@ const EventPage = () => {
               <span className="font-semibold text-(--primaryColor)">
                 Conducted by :
               </span>{" "}
-              by person {data.Slots}{" "}
+              by person {data.totaltickets}{" "}
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
@@ -55,25 +61,25 @@ const EventPage = () => {
               <span className="font-semibold text-(--primaryColor)">
                 Contributors :
               </span>{" "}
-              {data.Slots} people
+              {data.totaltickets} people
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
                 Volunteers :
               </span>{" "}
-              {data.Slots} people
+              {data.totaltickets} people
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
                 Availabe slots :
               </span>{" "}
-              {data.Slots}{" "}
+              {data.totaltickets}{" "}
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
                 Location :
               </span>{" "}
-              {data.Location} at that location
+              {data.city+" "+data.state} at that location
             </p>
           </div>
         </div>
@@ -83,13 +89,7 @@ const EventPage = () => {
             Description
           </p>
           <p className="text-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-            architecto nemo nulla magni hic pariatur illo, quidem veritatis.
-            Nihil aut repellat est, nostrum magni unde aperiam ducimus
-            reprehenderit a expedita? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quisquam non atque voluptatum aliquam officia,
-            itaque, error dolor aliquid ratione laudantium ducimus ullam porro
-            consequatur? Laboriosam culpa optio doloremque amet. Inventore?
+            {data.description}
           </p>
         </div>
         <div className="ml-auto mr-auto w-15/16  ">

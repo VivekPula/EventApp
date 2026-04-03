@@ -1,5 +1,6 @@
 import express from "express";
 import Event from "../Models/Event.js";
+import Event2 from "../Models/Event2.js";
 
 const router = express.Router();
 router.post("/", async (req, res) => {
@@ -12,7 +13,7 @@ router.post("/", async (req, res) => {
          query.language = {$in : language};
        }
     if(category && category.length>0){
-      query.Category = {$in :category};
+      query.category = {$in :category};
     }
     if(type && type.length>0){
       query.type = {$in : type}
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
       }
     }
       
-    const events = await Event.find(query);
+    const events = await Event2.find(query);
     res.json(events);
   }catch (e) {
     console.log(e);
@@ -36,7 +37,7 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const eventdata = await Event.findById(id);
+    const eventdata = await Event2.findById(id);
     res.json(eventdata);
   } catch (e) {
     console.log(e);

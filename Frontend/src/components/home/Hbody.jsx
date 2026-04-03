@@ -52,10 +52,7 @@ const Hbody = () => {
         </div>
     <div className="h-20/21 w-20/21 m-5">
       {data.map((item, index) => {
-        let imge = itemImage;
-        if (index % 2 == 0) imge = itemImage;
-        else imge = itemImage2;
-        return <HistoryCard item={item} key={index} imge={imge} index={index} />;
+        return <HistoryCard item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}
     </div>
     </>
