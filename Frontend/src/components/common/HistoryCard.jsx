@@ -12,10 +12,10 @@ const HistoryCard = ({ item, index, imge }) => {
           <div className="m-2 relative flex h-9/10 w-1/3 rounded-3xl overflow-clip items-center justify-center">
             <div className="flex absolute z-10 top-2 right-1">
               <p className="flex mr-2 font-semibold items-center rounded-xl pl-2 pr-2 bg-(--secondaryColor) darkMode:bg-(--exColor)/90 text-(--accentColor) darkMode:text-(--accentColor) ">
-                {item.Category}
+                {item.category}
               </p>
             </div>
-            <img src={imge} alt="image"></img>
+            <img className="rounded-xl" src={`/api/img/${imge.slice(8)}`} alt="image" ></img>
           </div>
           {/* div just for image */}
           <div className="m-2 h-full pl-2 px-10 mt-10">
@@ -25,11 +25,11 @@ const HistoryCard = ({ item, index, imge }) => {
               </p>
             </div>
             {/* div for event Name and tags */}
-            <p className="mt-2 text-xl">{item.About}</p> {/* description */}
+            <p className="mt-2 text-xl">{item.description}</p> {/* description */}
             <div className="flex w-full justify-start gap-10 mt-3">
               <p className="flex items-center line-clamp-3 mt-2 mr-auto">
                 <MapPinned className="mr-2" size={28} />
-                {item.Location}
+                {item.city+" "+item.state}
               </p>
             </div>
             {/* div for location and ticket info */}

@@ -18,7 +18,9 @@ const fetchData = async (query,setData) =>{
         setData(data);
       })
       .catch((error) => console.error("Error :", error));
+
 }
+
 const Mbody = () => {
     const Loptions=[{value:1,label:'Telugu'},{value:2,label:'Hindi'},{value:3,label:'English'},{value:4,label:'Tamil'}];
     const Goptions=[{value:1,label:'Nature'},{value:2,label:'Games'},{value:3,label:'philanthropy'},{value:4,label:'Dance'},{value:5,label:'Music'},{value:6,label:'other'}];
@@ -52,10 +54,7 @@ const Mbody = () => {
         </div>
     <div className="h-20/21 w-20/21 flex flex-wrap m-5">
       {data.map((item, index) => {
-        let imge = itemImage;
-        if (index % 2 == 0) imge = itemImage;
-        else imge = itemImage2;
-        return <EventCard item={item} key={index} imge={imge} index={index} />;
+        return <EventCard item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}
     </div>
     </>
