@@ -15,7 +15,7 @@ const HistoryCard = ({ item, index, imge }) => {
                 {item.category}
               </p>
             </div>
-            <img className="rounded-xl" src={`/api/img/${imge.slice(8)}`} alt="image" ></img>
+            <img className="rounded-xl object-cover h-full w-full" src={`/api/img/${imge.slice(8)}`} alt="image" ></img>
           </div>
           {/* div just for image */}
           <div className="m-2 h-full pl-2 px-10 mt-10">
@@ -29,7 +29,7 @@ const HistoryCard = ({ item, index, imge }) => {
             <div className="flex w-full justify-start gap-10 mt-3">
               <p className="flex items-center line-clamp-3 mt-2 mr-auto">
                 <MapPinned className="mr-2" size={28} />
-                {item.city+" "+item.state}
+                {item.city+", "+item.state}
               </p>
             </div>
             {/* div for location and ticket info */}
