@@ -17,7 +17,7 @@ const EventCard = ({ item, index, imge }) => {
                 {item.category}
               </p>
             </div>
-            <img src={`/api/img/${imge.slice(8)}`} alt="image" className="rounded-xl"></img>
+            <img src={`/api/img/${imge.slice(8)}`} alt="image" className="rounded-xl object-cover w-full h-full"></img>
           </div>{" "}
           {/* div just for image */}
           <div className="m-2   pl-2">
@@ -31,14 +31,14 @@ const EventCard = ({ item, index, imge }) => {
             <div className="flex w-full justify-start ">
               <p className="flex items-center line-clamp-3 mt-2 mr-auto">
                 <MapPinned className="mr-2" size={28} />
-                {item.city+" "+item.state}{" "}
+                {item.city+", "+item.state}{" "}
               </p>
               <p className="flex mr-2 font-semibold items-center gap-2">
                 <Ticket
                   className="text-(--accentColor) darkMode:text-(--exColor)"
                   size={30}
                 />{" "}
-                1/{item.totaltickets} left
+                {item.totaltickets}
               </p>
             </div>{" "}
             {/* div for location and ticket info */}
@@ -62,7 +62,7 @@ const EventCard = ({ item, index, imge }) => {
                 {item.category}
               </p>
             </div>
-            <img src={`api/img/${imge.slice(8)}`} alt="image" className="rounded-xl"></img>
+            <img src={`api/img/${imge.slice(8)}`} alt="image" className="w-full h-full rounded-xl object-cover "></img>
           </div>
           <div className="m-2 mb-0  pl-2">
             <div className="flex w-full justify-start ">
@@ -75,14 +75,14 @@ const EventCard = ({ item, index, imge }) => {
             <div className="flex w-full justify-start ">
               <p className="flex items-center line-clamp-3 mt-2 mr-auto">
                 <MapPinned className="mr-2" size={28} />
-                {item.city+" "+item.state}{" "}
+                {item.city+", "+item.state}{" "}
               </p>
               <p className="flex mr-2 font-semibold items-center gap-2">
                 <Ticket
                   className="text-(--accentColor) darkMode:text-(--exColor)"
                   size={30}
                 />{" "}
-                1/{item.totalTickets} left
+                {item.totaltickets}
               </p>
             </div>
           </div>

@@ -102,14 +102,17 @@ function HostNewPage() {
 
               <select className="border-1 p-[10px]  bg-gray-100 rounded-[5px] w-[200px]" name='category' value={eventform.category} onChange={handleChange} required>
                 <option value="">select</option>
-                <option value="tech">tech</option>
-                <option value="cultural">cultural</option>
-                <option value="art">art</option>
-                <option value="medical">medical</option>
-                <option value="music">music</option>
-                <option value="dance">dance</option>
-                <option value="business">business</option>
-                <option value="pharma">pharma</option>
+                <option value="Tech">Tech</option>
+                <option value="Cultural">Cultural</option>
+                <option value="Art">Art</option>
+                <option value="Medical">Medical</option>
+                <option value="Music">Music</option>
+                <option value="Dance">Dance</option>
+                <option value="Business">Business</option>
+                <option value="Pharma">Pharma</option>
+                <option value="Games">Games</option>
+                <option value="Other">Other</option>
+                <option value="Nature">Nature</option>
               </select>
             </div>
 
@@ -117,9 +120,10 @@ function HostNewPage() {
               <label  >language* </label>
               <select className="border-1 p-[10px]   bg-gray-100 rounded-[5px]  w-[200px]" name='language' value={eventform.language} onChange={handleChange} required>
                 <option value="">select</option>
-                <option value="english">english</option>
-                <option value="telugu">telugu</option>
-                <option value="hindi">hindi</option>
+                <option value="English">English</option>
+                <option value="Telugu">Telugu</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Tamil">Tamil</option>
               </select>
             </div>
           </div>
