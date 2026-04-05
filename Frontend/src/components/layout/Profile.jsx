@@ -30,7 +30,7 @@ const Profile = () => {
     <div className="relative">
       <CircleUserIcon
         size={35}
-        className="text-gray-600 hover:cursor-pointer hover:opacity-75 active:opacity-85"
+        className="text-(--fg) hover:cursor-pointer hover:opacity-75 active:opacity-85"
         onClick={() => setOpen(!open)}
       />
       {open && (

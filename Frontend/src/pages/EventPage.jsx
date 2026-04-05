@@ -79,7 +79,7 @@ const EventPage = () => {
               <span className="font-semibold text-(--primaryColor)">
                 Location :
               </span>{" "}
-              {data.city+" "+data.state} at that location
+              {data.city+", "+data.state}
             </p>
           </div>
         </div>
@@ -138,37 +138,37 @@ const EventPage = () => {
             <p className="flex gap-2 items-center">
               {" "}
               <Calendar className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : Date
+              : {data.date}
             </p>
             <p className="flex gap-2 items-center">
               {" "}
               <Clock className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : {data.Slots} pm
+              : {data.time} 
             </p>
             <p className="flex gap-2 items-center">
               {" "}
               <Hourglass className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : Duration
+              : {data.duration}
             </p>
             <p className="flex gap-2 items-center">
               {" "}
               <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : Languages
+              : {data.language}
             </p>
             <p className="flex gap-2 items-center">
               {" "}
               <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : {data.Category}
+              : {data.category}
             </p>
             <p className="flex gap-2 items-center">
               {" "}
               <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : {data.Location}
+              : {data.city+", "+data.state}
             </p>
             <p className="flex gap-2 items-center">
               {" "}
               <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : {data.Slots}
+              : {data.totaltickets}
             </p>
           </div>
           <div className="flex items-center pl-5 pr-5 justify-between mt-5">

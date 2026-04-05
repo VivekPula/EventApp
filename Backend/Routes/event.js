@@ -3,14 +3,17 @@ import Event from "../Models/Event.js";
 import Event2 from "../Models/Event2.js";
 
 const router = express.Router();
+
 router.post("/", async (req, res) => {
   try {
-    console.log("what");
-    console.log(req.body);
-    const {language,category,prices,type} = req.body || {};
+    const {language,category,prices,type,queryString} = req.body || {};
     let query={};
+    if(queryString!=null&&queryString!==""){
+      query.title = {$regex : queryString, $options : 'i'};
+      console.log(queryString);
+    }
     if(language && language.length>0){
-         query.language = {$in : language};
+        query.language = {$in : language};
        }
     if(category && category.length>0){
       query.category = {$in :category};
@@ -33,6 +36,7 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Some server error: " + e.message });
   }
 });
+
 
 router.get("/:id", async (req, res) => {
   try {

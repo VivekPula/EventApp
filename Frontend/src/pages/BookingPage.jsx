@@ -17,15 +17,19 @@ const BookingPage = () =>{
         <div className="w-full h-full flex justify-center"> 
         <div className="flex flex-col  w-1/3 h-11/12 m-2 p-2  rounded-2xl border-4 border-(--primaryColor)/10 darkMode:bg-(--accentColor)/60" >
                     <p className="text-5xl font-medium border-b pb-2 border-b-gray-200 text-center text-(--primaryColor)/80 darkMode:text-(--secondaryColor)">{data.title}</p>
-                    <div className="flex flex-wrap gap-5 mt-5 text-l">
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Calendar className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Date</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Clock className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots} pm</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Hourglass className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Duration</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : Languages</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Category}</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Location}</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots}</p>
-                        <p className="flex gap-2 items-center min-w-1/3 ml-auto mr-auto"> <Star className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.Slots}</p>
+                    <div className="flex gap-10 mt-5 text-l justify-center w-full">
+                        <div className="flex flex-col gap-5 w-1/3 ml-auto">
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Calendar className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.date}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Clock className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.totaltickets} pm</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Hourglass className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.duration}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.language}</p>
+                        </div>
+                        <div className="flex flex-col gap-5 w-1/2">
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.category}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.price}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <Star className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.totaltickets}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.city+", "+data.state}</p>
+                        </div>
                     </div>
                     <p className="mt-10 mx-4 text-l">Select Payment Method :</p>
                     <div className="flex flex-col text-xl mt-3  gap-2 mx-4">
