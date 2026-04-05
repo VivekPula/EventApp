@@ -40,20 +40,17 @@ router.post("/", async (req, res) => {
 router.post("/usertickets", async (req, res) => {
   try {
     const {language,category,prices,type,queryString, user} = req.body || {};
-    const eventIds = await Ticket.aggregate([
-      {
-        $group:{
-          _id : null,
-          ids : {$push : "$Eid"}
-        }
-      }
-    ]);
+    const eventEIds = await Ticket.find({name : user},{Eid : 1});
+    const eventIds = eventEIds.map( id => id.Eid);
     let query={};
     if(queryString!=null&&queryString!==""){
       query.title = {$regex : queryString, $options : 'i'};
     }
-    if(eventIds!=null&&eventIds[0].ids!=null&& eventIds[0].ids.length>0){
-      query._id = {$in : eventIds[0].ids}
+    if(eventIds!=null&& eventIds.length>0){
+      query._id = {$in : eventIds}
+    }
+    else{
+      query._id = null;
     }
     if(language && language.length>0){
         query.language = {$in : language};
