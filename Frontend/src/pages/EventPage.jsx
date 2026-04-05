@@ -176,11 +176,18 @@ const EventPage = () => {
               <IndianRupee className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
               : {data.price}
             </p>
-            <Link to={`/bookEvent/${id}`} ><input
+            {data.totaltickets>0 ? <Link to={`/bookEvent/${id}`} ><input
               type="button"
               className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2"
               value="Join now!"
-            /></Link>
+            /></Link>:
+              <input
+              type="button"
+              className=" text-2xl bg-(--secondaryColor) text-red-500 rounded-2xl p-2"
+              value=" Filled! "
+            />
+            }
+            
           </div>
         </div>
       </div>
