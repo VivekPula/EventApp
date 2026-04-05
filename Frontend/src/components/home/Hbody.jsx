@@ -7,7 +7,7 @@ import { useState } from "react";
 import DropDownList from "../common/DropDownList";
 const fetchData = async (query,setData) =>{
     console.log(query);
-   await fetch("/api/data",{
+   await fetch("/api/data/usertickets",{
       method: "POST",
       headers:{
         "Content-Type": "application/json",
@@ -24,6 +24,7 @@ const Hbody = ({refresh}) => {
     const Goptions=[{value:1,label:'Nature'},{value:2,label:'Games'},{value:3,label:'philanthropy'},{value:4,label:'Dance'},{value:5,label:'Music'},{value:6,label:'Art'},{value:7,label:'Cultural'},{value:8,label:'Other'}];
     const Poptions=[{value:1,label:'Rs 1000'},{value:2,label:'Rs 100'},{value:3,label:'Rs 10000'},{value:4,label:'Rs 100000'}];
     const Ooptions=[{value:1,label:'Paid'},{value:2,label:'Voluntary'},{value:3,label:'Paying'},{value:4,label:'others'}];
+    const user = localStorage.name;
     const [lang,setLang]=useState([]);
     const [catg,setCatg]=useState([]);
     const [price,setPrice]=useState([]);
@@ -31,6 +32,7 @@ const Hbody = ({refresh}) => {
     const [data, setData] = useState([]);
   useEffect(  () => {
     const query ={
+      user : user,
       language : lang,
       category : catg,
       prices : price,

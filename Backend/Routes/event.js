@@ -37,6 +37,48 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Some server error: " + e.message });
   }
 });
+router.post("/usertickets", async (req, res) => {
+  try {
+    const {language,category,prices,type,queryString, user} = req.body || {};
+    const eventIds = await Ticket.aggregate([
+      {
+        $group:{
+          _id : null,
+          ids : {$push : "$Eid"}
+        }
+      }
+    ]);
+    let query={};
+    if(queryString!=null&&queryString!==""){
+      query.title = {$regex : queryString, $options : 'i'};
+    }
+    if(eventIds!=null&&eventIds[0].ids!=null&& eventIds[0].ids.length>0){
+      query._id = {$in : eventIds[0].ids}
+    }
+    if(language && language.length>0){
+        query.language = {$in : language};
+       }
+    if(category && category.length>0){
+      query.category = {$in :category};
+    }
+    if(type && type.length>0){
+      query.type = {$in : type}
+    }
+    if(prices&&prices.length>0){
+      prices.sort();
+      query.price={
+        $gte :Number(prices[0].slice(3)),
+        $lte :Number(prices[prices.length-1].slice(3))
+      }
+    }
+      
+    const events = await Event2.find(query);
+    res.json(events);
+  }catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Some server error: " + e.message });
+  }
+});
 
 router.get("/ticket", async (req, res) => {
   try{
@@ -55,7 +97,7 @@ router.post("/ticket",async (req,res) => {
   try{
   const {name,title,date,language,price,time,location,category,duration,description,Eid} = req.body || {}; 
   const Tid = name+title;
-  const newTicket = new Ticket({name,title,date,language,price,time,location,category,duration,description,Tid});
+  const newTicket = new Ticket({name,title,date,language,price,time,location,category,duration,description,Tid,Eid});
   const saved = await newTicket.save();
   await Event2.updateOne(
     {_id : Eid},

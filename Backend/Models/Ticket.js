@@ -12,6 +12,7 @@ const ticketSchema =new Schema({
     duration : String,
     description : String,
     Tid : String,
+    Eid : String
 },{
     timestamps:true
 });
