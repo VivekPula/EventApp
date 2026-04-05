@@ -12,6 +12,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import BookingPage from "./pages/BookingPage";
+import { ProtectedRoute } from "./components/common/ProtectedRoute";
 
 const App = () => {
   return (
@@ -23,10 +24,12 @@ const App = () => {
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/event/:id" element={<EventPage />} />
-              <Route path="/history" element={<HistoryPage />} />
-              <Route path="/hostnew" element={<HostNewPage />} />
-             <Route path="/myevents" element={<MyEvents />} />
-            <Route path="/bookEvent/:id" element={<BookingPage/>}/>
+              <Route element={<ProtectedRoute />}>
+                <Route path="/history" element={<HistoryPage />} />
+                <Route path="/hostnew" element={<HostNewPage />} />
+                <Route path="/myevents" element={<MyEvents />} />
+                <Route path="/bookEvent/:id" element={<BookingPage />} />
+              </Route>
             </Route>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<LogIn />} />

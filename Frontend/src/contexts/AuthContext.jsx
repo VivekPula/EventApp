@@ -13,13 +13,16 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    setUser(token);
+  const login = ({ data }) => {
+    console.log(data);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("name", data.name);
+    setUser(data.token);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("name");
     setUser(null);
   };
 

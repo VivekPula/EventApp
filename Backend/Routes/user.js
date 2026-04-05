@@ -27,7 +27,7 @@ router.post("/signup", async (req, res) => {
       expiresIn: "1d",
     });
     console.log("Token: ", token);
-    res.status(201).json({ token });
+    res.status(201).json({ token, name });
   } catch (e) {
     console.log("Error in inserting user to database");
     return res.status(500).json({ message: e.message });
@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
       expiresIn: "1d",
     });
     console.log("Sending token");
-    res.status(201).json({ token });
+    res.status(201).json({ token, name: user.name });
     console.log("Token sent!");
   } catch (e) {
     console.log(e);

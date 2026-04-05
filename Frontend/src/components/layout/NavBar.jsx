@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link, useLocation } from "react-router-dom";
+import Profile from "./Profile";
 const NavBar = ({ className = "" }) => {
   const redirectPath = useLocation().pathname; // To redirect back to this location after signup/login
   const { user } = useAuth();
@@ -57,10 +58,7 @@ const NavBar = ({ className = "" }) => {
           </div>
           <div className="ml-auto ">
             {user ? (
-              <CircleUserRound
-                size={50}
-                className="mr-4 text-(--accentColor)"
-              />
+              <Profile />
             ) : (
               <Link to={"login"} state={{ redirectPath }}>
                 <span className="bg-(--primaryColor) p-2 px-3 text-white rounded-md hover:opacity-75 active:opacity-85">
