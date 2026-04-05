@@ -29,11 +29,12 @@ function LogIn() {
 
       if (!res.ok) {
         console.error(data.message);
-        alert(data.message());
+        alert(data.message);
+
         return;
       }
 
-      login(data.token);
+      login({ data: { token: data.token, name: data.name } });
 
       if (redirectPath) {
         navigate(redirectPath, { replace: true });
@@ -41,7 +42,7 @@ function LogIn() {
         navigate("/", { replace: true });
       }
     } catch (e) {
-      console.err(e);
+      console.error(e);
       alert(e.message);
     }
   };
@@ -52,7 +53,11 @@ function LogIn() {
           <span className="flex mb-5">
             <p className="text-3xl font-bold text-(--primaryColor)">Log</p>
             &nbsp;
-            <p className="text-3xl font-bold">In</p>
+            <p className="text-3xl font-bold text-(--primaryColor)">In</p>
+            &nbsp; &nbsp;
+            <p className="text-3xl font-bold ">To</p>
+            &nbsp; &nbsp;
+            <p className="text-3xl font-bold ">Continue</p>
           </span>
           <label htmlFor="email">Email</label>
           <input

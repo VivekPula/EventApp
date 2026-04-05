@@ -35,7 +35,7 @@ function SignUp() {
         return;
       }
 
-      login(data.token);
+      login({ data: { token: data.token, name: data.name } });
 
       if (redirectPath) {
         navigate(redirectPath, { replace: true });
@@ -50,8 +50,13 @@ function SignUp() {
     <div className="w-full h-screen flex justify-center items-center">
       <div className="p-10 px-15 w-1/3 rounded-2xl shadow-2xl">
         <span className="flex mb-5">
-          <p className="text-3xl font-bold text-(--primaryColor)">Sign</p>&nbsp;
-          <p className="text-3xl font-bold">Up</p>
+          <p className="text-3xl font-bold text-(--primaryColor)">Sign</p>
+          &nbsp;
+          <p className="text-3xl font-bold text-(--primaryColor)">Up</p>
+          &nbsp; &nbsp;
+          <p className="text-3xl font-bold ">To</p>
+          &nbsp; &nbsp;
+          <p className="text-3xl font-bold ">Continue</p>
         </span>
         <form onSubmit={handleSignUp} className="flex-col flex">
           <label htmlFor="name">Name</label>
