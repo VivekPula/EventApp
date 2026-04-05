@@ -2,15 +2,17 @@ import { CircleUserRound, MapPin, Moon, Search, Sun } from "lucide-react";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useAuth } from "../../contexts/AuthContext";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Profile from "./Profile";
+
 const NavBar = ({ className = "" }) => {
   const redirectPath = useLocation().pathname; // To redirect back to this location after signup/login
   const { user } = useAuth();
-
+  const [query,setQuery] = useState("");
   const { toggleTheme } = useContext(ThemeContext);
   const [themeName, changeThemeName] = useState("light");
   const [iconName, changeIconName] = useState(<Sun />);
+  const navigate = useNavigate();
   const changeTheme = () => {
     toggleTheme();
     changeThemeName(themeName === "light" ? "dark" : "light");
@@ -39,8 +41,25 @@ const NavBar = ({ className = "" }) => {
             type="text"
             placeholder="Search"
             className="w-full border-0 bg-transparent focus:ring-0 text-(--fg) placeholder-(--fg)"
+            onChange={(e)=>setQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if( e.key === "Enter"){
+                if(redirectPath!=="/history")
+                  navigate("/",{state:{refresh:query}});
+                else
+                  navigate("/history",{state:{refresh:query}});
+              }
+            }}
           />
-          <Search className="mr-8" size={25} />
+          <Search className="mr-8 cursor-pointer" 
+              size={25} 
+              onClick={()=>{
+                if(redirectPath!=="/history")
+                  navigate("/",{state:{refresh:query}});
+                else
+                  navigate("/history",{state:{refresh:query}});
+              }}
+              />
         </div>
         <div className="flex justify-around items-center gap-3 ml-auto">
           <div className="ml-auto  flex items-center justify-between text-xl ">
