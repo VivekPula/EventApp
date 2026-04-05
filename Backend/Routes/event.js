@@ -1,6 +1,7 @@
 import express from "express";
 import Event from "../Models/Event.js";
 import Event2 from "../Models/Event2.js";
+import Ticket from "../Models/Ticket.js";
 
 const router = express.Router();
 
@@ -37,7 +38,34 @@ router.post("/", async (req, res) => {
   }
 });
 
-
+router.get("/ticket", async (req, res) => {
+  try{
+    const event = req.query.event;
+    const user = req.query.user;
+    const find = await Ticket.findOne({title : event, name : user});
+    if(find){
+      res.json(find);
+    }
+    else{
+      res.json({NA : "true"});
+    }
+  }catch(e){console.log("Error : "+e);}
+});
+router.post("/ticket",async (req,res) => {
+  try{
+  const {name,title,date,language,price,time,location,category,duration,description,Eid} = req.body || {}; 
+  const Tid = name+title;
+  const newTicket = new Ticket({name,title,date,language,price,time,location,category,duration,description,Tid});
+  const saved = await newTicket.save();
+  await Event2.updateOne(
+    {_id : Eid},
+    {
+      $inc : { totaltickets : -1 }
+    }
+  );
+  res.json({status : "OK"});
+  }catch(e){console.log("Error : "+e)}
+});
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;

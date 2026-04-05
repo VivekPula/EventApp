@@ -32,7 +32,6 @@ const EventPage = () => {
         })
       .catch((err) => console.log(err));
   }, []);
-  console.log(data);
   let x = id % 2 == 0 ? "voluntary" : "Paid";
   return (
     <div className=" w-full h-full flex gap-5 mx-5 pt-4">
