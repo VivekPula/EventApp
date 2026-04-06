@@ -138,7 +138,7 @@ const EventPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 relative">
         <div className=" sticky top-24 p-2  rounded-2xl bg-(--primaryColor)/10 darkMode:bg-(--accentColor)/60">
           <p className="text-5xl font-medium border-b pb-2 border-b-gray-200 text-center text-(--primaryColor)/80 darkMode:text-(--secondaryColor)">
             {data.title}
