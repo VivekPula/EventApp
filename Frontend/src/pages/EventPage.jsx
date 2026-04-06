@@ -14,12 +14,14 @@ import {
 } from "lucide-react";
 import ImgScroll from "../components/utils/ImgScroll";
 import { useEffect, useState } from "react";
+import { Oval } from "react-loader-spinner";
 
 const EventPage = () => {
   const params = useParams();
   let id = params.id;
   const [data, setData] = useState({});
   const [img,setImg]=useState(null);
+  const [loading,setLoading] = useState(true);
   useEffect(() => {
     console.log(id);
     fetch(`/api/data/${id}`)
@@ -29,11 +31,19 @@ const EventPage = () => {
          let path=data.coverImagePath;
         const imge = '/api/img/'+(path.slice(8));
         setImg(imge);
+        setLoading(false);
         })
       .catch((err) => console.log(err));
+      
   }, []);
-  let x = id % 2 == 0 ? "voluntary" : "Paid";
-  return (
+  if(loading)
+    return(
+      <div className="w-full h-full flex items-center justify-center">
+        <Oval width="150" height = "150" color="violet" secondaryColor="pink"  visible= {true}/>
+      </div>
+    );
+  else 
+    return (
     <div className=" w-full h-full flex gap-5 mx-5 pt-4">
       <div className="flex-3 flex flex-col gap-15">
         <div className="ml-auto mr-auto h-[65vh] w-full max-w-[60vw] flex rounded-3xl overflow-clip justify-center">
@@ -54,7 +64,7 @@ const EventPage = () => {
               <span className="font-semibold text-(--primaryColor)">
                 Type :
               </span>{" "}
-              {x}
+              {"Paid"}
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
@@ -178,7 +188,7 @@ const EventPage = () => {
             </p>
             {data.totaltickets>0 ? <Link to={`/bookEvent/${id}`} ><input
               type="button"
-              className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2"
+              className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 py-1.5 hover:opacity-80"
               value="Join now!"
             /></Link>:
               <input

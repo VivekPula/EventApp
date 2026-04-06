@@ -5,7 +5,8 @@ import EventCard from "../common/EventCard";
 import { useEffect } from "react";
 import { useState } from "react";
 import DropDownList from "../common/DropDownList";
-const fetchData = async (query,setData) =>{
+import { Oval } from "react-loader-spinner";
+const fetchData = async (query,setData,setLoading) =>{
     
    await fetch("/api/data",{
       method: "POST",
@@ -18,7 +19,7 @@ const fetchData = async (query,setData) =>{
         setData(data);
       })
       .catch((error) => console.error("Error :", error));
-    
+    setLoading(false);
 
 }
 
@@ -32,6 +33,7 @@ const Mbody = ({refresh}) => {
     const [price,setPrice]=useState([]);
     const [type,setType]=useState([]);
     const [data, setData] = useState([]);
+    const [loading,setLoading] = useState(true);
   useEffect(  () => {
     const query = {
       queryString : refresh,
@@ -41,9 +43,9 @@ const Mbody = ({refresh}) => {
       type : type
     };
     console.log(refresh+" what what")
-    fetchData(query,setData);
+    fetchData(query,setData,setLoading);
     
-  }, [lang,catg,price,type,refresh]);
+  }, [lang,catg,price,type,refresh,setLoading]);
   return (
     <>
     <div className="w-full mt-2 flex p-1"> 
@@ -56,11 +58,16 @@ const Mbody = ({refresh}) => {
             </div>
             
         </div>
-    <div className="h-20/21 w-20/21 flex flex-wrap m-5">
+    {!loading?<div className="h-20/21 w-20/21 flex flex-wrap m-5">
       {data.map((item, index) => {
         return <EventCard item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}
+    </div>:
+    <div className="w-full h-full flex items-center justify-center">
+      <Oval width="150" height = "150" color="violet" secondaryColor="pink"  visible= {true}/>
     </div>
+    }
+    
     </>
   );
 };
