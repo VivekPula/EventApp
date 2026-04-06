@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/forms';
 @custom-variant darkMode (&:where(.darkMode, .darkMode *));
+
+html,body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
  body::-webkit-scrollbar {
   display: none; /* Hide scrollbar for WebKit browsers */
 } 
