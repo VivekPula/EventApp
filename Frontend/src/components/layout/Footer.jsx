@@ -2,7 +2,7 @@ import { Instagram, Mail, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className="w-[calc(100%-11rem)] ml-50 relative z-20">
+    <div className=" ml-50 relative z-20">
       <div className="w-full h-30 bg-gray-400 flex justify-center items-top flex-col">
         <div className="w-2/6 ml-auto mr-auto flex justify-around items-center mb-4">
           <Youtube />
