@@ -2,8 +2,9 @@ import { Calendar, Clock, Flame, Grid3x2, Hourglass, IndianRupee, Languages, Map
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import {Circles, Oval} from "react-loader-spinner";
 
-const getData = async (id,setData,setBooked)=>{
+const getData = async (id,setData,setBooked,setLoading)=>{
     try{
         const res = await fetch(`/api/data/${id}`);
         const data = await res.json();
@@ -18,7 +19,7 @@ const getData = async (id,setData,setBooked)=>{
             setData(ticketData);
             setBooked(true);
         }
-
+        setLoading(false);
     }catch(e){console.log("Error : "+e);}
 }
 const book = async (data,id,setBooked) =>{
@@ -51,12 +52,20 @@ const BookingPage = () =>{
     const id=params.id;
     const user = localStorage.name;
     const [data,setData]=useState({});
+    const [loading,setLoading] = useState(true);
     const [booked,setBooked]= useState(false);
     useEffect(()=>{
-        getData(id,setData,setBooked);
+        getData(id,setData,setBooked,setLoading);
 
-    },[booked]);
-    if(!booked)
+    },[booked,loading]);
+    if(loading){
+        return(
+            <div className="w-full h-full flex items-center justify-center">
+                <Oval width="150" height = "150" color="violet" secondaryColor="pink"  visible= {true}/>
+            </div>
+        );
+    }
+    else if(!booked)
     return (
         <div className="w-full h-full flex justify-center"> 
         <div className="flex flex-col  w-1/3 h-11/12 m-2 p-2  rounded-2xl border-4 border-(--primaryColor)/10 darkMode:bg-(--accentColor)/60" >
