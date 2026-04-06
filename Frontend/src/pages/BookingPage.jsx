@@ -112,7 +112,7 @@ const BookingPage = () =>{
                         <div className="flex flex-col gap-5 w-1/2">
                         <p className="flex gap-2 items-center min-w-1/3 "> <Languages className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.language}</p>
                         <p className="flex gap-2 items-center min-w-1/3 "> <Grid3x2 className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.category}</p>
-                        <p className="flex gap-2 items-center min-w-1/3 "> <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.price}</p>
+                        <p className="flex gap-2 items-center min-w-1/3 "> <IndianRupee className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.price}</p>
                         <p className="flex gap-2 items-center min-w-1/3 "> <MapPin className="text-(--accentColor) darkMode:text-(--exColor)/80"/> : {data.location}</p>
                         </div>
                     </div>
