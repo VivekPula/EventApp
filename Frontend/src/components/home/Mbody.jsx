@@ -1,6 +1,3 @@
-import itemImage from "../../assets/icon3.jpg";
-import itemImage2 from "../../assets/icon.avif";
-import { Link } from "react-router-dom";
 import EventCard from "../common/EventCard";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -42,10 +39,9 @@ const Mbody = ({refresh}) => {
       prices : price,
       type : type
     };
-    console.log(refresh+" what what")
     fetchData(query,setData,setLoading);
     
-  }, [lang,catg,price,type,refresh,setLoading]);
+  }, [lang,catg,price,type,refresh]);
   return (
     <>
     <div className="w-full mt-2 flex p-1"> 

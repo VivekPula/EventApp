@@ -95,13 +95,13 @@ function HostNewPage() {
       <div className="createeventform mx-50  p-5 ">
         <form className='flex flex-col text-xl' onSubmit={handleSubmit}>
           <label className="font-semibold">Title* </label>
-          <input type="text" className="border mt-1  p-2.5 w-full mb-2.5 bg-gray-100 rounded-xl" value={eventform.title} name="title" onChange={handleChange} placeholder="Event Name" required></input>
+          <input type="text" className="border mt-1  p-2.5 w-full mb-2.5  rounded-xl text-black" value={eventform.title} name="title" onChange={handleChange} placeholder="Event Name" required></input>
 
           <div className="flex flex-row">
             <div className="flex flex-col my-2.5">
               <label >Category* </label>
 
-              <select className="border p-2.5 mt-1  bg-gray-100 rounded-xl w-50" name='category' value={eventform.category} onChange={handleChange} required>
+              <select className="border p-2.5 mt-1  rounded-xl w-50 text-black" name='category' value={eventform.category} onChange={handleChange} required>
                 <option value="">select</option>
                 <option value="Tech">Tech</option>
                 <option value="Cultural">Cultural</option>
@@ -117,9 +117,9 @@ function HostNewPage() {
               </select>
             </div>
 
-            <div className="flex flex-col my-2.5 ml-5">
+            <div className="flex flex-col my-2.5 ml-5 ">
               <label  >language* </label>
-              <select className="border p-2.5 mt-1  bg-gray-100 rounded-xl  w-50" name='language' value={eventform.language} onChange={handleChange} required>
+              <select className="border p-2.5 mt-1   rounded-xl  w-50 text-black" name='language' value={eventform.language} onChange={handleChange} required>
                 <option value="">select</option>
                 <option value="English">English</option>
                 <option value="Telugu">Telugu</option>
@@ -131,14 +131,14 @@ function HostNewPage() {
 
 
           <div className="flex flex-row ">
-            <div className="flex flex-col my-2.5">
+            <div className="flex flex-col my-2.5 ">
               <label>state* </label>
-              <input type='text' className="border p-2.5 mt-1 bg-gray-100 rounded-xl" name="state" value={eventform.state} onChange={handleChange} required ></input>
+              <input type='text' className="border p-2.5 mt-1  rounded-xl text-black" name="state" value={eventform.state} onChange={handleChange} required ></input>
             </div>
 
-            <div className="flex flex-col my-2.5 ml-7.5">
+            <div className="flex flex-col my-2.5 ml-7.5 ">
               <label>city* </label>
-              <input type='text' className="border p-2.5 mt-1  bg-gray-100 rounded-xl " name="city" value={eventform.city} onChange={handleChange} required ></input>
+              <input type='text' className="border p-2.5 mt-1   rounded-xl text-black" name="city" value={eventform.city} onChange={handleChange} required ></input>
             </div>
 
           </div>
@@ -160,9 +160,9 @@ function HostNewPage() {
           <div className="start-timings">
             <label>Event starts at* </label>
             <div className="flex flex-row gap-x-2.5">
-              <input type="date" value={eventform.date} name="date" className="border p-2.5 my-2.5  mr-2.5  bg-gray-100 rounded-xl" onChange={handleChange} required ></input>
-              <input type="time" value={eventform.time} name="time" className="border p-2.5 my-2.5  bg-gray-100 rounded-xl" onChange={handleChange} placeholder="time" required></input>
-              <input type="text" value={eventform.duration} name="duration" className="border p-2.5 my-2.5  bg-gray-100 rounded-xl" onChange={handleChange} placeholder="duration" required></input>
+              <input type="date" value={eventform.date} name="date" className="border p-2.5 my-2.5  mr-2.5   rounded-xl text-black" onChange={handleChange} required ></input>
+              <input type="time" value={eventform.time} name="time" className="border p-2.5 my-2.5   rounded-xl text-black" onChange={handleChange} placeholder="time" required></input>
+              <input type="text" value={eventform.duration} name="duration" className="border p-2.5 my-2.5   rounded-xl text-black" onChange={handleChange} placeholder="duration" required></input>
             </div>
           </div>
 
@@ -172,7 +172,7 @@ function HostNewPage() {
 
           <label>upload cover image* </label>
 
-          <div className="coverimage-upload h-37.5 w-100  my-2.5 relative  flex flex-col justify-center items-center border-2 border-dotted  bg-gray-100 rounded-xl">
+          <div className="coverimage-upload h-37.5 w-100  my-2.5 relative bg-gray-100  flex flex-col justify-center items-center border-2 border-dotted  rounded-xl">
             {coverImage === null ? (<>
               < img src={uploadimage} className="h-12.5 w-12.5" ></img>
               <label htmlFor="selectcover" className="text-blue-400 cursor-pointer">choose Image* </label></>)
@@ -188,17 +188,17 @@ function HostNewPage() {
           <div className="flex flex-row ">
             <div className="flex flex-col my-2.5">
               <label>Price of ticket Rs* </label>
-              <input type='number' className="border p-2.5 mt-1 bg-gray-100 rounded-xl " name="price" value={eventform.price} onChange={handleChange} required ></input>
+              <input type='number' className="border p-2.5 mt-1  rounded-xl text-black" name="price" value={eventform.price} onChange={handleChange} required ></input>
             </div>
 
             <div className="flex flex-col m-2.5">
               <label>Total tickets* </label>
-              <input type='number' value={eventform.totaltickets} name="totaltickets" className="border p-2.5 mt-1 bg-gray-100 rounded-xl " onChange={handleChange} required ></input>
+              <input type='number' value={eventform.totaltickets} name="totaltickets" className="border p-2.5 mt-1  rounded-xl text-black" onChange={handleChange} required ></input>
             </div>
           </div>
 
           <label>Description* </label>
-          <textarea rows={3} maxLength={300} value={eventform.description} name="description" className="border text-xl p-2.5 w-full my-2.5  bg-gray-100 rounded-xl" onChange={handleChange} required></textarea>
+          <textarea rows={3} maxLength={300} value={eventform.description} name="description" className="border text-xl p-2.5 w-full my-2.5   rounded-xl text-black" onChange={handleChange} required></textarea>
 
 
           <button type="submit" className="bg-violet-500 text-white p-2.5 w-full  rounded-xl">submit</button>
