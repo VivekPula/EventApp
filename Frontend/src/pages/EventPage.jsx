@@ -188,7 +188,7 @@ const EventPage = () => {
             </p>
             {data.totaltickets>0 ? <Link to={`/bookEvent/${id}`} ><input
               type="button"
-              className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 py-1.5 hover:opacity-80"
+              className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 py-1.5 hover:opacity-80 transform ease-in-out duration-300 hover:scale-102"
               value="Join now!"
             /></Link>:
               <input

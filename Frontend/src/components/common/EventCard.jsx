@@ -5,7 +5,7 @@ const EventCard = ({ item, index, imge }) => {
     return (
       <div
         key={index}
-        className="flex-1/4 rounded-3xl m-5 max-w-3/10 h-[55vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
+        className="flex-1/4 rounded-3xl m-5 max-w-3/10 h-[55vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 transition duration-300 delay-100 ease-in-out hover:scale-102 hover:shadow-xl"
       >
         <Link to={`/event/${item._id}`}>
           {" "}
