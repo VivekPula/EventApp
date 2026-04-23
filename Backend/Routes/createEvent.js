@@ -15,20 +15,20 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-try{
-    router.post('/', upload.single('coverImage'), async (req, res) => {
+try {
+   router.post('/', upload.single('coverImage'), async (req, res) => {
       // console.log(req.body);
       // const { title, category,language, price } = req.body
-      const { title, category, language, state, city, date, time, duration, price, totaltickets, description } = req.body;
+      const { title, category, language, state, city, date, time, duration, price, totaltickets, description, user_id } = req.body;
       const coverImagePath = req.file.path;
-      const newEvent = new Event2({ title, category, language, state, city, date, time, duration, price, totaltickets, description, coverImagePath })
+      const newEvent = new Event2({ title, category, language, state, city, date, time, duration, price, totaltickets, description, coverImagePath, user_id })
       await newEvent.save()
       res.json({ "msg": "done" })
    });
 
 
 
-}catch(e){console.log(e)}
+} catch (e) { console.log(e) }
 
 
 

@@ -1,9 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import uploadimage from "../assets/uploadimage.png"
+
+import { useAuth } from "../contexts/AuthContext"
+
 function HostNewPage() {
 
   const [coverImageurl, setCoverImageUrl] = useState(null)
   const [coverImage, setCoverImage] = useState(null)
+
+  const [user_id, setUserId] = useState('')
+
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+    setUserId(id);
+    console.log(id); // correct value
+  }, []);
+
 
   const defaulteventform = {
     title: "",
@@ -16,7 +28,7 @@ function HostNewPage() {
     duration: "",
     price: 0,
     totaltickets: 0,
-    description: ""
+    description: "",
   }
 
   const [eventform, setEventForm] = useState(defaulteventform)
@@ -35,8 +47,8 @@ function HostNewPage() {
     data.append("price", eventform.price);
     data.append("totaltickets", eventform.totaltickets);
     data.append("description", eventform.description);
-
     data.append("coverImage", coverImage);
+    data.append("user_id", user_id);
 
     try {
       const res = await fetch("/api/createevent", { //change the act url
