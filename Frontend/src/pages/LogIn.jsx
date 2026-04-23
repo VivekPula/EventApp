@@ -15,7 +15,6 @@ function LogIn() {
 
   const handleLogIn = async (e) => {
     e.preventDefault();
-
     try {
       const res = await fetch("/auth/login", {
         method: "POST",
@@ -34,7 +33,7 @@ function LogIn() {
         return;
       }
 
-      login({ data: { token: data.token, name: data.name } });
+      login({ data: { token: data.token, name: data.name,id:data.id } });
 
       if (redirectPath) {
         navigate(redirectPath, { replace: true });
