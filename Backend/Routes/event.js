@@ -86,10 +86,12 @@ router.post("/usertickets", async (req, res) => {
 router.get("/ticket", async (req, res) => {
   try{
     const event = req.query.event;
-    const user = req.query.user;
-    const find = await Ticket.findOne({title : event, name : user});
+    const user_id = req.query.user_id;
+    const find = await Ticket.findOne({title : event, user_id : user_id});
+    
     if(find){
-      res.json(find);
+      const ticketData = await Event2.findOne({_id:find.Eid});
+      res.json(ticketData);
     }
     else{
       res.json({NA : "true"});
@@ -98,9 +100,10 @@ router.get("/ticket", async (req, res) => {
 });
 router.post("/ticket",async (req,res) => {
   try{
-  const {name,title,date,language,price,time,location,category,duration,description,Eid} = req.body || {}; 
-  const Tid = name+title;
-  const newTicket = new Ticket({name,title,date,language,price,time,location,category,duration,description,Tid,Eid});
+  const {name,user_id,title,Eid} = req.body || {}; 
+  const Tid = user_id+title;
+  const tickedBooked = true;
+  const newTicket = new Ticket({name,user_id,title,tickedBooked,Tid,Eid});
   const saved = await newTicket.save();
   await Event2.updateOne(
     {_id : Eid},

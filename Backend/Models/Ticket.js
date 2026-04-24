@@ -2,15 +2,9 @@ import { Schema,model } from "mongoose";
 
 const ticketSchema =new Schema({
     name : String,
+    user_id : String,
     title : String,
-    date : String,
-    language : String,
-    price : Number,
-    time : String,
-    location : String,
-    category : String,
-    duration : String,
-    description : String,
+    Status : Boolean,
     Tid : String,
     Eid : String
 },{
