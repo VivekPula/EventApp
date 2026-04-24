@@ -12,18 +12,25 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [id, setUserId] = useState('');
+
 
   const login = ({ data }) => {
     console.log(data);
     localStorage.setItem("token", data.token);
     localStorage.setItem("name", data.name);
+    localStorage.setItem("id", data.id);
     setUser(data.token);
+    setUserId(data.id);
+
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
+    localStorage.removeItem("id");
     setUser(null);
+    setUserId('');
   };
 
   useEffect(() => {
@@ -44,7 +51,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ login, logout, user }}>
+    <AuthContext.Provider value={{ login, logout, user, id }}>
       {children}
     </AuthContext.Provider>
   );

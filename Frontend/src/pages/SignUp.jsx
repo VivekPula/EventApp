@@ -35,7 +35,7 @@ function SignUp() {
         return;
       }
 
-      login({ data: { token: data.token, name: data.name } });
+      login({ data: { token: data.token, name: data.name,id:data.id } });
 
       if (redirectPath) {
         navigate(redirectPath, { replace: true });

@@ -7,7 +7,7 @@ const HistoryCard = ({ item, index, imge }) => {
         key={index}
         className="flex flex-row rounded-3xl m-5 w-full h-[25vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
       >
-        <Link to={`/event/${item._id}`} className="flex w-full h-full items-center" >
+        <Link to={`/events/event/${item._id}`} className="flex w-full h-full items-center" >
           {/* Link to open the eventpage,the index info is sent to that page */}
           <div className="m-2 relative flex h-9/10 w-1/3 rounded-3xl overflow-clip items-center justify-center">
             <div className="flex absolute z-10 top-2 right-1">

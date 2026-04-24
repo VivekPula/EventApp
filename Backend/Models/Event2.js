@@ -13,7 +13,8 @@ const eventSchema = new Schema({
   price: { type: Number, required: true },
   totaltickets: { type: Number, required: true },
   description: { type: String, required: true },
-  coverImagePath: { type: String, required: true }
+  coverImagePath: { type: String, required: true },
+  user_id: { type: String, required: true }
 }, { timestamps: true });
 
 
