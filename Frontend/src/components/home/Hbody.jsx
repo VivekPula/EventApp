@@ -32,6 +32,7 @@ const Hbody = ({refresh}) => {
     const [data, setData] = useState([]);
   useEffect(  () => {
     const query ={
+      queryString: refresh,
       user : user,
       language : lang,
       category : catg,

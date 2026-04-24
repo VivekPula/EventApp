@@ -56,7 +56,7 @@ const Mbody = ({refresh}) => {
         </div>
     {!loading?<div className="h-20/21 w-20/21 flex flex-wrap m-5">
       {data.map((item, index) => {
-        return <EventCard item={item} key={index} imge={item.coverImagePath} index={index} />;
+        return <EventCard page={"events"} item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}
     </div>:
     <div className="w-full h-full flex items-center justify-center">

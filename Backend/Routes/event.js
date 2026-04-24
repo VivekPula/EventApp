@@ -2,15 +2,17 @@ import express from "express";
 import Event from "../Models/Event.js";
 import Event2 from "../Models/Event2.js";
 import Ticket from "../Models/Ticket.js";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const {language,category,prices,type,queryString} = req.body || {};
+    const {language,category,prices,type,queryString, user_id} = req.body || {};
     let query={};
     if(queryString!=null&&queryString!==""){
       query.title = {$regex : queryString, $options : 'i'};
+      
       console.log(queryString);
     }
     if(language && language.length>0){
@@ -29,7 +31,10 @@ router.post("/", async (req, res) => {
         $lte :Number(prices[prices.length-1].slice(3))
       }
     }
-      
+    if (user_id) {
+      query.user_id = new mongoose.Types.ObjectId(user_id);
+    }
+    
     const events = await Event2.find(query);
     res.json(events);
   }catch (e) {
@@ -69,6 +74,7 @@ router.post("/usertickets", async (req, res) => {
       }
     }
       
+    
     const events = await Event2.find(query);
     res.json(events);
   }catch (e) {

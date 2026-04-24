@@ -13,6 +13,7 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import BookingPage from "./pages/BookingPage";
 import { ProtectedRoute } from "./components/common/ProtectedRoute";
+import HostEventPage from "./pages/HostEventPage";
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/event/:id" element={<EventPage />} />
+              <Route path="/events/event/:id" element={<EventPage />} />
+              <Route path="/hostevents/event/:id" element={<HostEventPage />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/history" element={<HistoryPage />} />
                 <Route path="/hostnew" element={<HostNewPage />} />

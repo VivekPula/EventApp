@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { MapPinned, Tag, Ticket, Tickets } from "lucide-react";
 
-const EventCard = ({ item, index, imge }) => {
+const EventCard = ({page, item, index, imge }) => {
     return (
       <div
         key={index}
         className="flex-1/4 rounded-3xl m-5 max-w-3/10 h-[55vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 transition duration-300 delay-100 ease-in-out hover:scale-102 hover:shadow-xl"
       >
-        <Link to={`/event/${item._id}`}>
+        <Link to={`/${page}/event/${item._id}`}>
           {" "}
           {/* Link to open the eventpage,the index info is sent to that page */}
           <div className="m-2 relative flex h-6/10 rounded-3xl overflow-clip items-center justify-center">
