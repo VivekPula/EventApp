@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import DropDownList from "../common/DropDownList";
 import { Oval } from "react-loader-spinner";
-const fetchData = async (query,setData,setLoading) =>{
+const fetchData = async (query,setData,setLoading,setShowData) =>{
     
    await fetch("/api/data",{
       method: "POST",
@@ -14,10 +14,12 @@ const fetchData = async (query,setData,setLoading) =>{
     }).then((response) => response.json())
       .then((data) => {
         setData(data);
+        setShowData(data);
       })
       .catch((error) => console.error("Error :", error));
     setLoading(false);
-
+    console.log("database Accessed");
+      
 }
 
 const Mbody = ({refresh}) => {
@@ -30,18 +32,25 @@ const Mbody = ({refresh}) => {
     const [price,setPrice]=useState([]);
     const [type,setType]=useState([]);
     const [data, setData] = useState([]);
+    const [showData,setShowData] = useState([]);
     const [loading,setLoading] = useState(true);
+  useEffect(()=>{
+      const searchData = data.filter((item) => item.title.toLowerCase().includes(refresh.toLowerCase()));
+      setShowData(searchData);
+  },[refresh]);
   useEffect(  () => {
     const query = {
-      queryString : refresh,
+      //queryString : refresh,
       language : lang,
       category : catg,
       prices : price,
       type : type
     };
-    fetchData(query,setData,setLoading);
     
-  }, [lang,catg,price,type,refresh]);
+    fetchData(query,setData,setLoading,setShowData);
+    
+    
+  }, [lang,catg,price,type]);
   return (
     <>
     <div className="w-full mt-2 flex p-1"> 
@@ -55,7 +64,7 @@ const Mbody = ({refresh}) => {
             
         </div>
     {!loading?<div className="h-20/21 w-20/21 flex flex-wrap m-5">
-      {data.map((item, index) => {
+      {showData.map((item, index) => {
         return <EventCard page={"events"} item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}
     </div>:
