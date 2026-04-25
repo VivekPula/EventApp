@@ -20,6 +20,7 @@ const EventPage = () => {
   const params = useParams();
   let id = params.id;
   const [data, setData] = useState({});
+  const [eventCreator,setEventCreator] = useState({});
   const [img,setImg]=useState(null);
   const [loading,setLoading] = useState(true);
   useEffect(() => {
@@ -27,8 +28,16 @@ const EventPage = () => {
     fetch(`/api/data/${id}`)
       .then((response) => response.json())
       .then((data) =>{
-         setData(data);
-         let path=data.coverImagePath;
+         setData(data.eventdata);
+         setEventCreator(data.eventCreator);
+         if(data.eventCreator==null){
+          let x = {
+            name : "None",
+            email : "None"
+          }
+          setEventCreator(x);
+         }
+         let path=data.eventdata.coverImagePath;
         const imge = '/api/img/'+(path.slice(8));
         setImg(imge);
         setLoading(false);
@@ -57,8 +66,8 @@ const EventPage = () => {
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
                 Conducted by :
-              </span>{" "}
-              by person {data.totaltickets}{" "}
+              </span>{" "+eventCreator.name}
+              
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
@@ -82,7 +91,7 @@ const EventPage = () => {
               <span className="font-semibold text-(--primaryColor)">
                 Availabe slots :
               </span>{" "}
-              {data.totaltickets}{" "}
+              {data.totaltickets-data.tickets}{" "}
             </p>
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
@@ -119,20 +128,12 @@ const EventPage = () => {
             Organised by
           </p>
           <div className="flex flex-col gap-4 w-full text-xl">
-            <div className="flex   gap-6">
-              <User className="h-[20vh] w-[10vw] bg-gray-300 rounded-2xl text-gray-600" />
+            <div className="flex mt-2  gap-6">
+              <User className="h-[20vh] w-[10vw]  bg-gray-300 rounded-2xl text-gray-600" />
               <div className="mt-2">
-                <p>Name</p>
-                <p>Info</p>
-                <p>Other info</p>
-              </div>
-            </div>
-            <div className="flex   gap-6">
-              <User className="h-[20vh] w-[10vw] bg-gray-300 rounded-2xl text-gray-600" />
-              <div className="mt-2">
-                <p>Name</p>
-                <p>Info</p>
-                <p>Other info</p>
+                <p>Name : {" "+eventCreator.name}</p>
+                <p>Email : {" "+eventCreator.email}</p>
+                <p>Other info about this person</p>
               </div>
             </div>
           </div>
@@ -177,7 +178,7 @@ const EventPage = () => {
             <p className="flex gap-2 items-center">
               {" "}
               <Ticket className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
-              : {data.totaltickets}
+              : {(data.totaltickets-data.tickets)}
             </p>
           </div>
           <div className="flex items-center pl-5 pr-5 justify-between mt-5">
@@ -186,7 +187,7 @@ const EventPage = () => {
               <IndianRupee className="text-(--accentColor) darkMode:text-(--exColor)/80" />{" "}
               : {data.price}
             </p>
-            {data.totaltickets>0 ? <Link to={`/bookEvent/${id}`} ><input
+            {data.totaltickets-data.tickets>0 ? <Link to={`/bookEvent/${id}`} ><input
               type="button"
               className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 py-1.5 hover:opacity-80 transform ease-in-out duration-300 hover:scale-102"
               value="Join now!"

@@ -40,7 +40,7 @@ const EventCard = ({page, item, index, imge }) => {
                   className=" text-(--accentColor) darkMode:text-(--exColor)"
                   size={30}
                 />{" "}
-                {item.totaltickets+" left"}
+                {item.totaltickets-item.tickets+" left"}
               </p>
             </div>{" "}
             {/* div for location and ticket info */}
