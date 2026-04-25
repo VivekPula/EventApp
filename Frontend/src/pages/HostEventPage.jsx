@@ -27,8 +27,8 @@ const HostEventPage = () => {
     fetch(`/api/data/${id}`)
       .then((response) => response.json())
       .then((data) =>{
-         setData(data);
-         let path=data.coverImagePath;
+         setData(data.eventData);
+         let path=data.eventData.coverImagePath;
         const imge = '/api/img/'+(path.slice(8));
         setImg(imge);
         setLoading(false);
