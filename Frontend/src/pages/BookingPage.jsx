@@ -7,10 +7,11 @@ import {Circles, Oval} from "react-loader-spinner";
 const getData = async (id,setData,setBooked,setLoading)=>{
     try{
         const res = await fetch(`/api/data/${id}`);
-        const data = await res.json();
+        const data = (await res.json()).eventData;
         const user_id = localStorage.id;
         const ticketRes = await fetch(`/api/data/ticket?event=${data.title}&user_id=${user_id}`);
-        const ticketData = await ticketRes.json();
+        const ticketData = (await ticketRes.json());
+        
         if(ticketData.NA!=null&&ticketData.NA==="true"){
             setBooked(false);
             setData(data);
@@ -20,6 +21,7 @@ const getData = async (id,setData,setBooked,setLoading)=>{
             setBooked(true);
         }
         setLoading(false);
+        console.log(data);
     }catch(e){console.log("Error : "+e);}
 }
 const book = async (data,id,setBooked) =>{

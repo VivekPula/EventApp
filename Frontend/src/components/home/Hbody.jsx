@@ -5,7 +5,8 @@ import HistoryCard from "../common/HistoryCard";
 import { useEffect } from "react";
 import { useState } from "react";
 import DropDownList from "../common/DropDownList";
-const fetchData = async (query,setData) =>{
+import { Oval } from "react-loader-spinner";
+const fetchData = async (query,setData,setShowData,setLoading) =>{
     console.log(query);
    await fetch("/api/data/usertickets",{
       method: "POST",
@@ -16,8 +17,10 @@ const fetchData = async (query,setData) =>{
     }).then((response) => response.json())
       .then((data) => {
         setData(data);
+        setShowData(data);
       })
       .catch((error) => console.error("Error :", error));
+      setLoading(false);
 }
 const Hbody = ({refresh}) => {
     const Loptions=[{value:1,label:'Telugu'},{value:2,label:'Hindi'},{value:3,label:'English'},{value:4,label:'Tamil'}];
@@ -30,17 +33,23 @@ const Hbody = ({refresh}) => {
     const [price,setPrice]=useState([]);
     const [type,setType]=useState([]);
     const [data, setData] = useState([]);
+    const [showData,setShowData] = useState([]);
+    const [loading,setLoading] = useState(true);
+  useEffect(()=>{
+    const searchData = data.filter((item) => item.title.toLowerCase().includes(refresh.toLowerCase()));
+    setShowData(searchData);
+  },[refresh]);
   useEffect(  () => {
     const query ={
-      queryString: refresh,
+      //queryString: refresh,
       user : user,
       language : lang,
       category : catg,
       prices : price,
       type : type
     };
-    fetchData(query,setData);
-  }, [lang,catg,price,type,refresh]);
+    fetchData(query,setData,setShowData,setLoading);
+  }, [lang,catg,price,type]);
   return (
     <>
     <div className="w-full mt-2 flex p-1"> 
@@ -53,11 +62,14 @@ const Hbody = ({refresh}) => {
             </div>
             
         </div>
-    <div className="h-20/21 w-20/21 m-5">
-      {data.map((item, index) => {
+    {!loading?<div className="h-20/21 w-20/21 m-5">
+      {showData.map((item, index) => {
         return <HistoryCard item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}
-    </div>
+    </div>:
+    <div className="w-full h-full flex items-center justify-center">
+      <Oval width="150" height = "150" color="violet" secondaryColor="pink"  visible= {true}/>
+    </div>}
     </>
   );
 };

@@ -28,7 +28,8 @@ const EventPage = () => {
     fetch(`/api/data/${id}`)
       .then((response) => response.json())
       .then((data) =>{
-         setData(data.eventdata);
+        console.log(data);
+         setData(data.eventData);
          setEventCreator(data.eventCreator);
          if(data.eventCreator==null){
           let x = {
@@ -37,7 +38,7 @@ const EventPage = () => {
           }
           setEventCreator(x);
          }
-         let path=data.eventdata.coverImagePath;
+         let path=data.eventData.coverImagePath;
         const imge = '/api/img/'+(path.slice(8));
         setImg(imge);
         setLoading(false);

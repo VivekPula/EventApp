@@ -118,9 +118,9 @@ router.post("/ticket",async (req,res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const eventdata = await Event2.findById(id);
-    const eventCreator = await User.findOne({_id:eventdata.user_id});
-    res.json({eventdata:eventdata,eventCreator:eventCreator});
+    const eventData = await Event2.findById(id);
+    const eventCreator = await User.findOne({_id:eventData.user_id});
+    res.json({eventData:eventData,eventCreator:eventCreator});
   } catch (e) {
     console.log(e);
     res.status(500).json({ message: "Some server error: " + e.message });
