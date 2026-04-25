@@ -3,6 +3,7 @@ import Event from "../Models/Event.js";
 import Event2 from "../Models/Event2.js";
 import Ticket from "../Models/Ticket.js";
 import mongoose from "mongoose";
+import User from "../Models/User.js";
 
 const router = express.Router();
 
@@ -108,7 +109,7 @@ router.post("/ticket",async (req,res) => {
   await Event2.updateOne(
     {_id : Eid},
     {
-      $inc : { totaltickets : -1 }
+      $inc : { tickets : 1 }
     }
   );
   res.json({status : "OK"});
@@ -118,7 +119,8 @@ router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const eventdata = await Event2.findById(id);
-    res.json(eventdata);
+    const eventCreator = await User.findOne({_id:eventdata.user_id});
+    res.json({eventdata:eventdata,eventCreator:eventCreator});
   } catch (e) {
     console.log(e);
     res.status(500).json({ message: "Some server error: " + e.message });
