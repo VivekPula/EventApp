@@ -96,7 +96,7 @@ const BookingPage = () =>{
     else
         return(
             <div className="w-full h-full flex justify-center"> 
-                <div className="flex flex-col  items-center w-2/3 h-8/11 m-2 p-2 my-auto  rounded-2xl border-4 border-(--primaryColor)/10 darkMode:bg-(--accentColor)/60" >
+                <div className="flex flex-col  items-center w-2/3 h-8/11 m-2 p-2 my-auto  rounded-2xl border-4 border-(--primaryColor)/10 darkMode:bg-(--accentColor)/60 shadow-2xl" >
                     <p className="w-9/10 text-5xl font-medium border-b pb-2 border-b-gray-200 text-center text-(--primaryColor)/80 darkMode:text-(--secondaryColor)">{data.title}</p>
                     <div className="flex gap-10 mt-10 text-xl justify-center w-8/10">
                         <div className="flex flex-col gap-5 w-1/2 ml-15 ">

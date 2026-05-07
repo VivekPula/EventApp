@@ -113,7 +113,7 @@ const EventPage = () => {
               {data.description}
             </p>
           </div>
-          <div className="ml-auto mr-auto w-15/16  ">
+          <div className="ml-auto mr-auto w-15/16 ">
             <p className="text-4xl font-medium border-b pb-2 border-b-gray-300 text-(--primaryColor)/80">
               Terms and Conditions
             </p>
@@ -143,7 +143,7 @@ const EventPage = () => {
           </div>
         </div>
         <div className="flex-1 relative">
-          <div className=" sticky top-24 p-2  rounded-2xl bg-(--primaryColor)/10 darkMode:bg-(--accentColor)/60">
+          <div className=" sticky top-24 p-2  rounded-2xl bg-(--primaryColor)/10 darkMode:bg-(--accentColor)/60 shadow-lg border-2 border-(--primaryColor)/10">
             <p className="text-5xl font-medium border-b pb-2 border-b-gray-200 text-center text-(--primaryColor)/80 darkMode:text-(--secondaryColor)">
               {data.title}
             </p>
@@ -192,8 +192,8 @@ const EventPage = () => {
               </p>
               {data.totaltickets - data.tickets > 0 ? <Link to={`/bookEvent/${id}`} ><input
                 type="button"
-                className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 py-1.5 hover:opacity-80 transform ease-in-out duration-300 hover:scale-102"
-                value="Join now!"
+                className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 py-1.5 hover:opacity-80 transform ease-in-out duration-300 hover:scale-105"
+                value="Book now!"
               /></Link> :
                 <input
                   type="button"
