@@ -15,7 +15,7 @@ const HistoryCard = ({ item, index, imge }) => {
                 {item.category}
               </p>
             </div>
-            <img className="rounded-xl object-cover h-full w-full" src={`/api/img/${imge.slice(8)}`} alt="image" ></img>
+            <img className="rounded-xl object-cover h-full w-full" src={imge} alt="image" ></img>
           </div>
           {/* div just for image */}
           <div className="m-2 h-full pl-2 px-10 mt-10">

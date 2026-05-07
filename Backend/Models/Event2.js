@@ -12,9 +12,16 @@ const eventSchema = new Schema({
   duration: { type: String, required: true },
   price: { type: Number, required: true },
   totaltickets: { type: Number, required: true },
+
   tickets : {type: Number, default:0},
+
+  
   description: { type: String, required: true },
   coverImagePath: { type: String, required: true },
+  coverImagepublicId: {
+    type: String,
+    required: true,
+  },
   user_id: { type: String, required: true }
 }, { timestamps: true });
 

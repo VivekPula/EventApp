@@ -1,9 +1,11 @@
 // Importing dependencies
+import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
+// dotenv.config();
 import cors from "cors";
-dotenv.config();
+
 
 // Importing utils
 import logInfo from "./utils/logInfo.js";
@@ -18,7 +20,7 @@ app.use(express.json());
 const port = 5000;
 mongoose
   .connect(
-    "mongodb+srv://admin_db_user:eventApp123@eventapp.gg29yzr.mongodb.net/?appName=EventApp",
+    process.env.DATABASE_URL,
   )
   .then(() => console.log("Db connected"))
   .catch((err) => console.log(err));
@@ -29,7 +31,6 @@ app.use(logInfo);
 app.use("/auth", userRoute); // Requests starting with /auth are redirected to userRoute
 app.use("/api/data", eventRoute); // Requests starting with /api/data are redirected to eventRoute
 app.use("/api/createevent",createEventRoute);
-app.use("/api/img",express.static(`${import.meta.dirname}/uploads`));
 app.listen(port, () => {
   console.log(`listening in ${port}`);
-});
+}); 
