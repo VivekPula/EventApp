@@ -16,7 +16,7 @@ const EventCard = ({page, item, index, imge }) => {
                 {item.category}
               </p>
             </div>
-            <img src={`/api/img/${imge.slice(8)}`} alt="image" className="rounded-xl object-cover w-full h-full"></img>
+            <img src={imge} alt="image" className="rounded-xl object-cover w-full h-full"></img>
           </div>{" "}
           {/* div just for image */}
           <div className="m-2   pl-2">

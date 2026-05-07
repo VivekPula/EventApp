@@ -16,7 +16,7 @@ import { ProtectedRoute } from "./components/common/ProtectedRoute";
 import HostEventPage from "./pages/HostEventPage";
 
 const App = () => {
-  return (
+  return (  
     <PageProvider>
       <ThemeProvider>
         <BrowserRouter>

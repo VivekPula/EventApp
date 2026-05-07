@@ -1,9 +1,11 @@
 // Importing dependencies
+import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 dotenv.config();
+
 
 // Importing utils
 import logInfo from "./utils/logInfo.js";
@@ -29,7 +31,6 @@ app.use(logInfo);
 app.use("/auth", userRoute); // Requests starting with /auth are redirected to userRoute
 app.use("/api/data", eventRoute); // Requests starting with /api/data are redirected to eventRoute
 app.use("/api/createevent",createEventRoute);
-app.use("/api/img",express.static(`${import.meta.dirname}/uploads`));
 app.listen(port, () => {
   console.log(`listening in ${port}`);
-});
+}); 
