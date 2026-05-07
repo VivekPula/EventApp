@@ -60,8 +60,8 @@ function HostNewPage() {
       }
       const result = await res.json();
       setEventForm(defaulteventform);
-      HandleCoverImgRemove()
-      alert(`the form is ${result.msg}`)
+      HandleCoverImgRemove();
+      alert(`the form is ${result.msg}`);
       console.log(result);
     } catch (err) {
       console.error(err);

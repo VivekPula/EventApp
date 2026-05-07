@@ -79,7 +79,8 @@ router.post("/", upload.single("coverImage"), async (req, res) => {
       });
 
    }catch (e) { console.log(e)
-      res.json({msg:"error occured"})
+      res.json({msg:"error occured"});
+      console.log(e);
     }
 });
 
