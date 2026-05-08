@@ -15,7 +15,9 @@ import userRoute from "./Routes/user.js";
 import eventRoute from "./Routes/event.js";
 import createEventRoute from "./Routes/createEvent.js";
 
+
 const app = express();
+app.use(cors());
 app.use(express.json());
 const port = 5000;
 mongoose
