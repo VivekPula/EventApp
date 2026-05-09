@@ -8,7 +8,8 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:5000",
       "/user": "http://localhost:5000",
-      "/userInfo": "http://localhost:5000",
+      "/userinfo": "http://localhost:5000",
+      "/userevent": "http://localhost:5000",
     },
   },
 });

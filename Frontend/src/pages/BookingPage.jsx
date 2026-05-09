@@ -17,59 +17,85 @@ import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 
-const getData = async (id, setData, setBooked, setLoading) => {
+const getData = async (id, setData, setRegistered, setLoading) => {
   try {
+    const token = localStorage.getItem("token");
+
+    /* ---------------- EVENT DATA ---------------- */
+
     const res = await fetch(`/api/data/${id}`);
-    const data = (await res.json()).eventData;
 
-    const user_id = localStorage.id;
+    const eventData = (await res.json()).eventData;
 
-    const ticketRes = await fetch(
-      `/api/data/ticket?event=${data.title}&user_id=${user_id}`,
-    );
+    /* ---------------- CHECK REGISTRATION ---------------- */
 
-    const ticketData = await ticketRes.json();
+    const registrationRes = await fetch(`/userevent/check/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    if (ticketData.NA != null && ticketData.NA === "true") {
-      setBooked(false);
-      setData(data);
-    } else if (ticketData != null) {
-      setData(ticketData);
-      setBooked(true);
+    const registrationData = await registrationRes.json();
+    console.log(registrationData.userEvent);
+
+    if (!registrationRes.ok) {
+      setRegistered(false);
+      setData(eventData);
+    } else {
+      setRegistered(true);
+
+      setData({
+        ...eventData,
+
+        registrationId: registrationData.userEvent._id,
+
+        role: registrationData.userEvent.role,
+
+        qrData: registrationData.userEvent.qrData,
+
+        checkedIn: registrationData.userEvent.checkedIn,
+
+        checkedInAt: registrationData.userEvent.checkedInAt,
+
+        registeredAt: registrationData.userEvent.createdAt,
+      });
     }
 
     setLoading(false);
-    console.log(data);
   } catch (e) {
-    console.log("Error : " + e);
+    console.log(e);
   }
 };
 
-const book = async (data, id, navigate) => {
-  const name = localStorage.name;
-  const user_id = localStorage.id;
+const registerForEvent = async (eventId, navigate) => {
+  try {
+    const token = localStorage.getItem("token");
 
-  const query = {
-    name: name,
-    user_id: user_id,
-    title: data.title,
-    Eid: id,
-  };
+    const res = await fetch("/userevent/register", {
+      method: "POST",
 
-  const res = await fetch("/api/data/ticket", {
-    method: "POST",
+      headers: {
+        "Content-Type": "application/json",
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+        Authorization: `Bearer ${token}`,
+      },
 
-    body: JSON.stringify(query),
-  }).catch((err) => console.log(err));
+      body: JSON.stringify({
+        eventId,
+        role: "Participant",
+      }),
+    });
 
-  const result = await res.json();
+    const data = await res.json();
 
-  if (result.ticketId) {
-    navigate(`/ticket/${result.ticketId}`);
+    if (!res.ok) {
+      alert(data.message);
+      return;
+    }
+
+    navigate(0);
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -82,11 +108,11 @@ const BookingPage = () => {
 
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [booked, setBooked] = useState(false);
+  const [registered, setRegistered] = useState(false);
 
   useEffect(() => {
-    getData(id, setData, setBooked, setLoading);
-  }, [booked, loading]);
+    getData(id, setData, setRegistered, setLoading);
+  }, [id]);
 
   if (loading) {
     return (
@@ -100,7 +126,7 @@ const BookingPage = () => {
         />
       </div>
     );
-  } else if (!booked)
+  } else if (!registered)
     return (
       <div className="w-full h-full flex justify-center">
         <div className="flex flex-col w-1/3 h-11/12 m-2 p-2 rounded-2xl border-4 border-(--primaryColor)/10 darkMode:bg-(--accentColor)/60">
@@ -180,7 +206,7 @@ const BookingPage = () => {
               type="button"
               className=" text-2xl bg-(--primaryColor) text-purple-50 rounded-2xl p-2 hover:opacity-80"
               value="Join now!"
-              onClick={() => book(data, id, navigate)}
+              onClick={() => registerForEvent(id, navigate)}
             />
           </div>
         </div>
@@ -249,20 +275,21 @@ const BookingPage = () => {
           <div className="mb-4">
             <p>
               Booked At :{" "}
-              {data.ticketBookedAt
-                ? data.ticketBookedAt.slice(0, 10) +
+              {data.registeredAt
+                ? data.registeredAt.slice(0, 10) +
                   ", " +
-                  data.ticketBookedAt.slice(11, 19)
+                  data.registeredAt.slice(11, 19)
                 : "NA"}
             </p>
           </div>
 
-          {data.ticketId && (
-            <Link to={`/ticket/${data.ticketId}`}>
-              <button className="px-5 py-2 bg-(--primaryColor) text-white rounded-xl hover:opacity-80">
-                View Ticket
-              </button>
-            </Link>
+          {data.qrData && (
+            <button
+              className="px-5 py-2 bg-(--primaryColor) text-white rounded-xl"
+              onClick={() => navigate(`/qr/${data.registrationId}`)}
+            >
+              View QR
+            </button>
           )}
         </div>
       </div>

@@ -94,17 +94,17 @@ router.get("/u/:username", async (req, res) => {
 
     const participated = await UserEvent.find({
       user: user._id,
-      role: "participated",
+      role: "Participant",
     }).populate("event");
 
     const organized = await UserEvent.find({
       user: user._id,
-      role: "organized",
+      role: "Organizer",
     }).populate("event");
 
     const volunteered = await UserEvent.find({
       user: user._id,
-      role: "volunteered",
+      role: "Volunteer",
     }).populate("event");
 
     /* ---------------- RESPONSE ---------------- */

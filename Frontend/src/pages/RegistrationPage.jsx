@@ -14,32 +14,38 @@ import {
 } from "lucide-react";
 import { Oval } from "react-loader-spinner";
 
-const TicketPage = () => {
-  const { ticketId } = useParams();
+const RegistrationPage = () => {
+  const { registrationId } = useParams();
 
-  const [ticketData, setTicketData] = useState(null);
+  const [registrationData, setRegistrationData] = useState(null);
   const [eventData, setEventData] = useState(null);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getTicket = async () => {
+    const getRegistration = async () => {
       try {
-        const res = await fetch(`/api/data/ticket/${ticketId}`);
+        const res = await fetch(`/userevent/registration/${registrationId}`);
+
         const data = await res.json();
 
-        setTicketData(data.ticket);
+        setRegistrationData(data.userEvent);
+        console.log("DATA: " + data);
+
         setEventData(data.eventData);
+
         setUserData(data.userData);
+
         setLoading(false);
       } catch (err) {
         console.log(err);
+
         setLoading(false);
       }
     };
 
-    getTicket();
-  }, [ticketId]);
+    getRegistration();
+  }, [registrationId]);
 
   if (loading) {
     return (
@@ -55,12 +61,10 @@ const TicketPage = () => {
     );
   }
 
-  if (!ticketData || !eventData) {
+  if (!registrationData || !eventData) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <p className="text-2xl font-semibold text-red-500">
-          Ticket not found
-        </p>
+        <p className="text-2xl font-semibold text-red-500">Ticket not found</p>
       </div>
     );
   }
@@ -80,12 +84,12 @@ const TicketPage = () => {
           <div className="w-2/3 grid grid-cols-2 gap-5 text-lg">
             <p className="flex gap-2 items-center">
               <User className="text-(--accentColor)" /> :{" "}
-              {userData?.name || ticketData.name}
+              {userData?.name || registrationData.name}
             </p>
 
             <p className="flex gap-2 items-center">
               <TicketCheck className="text-(--accentColor)" /> :{" "}
-              {ticketData.Tid}
+              {registrationData._id}
             </p>
 
             <p className="flex gap-2 items-center">
@@ -125,36 +129,41 @@ const TicketPage = () => {
               Status :{" "}
               <span
                 className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  ticketData.status === "participated"
+                  registrationData.checkedIn
                     ? "bg-green-100 text-green-700"
                     : "bg-yellow-100 text-yellow-700"
                 }`}
               >
-                {ticketData.status}
+                {registrationData.checkedIn
+                  ? "checked-in"
+                  : registrationData.status}
               </span>
+            </p>
+            <p className="col-span-2">
+              Role : <span className="capitalize">{registrationData.role}</span>
             </p>
 
             <p className="col-span-2 text-sm text-gray-500">
               Booked At :{" "}
-              {ticketData.createdAt
-                ? ticketData.createdAt.slice(0, 10) +
+              {registrationData.createdAt
+                ? registrationData.createdAt.slice(0, 10) +
                   ", " +
-                  ticketData.createdAt.slice(11, 19)
+                  registrationData.createdAt.slice(11, 19)
                 : "NA"}
             </p>
 
-            {ticketData.scannedAt && (
+            {registrationData.checkedInAt && (
               <p className="col-span-2 text-sm text-gray-500">
                 Scanned At :{" "}
-                {ticketData.scannedAt.slice(0, 10) +
+                {registrationData.checkedInAt.slice(0, 10) +
                   ", " +
-                  ticketData.scannedAt.slice(11, 19)}
+                  registrationData.checkedInAt.slice(11, 19)}
               </p>
             )}
           </div>
 
           <div className="w-1/3 flex flex-col items-center justify-center border rounded-2xl p-5">
-            <QRCodeCanvas value={ticketData.Tid} size={220} />
+            <QRCodeCanvas value={registrationData.qrData} size={220} />
 
             <p className="mt-4 text-sm text-gray-500 text-center">
               Show this QR at event entry
@@ -166,4 +175,4 @@ const TicketPage = () => {
   );
 };
 
-export default TicketPage;
+export default RegistrationPage;

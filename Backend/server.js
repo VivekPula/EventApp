@@ -14,6 +14,7 @@ import userRoute from "./Routes/user.js";
 import eventRoute from "./Routes/event.js";
 import createEventRoute from "./Routes/createEvent.js";
 import userInfoRoute from "./Routes/userInfo.js";
+import userEventRoute from "./Routes/userEvent.js";
 
 const app = express();
 app.use(cors());
@@ -31,6 +32,8 @@ app.use("/user", userRoute); // Requests starting with /auth are redirected to u
 app.use("/api/data", eventRoute); // Requests starting with /api/data are redirected to eventRoute
 app.use("/api/createevent", createEventRoute);
 app.use("/userinfo", userInfoRoute);
+app.use("/userevent", userEventRoute);
+
 app.listen(port, () => {
   console.log(`listening in ${port}`);
 });

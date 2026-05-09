@@ -2,9 +2,9 @@ import { Instagram, Mail, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className=" ml-50 relative z-20">
-      <div className="w-full h-30 bg-gray-400 flex justify-center items-top flex-col">
-        <div className="w-2/6 ml-auto mr-auto flex justify-around items-center mb-4">
+    <div className=" ml-50 mt-12 relative z-20">
+      <div className="w-full py-12 bg-gray-200 flex justify-center items-top flex-col">
+        <div className="w-2/6 ml-auto mr-auto flex justify-around items-center mb-8">
           <Youtube />
           <Instagram />
           <Twitter />
