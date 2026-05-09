@@ -457,7 +457,12 @@ function HostEventPage() {
                       </td>
 
                       <td className="px-4 py-3 font-medium text-gray-800">
-                        {item.username}
+                        <Link
+                          to={`/u/${item.username}`}
+                          className="hover:text-(--primaryColor) hover:underline transition-all duration-200"
+                        >
+                          {item.username}
+                        </Link>
                       </td>
 
                       <td className="px-4 py-3 font-medium text-gray-800">
