@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-
 import Myeventbody from "../components/home/Myeventbody";
 
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../contexts/AuthContext";
 
 const MyEvents = () => {
+  //need to use this to fetch the user events
 
-  //need to use this to fetch the user events 
-
-  const [user_id, setUserId] = useState('')
+  const [user_id, setUserId] = useState("");
 
   useEffect(() => {
     const id = localStorage.getItem("id");
     setUserId(id);
-    console.log(id); // correct value
+    console.log("ID: " + id); // correct value
   }, []);
-  
-
-
-
 
   return (
     <div className="myevents w-[100%] h-[100%]">
@@ -44,7 +38,7 @@ const MyEvents = () => {
                             <div className='py-[10px] px-[20px] '><FaSearch /></div>
                         </div> */}
             {/* <div className="fliter text-white bg-blue-600  py-[10px] px-[20px]  "></div> */}
-{/* 
+            {/* 
             <select
               className="category  bg-white py-[5px] px-[20px]"
               name="catgories"
@@ -64,7 +58,6 @@ const MyEvents = () => {
         <div className="events-list">
           <Myeventbody user_id={user_id} />
         </div>
-        
       </div>
     </div>
   );

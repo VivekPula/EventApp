@@ -17,10 +17,12 @@ html,body{
   --secondaryColor:#eedeff;
   --exColor:#88ff00;
   --bg:white;
+  --bg-back:#fdfefe;
   --fg:#2c2c2c;
 }
 .darkMode{
-  --bg:#2c2c2c;
+  --bg:#0d1421;
+  --bg-back: #252525;
   --fg:white;
 }
 .react-dropdown-select-option {

@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
-  const name = localStorage.name;
+  const username = localStorage.name;
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -40,11 +40,11 @@ const Profile = () => {
             onClick={() => setOpen(!open)}
           />
           <CircleUserIcon size={55} className="text-gray-600" />
-          <p className="mt-2 text-lg">{name}</p>
+          <p className="mt-2 text-lg">{username}</p>
           <ul className="w-full">
             <li
               className="flex justify-start items-center border-t border-t-gray-300 pt-3 mt-5 hover:cursor-pointer hover:opacity-80 active:opacity-90"
-              onClick={() => console.log("Profile clicked")}
+              onClick={() => navigate(`/u/${username}`)}
             >
               <User2Icon size={20} className="mr-2" />
               Profile

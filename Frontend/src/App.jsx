@@ -15,6 +15,7 @@ import BookingPage from "./pages/BookingPage";
 import TicketPage from "./pages/TicketPage";
 import { ProtectedRoute } from "./components/common/ProtectedRoute";
 import HostEventPage from "./pages/HostEventPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/u/:username" element={<ProfilePage />} />
               <Route path="/events/event/:id" element={<EventPage />} />
               <Route path="/hostevents/event/:id" element={<HostEventPage />} />
 
@@ -66,7 +68,7 @@ export default App;
 // import HostEventPage from "./pages/HostEventPage";
 
 // const App = () => {
-//   return (  
+//   return (
 //     <PageProvider>
 //       <ThemeProvider>
 //         <BrowserRouter>

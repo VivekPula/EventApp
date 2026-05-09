@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
@@ -16,7 +16,7 @@ function LogIn() {
   const handleLogIn = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("/auth/login", {
+      const res = await fetch("/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ function LogIn() {
         return;
       }
 
-      login({ data: { token: data.token, name: data.name,id:data.id } });
+      login({ data: { token: data.token, name: data.name, id: data.id } });
 
       if (redirectPath) {
         navigate(redirectPath, { replace: true });

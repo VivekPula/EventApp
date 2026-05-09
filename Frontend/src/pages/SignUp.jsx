@@ -11,7 +11,7 @@ function SignUp() {
 
   const { login } = useAuth();
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,23 +19,23 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      const res = await fetch("auth/signup", {
+      const res = await fetch("user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
         console.error(data.message);
-        alert(data.message());
+        alert(data.message);
         return;
       }
 
-      login({ data: { token: data.token, name: data.name,id:data.id } });
+      login({ data: { token: data.token, name: data.name, id: data.id } });
 
       if (redirectPath) {
         navigate(redirectPath, { replace: true });
@@ -59,15 +59,15 @@ function SignUp() {
           <p className="text-3xl font-bold ">Continue</p>
         </span>
         <form onSubmit={handleSignUp} className="flex-col flex">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Username</label>
           <input
             className="rounded-lg mb-3 placeholder:opacity-50 focus:border-(--primaryColor)"
             type="text"
-            id="name"
+            id="username"
             required
-            placeholder="Enter your name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            placeholder="Enter the username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
           />
           <label htmlFor="email">Email</label>
           <input
