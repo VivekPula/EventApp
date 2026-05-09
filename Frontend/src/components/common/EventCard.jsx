@@ -21,15 +21,15 @@ const EventCard = ({page, item, index, imge }) => {
           {/* div just for image */}
           <div className="m-2   pl-2">
             <div className="flex w-full justify-start ">
-              <p className="font-semibold text-2xl font-serifs mr-auto text-(--accentColor) darkMode:text-(--exColor) line-clamp-2">
+              <p className="font-semibold text-2xl w-2/3 font-serifs mr-auto text-(--accentColor) darkMode:text-(--exColor) line-clamp-1">
                 {item.title}
               </p>
-              <p className="mr-2 text-center mt-1">
+              <p className="mr-2 text-center mt-1 w-1/3">
                 {item.date}
               </p>
             </div>{" "}
             {/* div for event Name and tags */}
-            <p className="mt-2">{item.description}</p> {/* description */}
+            <p className="mt-2 line-clamp-2">{item.description}</p> {/* description */}
             <div className="flex w-full justify-start">
               <p className="flex items-center line-clamp-3 mt-2 mr-auto">
                 <MapPinned className="mr-2" size={28} />
