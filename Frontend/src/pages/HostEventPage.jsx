@@ -281,8 +281,8 @@ function HostEventPage() {
       ========================================================= */}
 
       {popup.show && (
-        <div className="fixed inset-0 z-[99999] bg-black/50 flex items-center justify-center">
-          <div className="bg-white w-[420px] rounded-2xl shadow-2xl p-8 flex flex-col items-center text-center">
+        <div className="fixed inset-0 z-99999 bg-black/50 flex items-center justify-center">
+          <div className="bg-white w-105 rounded-2xl shadow-2xl p-8 flex flex-col items-center text-center">
             {getPopupIcon()}
 
             <h2 className="text-2xl font-bold text-gray-800 mt-4">
@@ -317,7 +317,7 @@ function HostEventPage() {
           STATS
       ========================================================= */}
 
-      <div className="flex flex-row gap-x-[30px] mb-[15px]">
+      <div className="flex flex-row gap-x-7.5 mb-3.75">
         <BookingDetails
           Icon={Users}
           name={`Registrations / ${totaltickets}`}
@@ -348,7 +348,7 @@ function HostEventPage() {
 
         <div className="flex gap-4">
           <Link to={`/events/event/${event_id}`}>
-            <button className="px-4 py-2 bg-[var(--primaryColor)]/80 text-white rounded-md hover:bg-[var(--primaryColor)]/100">
+            <button className="px-4 py-2 bg-(--primaryColor)/80 text-white rounded-md hover:bg-(--primaryColor)">
               Myevent Page
             </button>
           </Link>
@@ -365,7 +365,7 @@ function HostEventPage() {
         {/* QR SCANNER */}
 
         {scannerOpen && (
-          <div className="mt-5 bg-white p-4 rounded-xl border border-gray-200 w-[350px]">
+          <div className="mt-5 bg-white p-4 rounded-xl border border-gray-200 w-87.5">
             <div id="qr-reader"></div>
 
             <button
@@ -421,7 +421,7 @@ function HostEventPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm">
               <thead>
-                <tr className="bg-[var(--primaryColor)]/10 text-gray-700">
+                <tr className="bg-(--primaryColor)/10 text-gray-700">
                   <th className="px-4 py-3 text-left font-semibold">
                     Registration ID
                   </th>

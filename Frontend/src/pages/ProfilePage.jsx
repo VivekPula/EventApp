@@ -352,7 +352,7 @@ function ProfilePage() {
           <div className="flex items-center gap-5">
             {/* avatar */}
             <div
-              className="pp-avatar flex-shrink-0 rounded-full flex items-center justify-center pp-serif"
+              className="pp-avatar shrink-0 rounded-full flex items-center justify-center pp-serif"
               style={{
                 width: 66,
                 height: 66,
@@ -578,7 +578,7 @@ function ProfilePage() {
           ) : (
             <div className="flex items-center gap-3">
               <div
-                className="flex-shrink-0 rounded-xl flex items-center justify-center"
+                className="shrink-0 rounded-xl flex items-center justify-center"
                 style={{
                   width: 36,
                   height: 36,
@@ -666,7 +666,7 @@ const EventSection = ({ title, data, showRating }) => {
         >
           {/* status dot */}
           <div
-            className="flex-shrink-0 rounded-full"
+            className="shrink-0 rounded-full"
             style={{
               width: 7,
               height: 7,
@@ -697,7 +697,7 @@ const EventSection = ({ title, data, showRating }) => {
           {/* rating badge */}
           {showRating && (
             <div
-              className="flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold flex-shrink-0"
+              className="flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold shrink-0"
               style={{
                 background: "rgba(171,35,255,0.10)",
                 color: "var(--primary-color, #ab23ff)",
@@ -709,7 +709,7 @@ const EventSection = ({ title, data, showRating }) => {
           )}
 
           {/* chevron */}
-          <ChevronRight size={14} className="pp-arrow flex-shrink-0" />
+          <ChevronRight size={14} className="pp-arrow shrink-0" />
         </div>
       ))}
     </div>

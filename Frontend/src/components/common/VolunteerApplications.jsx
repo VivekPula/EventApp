@@ -108,7 +108,7 @@ function VolunteerApplications({ applications, eventId, refreshData }) {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
-            <tr className="bg-[var(--primaryColor)]/10 text-gray-700">
+            <tr className="bg-(--primaryColor)/10 text-gray-700">
               <th className="px-4 py-3 text-left font-semibold">
                 Registration ID
               </th>

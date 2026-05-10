@@ -2,7 +2,7 @@ import React from 'react'
 
 function BookingDetails({ Icon, name, count }) {
   return (
-    <div className='flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-sm w-[220px]'>
+    <div className='flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-sm w-55'>
 
       <div className='p-3 rounded-full bg-(--primaryColor)/10'>
         <Icon size={22} className='text-(--primaryColor)/60' />
