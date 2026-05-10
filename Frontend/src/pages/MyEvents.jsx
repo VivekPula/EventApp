@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-
 import Myeventbody from "../components/home/Myeventbody";
 
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../contexts/AuthContext";
 
 const MyEvents = () => {
+  //need to use this to fetch the user events
 
-  //need to use this to fetch the user events 
-
-  const [user_id, setUserId] = useState('')
+  const [user_id, setUserId] = useState("");
 
   useEffect(() => {
     const id = localStorage.getItem("id");
     setUserId(id);
-    console.log(id); // correct value
+    console.log("ID: " + id); // correct value
   }, []);
-  
-
-
-
 
   return (
     <div className="myevents w-[100%] h-[100%]">
@@ -39,21 +33,6 @@ const MyEvents = () => {
           </div>
 
           <div className="events-filters  flex flex-row  gap-x-[10px] ">
-            {/* <div className='search-bar    flex flex-row justify-between bg-white '>
-                            <input className='search-input   py-[5px] pl-[10px] pr-[30px]  ' type='text' placeholder='Search event location'></input>
-                            <div className='py-[10px] px-[20px] '><FaSearch /></div>
-                        </div> */}
-            {/* <div className="fliter text-white bg-blue-600  py-[10px] px-[20px]  "></div> */}
-{/* 
-            <select
-              className="category  bg-white py-[5px] px-[20px]"
-              name="catgories"
-            >
-              <option value={"allcategory"}>all category</option>
-              <option value={"tech"}>tech</option>
-              <option value={"business"}>business</option>
-            </select> */}
-
             <select className="time-based bg-white  py-[5px] px-[20px] ">
               <option value={"allmonths"}>month</option>
               <option value={"jan"}>jan</option>
@@ -64,7 +43,6 @@ const MyEvents = () => {
         <div className="events-list">
           <Myeventbody user_id={user_id} />
         </div>
-        
       </div>
     </div>
   );

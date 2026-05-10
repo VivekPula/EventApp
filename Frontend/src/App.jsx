@@ -12,9 +12,10 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import BookingPage from "./pages/BookingPage";
-import TicketPage from "./pages/TicketPage";
+import RegistrationPage from "./pages/RegistrationPage";
 import { ProtectedRoute } from "./components/common/ProtectedRoute";
 import HostEventPage from "./pages/HostEventPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/u/:username" element={<ProfilePage />} />
               <Route path="/events/event/:id" element={<EventPage />} />
               <Route path="/hostevents/event/:id" element={<HostEventPage />} />
 
@@ -34,7 +36,10 @@ const App = () => {
                 <Route path="/hostnew" element={<HostNewPage />} />
                 <Route path="/myevents" element={<MyEvents />} />
                 <Route path="/bookEvent/:id" element={<BookingPage />} />
-                <Route path="/ticket/:ticketId" element={<TicketPage />} />
+                <Route
+                  path="/qr/:registrationId"
+                  element={<RegistrationPage />}
+                />
               </Route>
             </Route>
 
@@ -46,5 +51,6 @@ const App = () => {
     </PageProvider>
   );
 };
+
 
 export default App;

@@ -26,8 +26,8 @@ const Layout = () => {
       <NavBar />
       <div className="flex justify-between">
         <SideBar />
-        <div className="flex ml-50 p-4 min-h-[calc(100vh-4rem)] w-full">
-          <Outlet/>
+        <div className="flex ml-50 min-h-[calc(100vh-4rem)] w-full">
+          <Outlet />
         </div>
       </div>
       <Footer />

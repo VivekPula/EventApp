@@ -8,7 +8,7 @@ import DropDownList from "../common/DropDownList";
 import { Oval } from "react-loader-spinner";
 const fetchData = async (query,setData,setShowData,setLoading) =>{
     console.log(query);
-   await fetch("/api/data/usertickets",{
+   await fetch("/userevent/getevents",{
       method: "POST",
       headers:{
         "Content-Type": "application/json",
@@ -52,7 +52,8 @@ const Hbody = ({refresh}) => {
   }, [lang,catg,price,type]);
   return (
     <>
-    <div className="w-full mt-2 flex p-1"> 
+
+    <div className="w-full mt-4 flex p-1"> 
             <div className="flex items-center text-xl min-w-1/10 justify-center font-semibold text-(--accentColor) darkMode:text-(--secondaryColor)" >Filters</div>
             <div className="flex p-1 justify-around w-full" >
                 <DropDownList options={Loptions} placeHolder={"Language"} ret={setLang}/>
@@ -63,9 +64,9 @@ const Hbody = ({refresh}) => {
             
         </div>
     {!loading?<div className="h-20/21 w-20/21 m-5">
-      {showData.map((item, index) => {
+      {showData.length>0?showData.map((item, index) => {
         return <HistoryCard item={item} key={index} imge={item.coverImagePath} index={index} />;
-      })}
+      }):<div className="h-full w-full flex justify-center"> <p className="mt-10 text-2xl text-gray-300">No Participated Events</p> </div>}
     </div>:
     <div className="w-full h-full flex items-center justify-center">
       <Oval width="150" height = "150" color="violet" secondaryColor="pink"  visible= {true}/>

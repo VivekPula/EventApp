@@ -53,7 +53,7 @@ const Mbody = ({refresh}) => {
   }, [lang,catg,price,type]);
   return (
     <>
-    <div className="w-full mt-2 flex p-1"> 
+    <div className="w-full mt-4 flex p-1"> 
             <div className="flex items-center text-xl min-w-1/10 justify-center font-semibold text-(--accentColor) darkMode:text-(--secondaryColor)" >Filters</div>
             <div className="flex p-1 justify-around w-full" >
                 <DropDownList options={Loptions} placeHolder={"Language"} ret={setLang}/>
@@ -63,7 +63,7 @@ const Mbody = ({refresh}) => {
             </div>
             
         </div>
-    {!loading?<div className="h-20/21 w-20/21 flex flex-wrap m-5">
+    {!loading?<div className="h-20/21 w-20/21 flex flex-wrap m-5 mt-2 ml-10">
       {showData.map((item, index) => {
         return <EventCard page={"events"} item={item} key={index} imge={item.coverImagePath} index={index} />;
       })}

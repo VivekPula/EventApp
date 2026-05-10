@@ -1,7 +1,8 @@
 import { model, Schema } from "mongoose";
 
 const userSchema = new Schema({
-  name: {
+  username: {
+    unique: true,
     type: String,
     required: true,
   },
@@ -13,6 +14,10 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  userInfo: {
+    type: Schema.Types.ObjectId,
+    ref: "UserInfo",
   },
 });
 

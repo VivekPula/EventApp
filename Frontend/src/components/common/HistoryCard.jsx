@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPinned } from "lucide-react";
 
+
 const HistoryCard = ({ item, index, imge }) => {
   const linkPath = item.ticketId
     ? `/ticket/${item.ticketId}`
@@ -12,7 +13,7 @@ const HistoryCard = ({ item, index, imge }) => {
       className="flex flex-row rounded-3xl m-5 w-full h-[25vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
     >
       <Link to={linkPath} className="flex w-full h-full items-center">
-        <div className="m-2 relative flex h-9/10 w-1/3 rounded-3xl overflow-clip items-center justify-center">
+        <div className="m-2 relative flex h-9/10 w-1/3 rounded-3xl overflow-clip items-center justify-center border-2 border-purple-200">
           <div className="flex absolute z-10 top-2 right-1">
             <p className="flex mr-2 font-semibold items-center rounded-xl pl-2 pr-2 bg-(--secondaryColor) darkMode:bg-(--exColor)/90 text-(--accentColor) darkMode:text-(--accentColor) ">
               {item.category}
@@ -49,6 +50,9 @@ const HistoryCard = ({ item, index, imge }) => {
       </Link>
     </div>
   );
+
+
+  
 };
 
 export default HistoryCard;
