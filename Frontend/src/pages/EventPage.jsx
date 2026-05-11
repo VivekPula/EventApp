@@ -88,7 +88,7 @@ const EventPage = () => {
       /* ---------------- SUCCESS ---------------- */
 
       setUserRegistration(data.userEvent);
-
+      console.log(userRegistration +" "+data.tickets);
       setRegistrationLoading(false);
     } catch (e) {
       console.log(e);
@@ -264,12 +264,12 @@ const EventPage = () => {
               <span className="font-semibold text-(--primaryColor)">
                 Type :
               </span>{" "}
-              {data.price > 0 ? "Paid" : "Free"}
+              {data.eventType || "Paid "}
             </p>
 
             <p className="text-xl mt-2 flex-1/2 ">
               <span className="font-semibold text-(--primaryColor)">
-                Contributors :
+                Total Joined :
               </span>{" "}
               {data.tickets || 0} people
             </p>
@@ -309,25 +309,27 @@ const EventPage = () => {
         </div>
 
         {/* TERMS */}
-
+        {data.termsandconditions&&data.termsandconditions.length>0&&
         <div className="ml-auto mr-auto w-15/16">
           <p className="text-4xl font-medium border-b pb-2 border-b-gray-300 text-(--primaryColor)/80">
             Terms and Conditions
           </p>
-
+            
           <div className="text-xl">
             <ul className="list-disc pl-6">
-              <li>Dont do that</li>
+              {/* <li>Dont do that</li>
 
               <li>Dont bring that</li>
 
               <li>Dont throw that</li>
 
-              <li>Dont something that</li>
+              <li>Dont something that</li> */}
+              {data.termsandconditions.map((item,index) => {return <li key={index}>{item}</li>}
+              )}
             </ul>
           </div>
         </div>
-
+        }
         {/* ORGANIZER */}
 
         <div className="ml-auto mr-auto w-15/16">

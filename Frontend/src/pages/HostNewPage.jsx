@@ -25,12 +25,13 @@ function HostNewPage() {
     date: "",
     time: "",
     duration: "",
+    eventType: "paid",
     price: 0,
     totaltickets: 0,
 
     volunteersEnabled: false,
     volunteersRequiredCount: 0,
-
+    termsandconditions:"",
     description: "",
   };
 
@@ -42,7 +43,11 @@ function HostNewPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const str = eventform.termsandconditions
+      .split("\n")
+      .map((s)=>s.trim())
+      .filter((s)=>s.length>0);
+    eventform.termsandconditions = str;
     const data = new FormData();
 
     data.append("title", eventform.title);
@@ -60,14 +65,18 @@ function HostNewPage() {
     data.append("time", eventform.time);
 
     data.append("duration", eventform.duration);
+    data.append("eventType", eventform.eventType);
 
-    data.append("price", eventform.price);
+    // data.append("price", eventform.price);
+    data.append("price", eventform.eventType === "free" ? 0 : eventform.price);
 
     data.append("totaltickets", eventform.totaltickets);
 
     data.append("volunteersEnabled", eventform.volunteersEnabled);
 
     data.append("volunteersRequiredCount", eventform.volunteersRequiredCount);
+  
+    data.append("termsandconditions",JSON.stringify(eventform.termsandconditions));
 
     data.append("description", eventform.description);
 
@@ -77,7 +86,7 @@ function HostNewPage() {
 
     try {
       /* ---------------- CREATE EVENT ---------------- */
-
+      
       const res = await fetch("/api/createevent", {
         method: "POST",
         body: data,
@@ -148,15 +157,39 @@ function HostNewPage() {
      HANDLE CHANGE
   ========================================================= */
 
+  // const handleChange = (e) => {
+  //   setEventForm({
+  //     ...eventform,
+
+  //     [e.target.name]:
+  //       e.target.type === "number" ? Number(e.target.value) : e.target.value,
+  //   });
+  // };
+
   const handleChange = (e) => {
+    const { name, value, type } = e.target;
+
+    if (name === "eventType") {
+      setEventForm({
+        ...eventform,
+        eventType: value,
+        price: value === "free" ? 0 : eventform.price,
+      });
+      return;
+    }
+    
     setEventForm({
       ...eventform,
-
-      [e.target.name]:
-        e.target.type === "number" ? Number(e.target.value) : e.target.value,
+      [name]: type === "number" ? Number(value) : value,
     });
+    if(name === "termsandconditions"){
+      const str = eventform.termsandconditions
+      .split("\n")
+      .map((s)=>s.trim())
+      .filter((s)=>s.length>0);
+    console.log("HEHEHEHEHEHEEHHE "+str);
+    }
   };
-
   /* =========================================================
      REMOVE COVER IMAGE
   ========================================================= */
@@ -361,7 +394,54 @@ function HostNewPage() {
 
             {/* PRICE + TICKETS */}
 
-            <div className="flex flex-row">
+
+
+            <div className="grid grid-cols-3 gap-5 my-2.5">
+              <div className="flex flex-col">
+                <label>Event Type*</label>
+
+                <select
+                  className="border p-2.5 mt-1 rounded-xl text-black w-full"
+                  name="eventType"
+                  value={eventform.eventType}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="paid">Paid</option>
+                  <option value="free">Free</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col">
+                <label>Price of ticket Rs*</label>
+
+                <input
+                  type="number"
+                  className={`border p-2.5 mt-1 rounded-xl text-black w-full ${eventform.eventType === "free" ? "bg-gray-200 cursor-not-allowed" : ""
+                    }`}
+                  name="price"
+                  value={eventform.eventType === "free" ? 0 : eventform.price}
+                  onChange={handleChange}
+                  disabled={eventform.eventType === "free"}
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label>Total tickets*</label>
+
+                <input
+                  type="number"
+                  value={eventform.totaltickets}
+                  name="totaltickets"
+                  className="border p-2.5 mt-1 rounded-xl text-black w-full"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* <div className="flex flex-row">
               <div className="flex flex-col my-2.5">
                 <label>Price of ticket Rs*</label>
 
@@ -387,7 +467,7 @@ function HostNewPage() {
                   required
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* VOLUNTEERS */}
 
@@ -428,6 +508,16 @@ function HostNewPage() {
               </div>
             )}
 
+            <label>Terms and Conditions (seperate sentences please)</label>
+
+            <textarea
+              rows={3}
+              maxLength={300}
+              value={eventform.termsandconditions}
+              name="termsandconditions"
+              className="border text-xl p-2.5 w-full my-2.5 rounded-xl text-black"
+              onChange={handleChange}
+            />
             {/* DESCRIPTION */}
 
             <label>Description*</label>

@@ -10,6 +10,7 @@ export default defineConfig({
       "/user": "http://localhost:5000",
       "/userinfo": "http://localhost:5000",
       "/userevent": "http://localhost:5000",
+      "/payment": "http://localhost:5000",
     },
   },
 });

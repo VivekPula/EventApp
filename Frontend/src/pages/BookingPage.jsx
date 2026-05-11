@@ -1,6 +1,7 @@
 import {
   Calendar,
   Clock,
+  Currency,
   Grid3x2,
   Hourglass,
   IndianRupee,
@@ -10,6 +11,7 @@ import {
   TicketCheck,
   User,
 } from "lucide-react";
+
 
 import { useEffect, useState } from "react";
 
@@ -88,12 +90,21 @@ const getData = async (id, setData, setRegistered, setLoading) => {
 /* =====================================================
    REGISTER EVENT
 ===================================================== */
-
-const registerForEvent = async (eventId, navigate) => {
-  try {
-    const token = localStorage.getItem("token");
-
-    const res = await fetch("/userevent/register", {
+const verify = async (response,navigate,eventId) => {
+  const token = localStorage.getItem("token");
+  const verRes = await fetch('/payment/verify',{
+    method : "POST",
+    headers : {
+      "Content-type" : "application/json",
+    },
+    body : JSON.stringify(response),
+  });
+  if(!verRes.ok){
+    alert("Error in transaction");
+    return;
+  }
+  else{
+  const res = await fetch("/userevent/register", {
       method: "POST",
 
       headers: {
@@ -116,8 +127,93 @@ const registerForEvent = async (eventId, navigate) => {
 
       return;
     }
-
     navigate(0);
+  }
+
+}
+const loadScript = ()=>{
+  return new Promise((resolve) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+const registerForEvent = async (eventId, navigate, eventdata) => {
+  const token = localStorage.getItem("token");
+  try {
+    if(eventdata.eventType&&eventdata.eventType=="free"){
+      const res = await fetch("/userevent/register", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+
+        Authorization: `Bearer ${token}`,
+      },
+
+      body: JSON.stringify({
+        eventId,
+
+        role: "Participant",
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message);
+
+      return;
+    }
+    navigate(0);
+    }
+    else{
+    const loaded = await loadScript();
+    if(!loaded){
+      alert("Erro with Payment Service");
+      return;
+    }
+    const payRes = await fetch("/payment/createpayment",{
+      method : "POST",
+      headers : {
+        "Content-Type":"application/json",
+      },
+      body : JSON.stringify({amount : eventdata.price}),
+    });
+    if(!payRes.ok){
+      alert("Payment Failure");
+      return;
+    }
+    
+    const order = await payRes.json();
+    const options = {
+      key : import.meta.env.VITE_RAZOR_PAY_KEY,
+      amount : order.amount,
+      currency : "INR",
+      name : eventdata.title +" Event",
+      description : "Booking for the Event "+eventdata.title,
+      order_id : order.id,
+      handler : (response) =>verify(response,navigate,eventId),
+      prefill : {
+        name : localStorage.name,
+        email : 'someone@mail.com',
+        contact : "9999999998",
+      },
+      
+      theme: {
+        color: "#8b5cf6",
+      },
+      
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+    }
   } catch (e) {
     console.log(e);
   }
@@ -286,31 +382,7 @@ const BookingPage = () => {
             </div>
           </div>
 
-          {/* =====================================================
-              PAYMENT
-          ===================================================== */}
-
-          <div className="mt-8">
-            <p className="text-lg font-medium mb-3">Select Payment Method</p>
-
-            <div className="flex gap-3">
-              {["UPI", "Card"].map((item) => {
-                return (
-                  <button
-                    key={item}
-                    className={`w-1/2 p-3 rounded-xl border transition-all duration-200 ${
-                      payment === item
-                        ? "bg-linear-to-r from-blue-500 to-fuchsia-500 text-white border-none"
-                        : "border-gray-300 hover:bg-gray-100"
-                    }`}
-                    onClick={() => setPayment(item)}
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          
 
           {/* =====================================================
               ACTIONS
@@ -325,7 +397,7 @@ const BookingPage = () => {
 
             <button
               className="text-2xl bg-linear-to-r from-violet-500 to-pink-500 text-white rounded-2xl px-6 py-3 hover:opacity-80 hover:scale-105 duration-200"
-              onClick={() => registerForEvent(id, navigate)}
+              onClick={() => registerForEvent(id, navigate,data)}
             >
               Confirm
             </button>
