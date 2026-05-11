@@ -11,9 +11,8 @@ const Footer = () => {
           <Mail />
         </div>
         <div className="ml-auto mr-auto text-center">
-          this is a web page created using react maybe all rights aren't
-          reserved.
-          <br /> so yeah thats some info
+          This webpage is part of a project made by students, all the rights that are required may not have been acquired
+          <br /> EventApp Project
         </div>
       </div>
     </div>
