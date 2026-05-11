@@ -41,12 +41,19 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    eventType: {
+      type: String,
+      enum: ["free", "paid"],
+      required: true,
+      default: "paid",
+    },
 
+  
     price: {
       type: Number,
       required: true,
+      default: 0,
     },
-
     totaltickets: {
       type: Number,
       required: true,
@@ -80,6 +87,8 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+
+    termsandconditions : [String],
 
     coverImagePath: {
       type: String,

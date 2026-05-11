@@ -15,6 +15,7 @@ import eventRoute from "./Routes/event.js";
 import createEventRoute from "./Routes/createEvent.js";
 import userInfoRoute from "./Routes/userInfo.js";
 import userEventRoute from "./Routes/userEvent.js";
+import paymentRoute from "./Routes/payment.js";
 
 const app = express();
 app.use(cors());
@@ -33,6 +34,7 @@ app.use("/api/data", eventRoute); // Requests starting with /api/data are redire
 app.use("/api/createevent", createEventRoute);
 app.use("/userinfo", userInfoRoute);
 app.use("/userevent", userEventRoute);
+app.use("/payment",paymentRoute);
 
 app.listen(port, () => {
   console.log(`listening in ${port}`);

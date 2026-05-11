@@ -42,7 +42,6 @@ router.post("/", upload.single("coverImage"), async (req, res) => {
 
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: "student_applications",
-
       resource_type: "image",
     });
 
@@ -65,18 +64,18 @@ router.post("/", upload.single("coverImage"), async (req, res) => {
       date,
       time,
       duration,
+      eventType,
       price,
       totaltickets,
-
       volunteersEnabled,
       volunteersRequiredCount,
 
       description,
+      termsandconditions,
       user_id,
     } = req.body;
 
     /* ---------------- CREATE EVENT ---------------- */
-
     const newEvent = new Event2({
       title,
 
@@ -94,11 +93,14 @@ router.post("/", upload.single("coverImage"), async (req, res) => {
 
       duration,
 
-      price,
+      eventType,
+      price: eventType === "free" ? 0 : Number(price),
 
       totaltickets,
 
       description,
+
+      termsandconditions : JSON.parse(termsandconditions),
 
       coverImagePath,
 

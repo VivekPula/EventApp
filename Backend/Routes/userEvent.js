@@ -177,7 +177,6 @@ router.get("/check/:eventId", authMiddleware, async (req, res) => {
       user: req.userId,
       event: eventId,
     });
-
     if (!userEvent) {
       return res.status(404).json({
         message: "Not registered",
@@ -683,16 +682,15 @@ router.post("/scan", async (req, res) => {
 });
 router.post('/getevents',async (req,res)=>{
   try{
-    const { language, category, prices, type, queryString, user } = req.body || {};
-    console.log("jsdghfjgj"+user);
-    const userId = await User.findOne({username:user});
-    if (!userId) {
+    const { language, category, prices, type, queryString, userId } = req.body || {};
+    const userID = await User.findOne({_id : userId});
+    if (!userID) {
       return res.status(404).json({
         message: "User not found",
       });
     }
     
-    const eventEIds = await UserEvent.find({ user: userId }, { event: 1 });
+    const eventEIds = await UserEvent.find({ user: userID, role : {$ne : "Organizer"} }, { event: 1 });
     const eventIds = eventEIds.map(id => id.event);
     let query = {};
     if (queryString != null && queryString !== "") {
