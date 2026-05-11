@@ -20,8 +20,8 @@ import { Oval } from "react-loader-spinner";
 
 const InfoRow = ({ icon: Icon, value }) => (
   <div className="flex items-center gap-3 border-b border-zinc-100 py-3 last:border-b-0">
-    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--secondaryColor)]">
-      <Icon className="h-4 w-4 text-[var(--primaryColor)]" />
+    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-(--secondaryColor)">
+      <Icon className="h-4 w-4 text-(--primaryColor)" />
     </div>
 
     <span className="text-sm text-zinc-700">{value}</span>
@@ -30,8 +30,8 @@ const InfoRow = ({ icon: Icon, value }) => (
 
 const InfoItem = ({ icon: Icon, label, value }) => (
   <div className="flex items-start gap-3 rounded-2xl border border-zinc-200 bg-white p-4">
-    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--secondaryColor)]">
-      <Icon className="h-4 w-4 text-[var(--primaryColor)]" />
+    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-(--secondaryColor)">
+      <Icon className="h-4 w-4 text-(--primaryColor)" />
     </div>
 
     <div>
@@ -204,15 +204,15 @@ const EventPage = () => {
         {/* LEFT */}
         <div className="flex-1 space-y-8">
           {/* HERO */}
-          <div className="relative h-[320px] overflow-hidden rounded-3xl md:h-[500px]">
+          <div className="relative h-80 overflow-hidden rounded-3xl md:h-125">
             {img ? (
               <>
                 <ImgScroll imgs={[img]} />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
               </>
             ) : (
-              <div className="h-full w-full bg-[var(--primaryColor)]" />
+              <div className="h-full w-full bg-(--primaryColor)" />
             )}
         
             <div className="absolute left-5 top-5 rounded-full bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-md">
@@ -224,11 +224,11 @@ const EventPage = () => {
           <div className=" flex-1 space-y-8 px-5 rounded-xl border border-gray-200 py-4">
           <div>
             <div className="mb-3 flex flex-wrap gap-2">
-              <span className="rounded-full bg-[var(--secondaryColor)] px-3 py-1 text-xs font-semibold text-[var(--primaryColor)]">
+              <span className="rounded-full bg-(--secondaryColor) px-3 py-1 text-xs font-semibold text-(--primaryColor)">
                 {data.eventType || "Paid"}
               </span>
 
-              <span className="rounded-full bg-[var(--secondaryColor)] px-3 py-1 text-xs font-semibold text-[var(--primaryColor)]">
+              <span className="rounded-full bg-(--secondaryColor) px-3 py-1 text-xs font-semibold text-(--primaryColor)">
                 {data.language}
               </span>
             </div>
@@ -345,11 +345,11 @@ const EventPage = () => {
             <Link to={`/u/${eventCreator.username}`}>
               <div className="flex items-center gap-4 rounded-3xl border border-zinc-200 bg-white p-5 transition hover:-translate-y-1 hover:shadow-lg">
                 <div className="relative">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--primaryColor)] text-2xl font-bold text-white">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-(--primaryColor) text-2xl font-bold text-white">
                     {initials(eventCreator.username)}
                   </div>
 
-                  <div className="absolute bottom-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--primaryColor)] text-white">
+                  <div className="absolute bottom-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-(--primaryColor) text-white">
                     <Shield className="h-3 w-3" />
                   </div>
                 </div>
@@ -361,7 +361,7 @@ const EventPage = () => {
 
                   <p className="text-sm text-zinc-500">{eventCreator.email}</p>
 
-                  <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--secondaryColor)] px-3 py-1 text-xs font-semibold text-[var(--primaryColor)]">
+                  <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-(--secondaryColor) px-3 py-1 text-xs font-semibold text-(--primaryColor)">
                     <Star className="h-3 w-3" />
                     Verified Organizer
                   </span>
@@ -374,7 +374,7 @@ const EventPage = () => {
         </div>
         </div>
         {/* RIGHT */}
-        <div className="w-full lg:w-[340px]">
+        <div className="w-full lg:w-85">
           <div className="sticky top-24 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
             {/* HEADER */}
             <div className="p-6 text-white border-b-2 border-b-(--primaryColor)">
@@ -474,7 +474,7 @@ const EventPage = () => {
                         data.volunteers?.requiredCount && (
                         <button
                           onClick={applyVolunteer}
-                          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--secondaryColor)] py-3 font-semibold text-[var(--primaryColor)] transition hover:opacity-90"
+                          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-(--secondaryColor) py-3 font-semibold text-(--primaryColor) transition hover:opacity-90"
                         >
                           <Users className="h-4 w-4" />
                           Apply as Volunteer
@@ -483,7 +483,7 @@ const EventPage = () => {
 
                     {availableSlots > 0 ? (
                       <Link to={`/bookEvent/${id}`}>
-                        <button className="w-full rounded-2xl bg-[var(--primaryColor)] py-3 font-semibold text-white transition hover:opacity-90">
+                        <button className="w-full rounded-2xl bg-(--primaryColor) py-3 font-semibold text-white transition hover:opacity-90">
                           Book Now
                         </button>
                       </Link>
