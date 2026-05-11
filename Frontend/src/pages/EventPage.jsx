@@ -241,41 +241,41 @@ const EventPage = () => {
       <div className="flex-3 flex flex-col gap-15">
         {/* IMAGE */}
 
-        <div className="ml-auto mr-auto h-[65vh] w-full max-w-[60vw] flex rounded-3xl overflow-clip justify-center">
+        <div className="ml-auto mr-auto h-[65vh] w-full max-w-[60vw] flex rounded-3xl overflow-clip justify-center mt-4">
           <ImgScroll imgs={[img]} />
         </div>
 
         {/* DETAILS */}
 
-        <div className="ml-auto mr-auto w-15/16">
+        <div className="ml-auto mr-auto w-15/16 border-2 rounded-2xl p-5 border-gray-200 shadow-md" >
           <p className="text-4xl font-medium border-b pb-2 border-b-gray-200 text-(--primaryColor)/80">
             Details
           </p>
 
           <div className="flex flex-wrap">
             <p className="text-xl mt-2 flex-1/2 ">
-              <span className="font-semibold text-(--primaryColor)">
+              <span className="font-semibold text-(--accentColor)">
                 Conducted by :
               </span>{" "}
               {eventCreator.username}
             </p>
 
             <p className="text-xl mt-2 flex-1/2 ">
-              <span className="font-semibold text-(--primaryColor)">
+              <span className="font-semibold text-(--accentColor)">
                 Type :
               </span>{" "}
               {data.eventType || "Paid "}
             </p>
 
             <p className="text-xl mt-2 flex-1/2 ">
-              <span className="font-semibold text-(--primaryColor)">
+              <span className="font-semibold text-(--accentColor)">
                 Total Joined :
               </span>{" "}
               {data.tickets || 0} people
             </p>
 
             <p className="text-xl mt-2 flex-1/2 ">
-              <span className="font-semibold text-(--primaryColor)">
+              <span className="font-semibold text-(--accentColor)">
                 Volunteer Slots :
               </span>{" "}
               {data.volunteers?.requiredCount -
@@ -283,14 +283,14 @@ const EventPage = () => {
             </p>
 
             <p className="text-xl mt-2 flex-1/2 ">
-              <span className="font-semibold text-(--primaryColor)">
+              <span className="font-semibold text-(--accentColor)">
                 Available slots :
               </span>{" "}
               {data.totaltickets - data.tickets}
             </p>
 
             <p className="text-xl mt-2 flex-1/2 ">
-              <span className="font-semibold text-(--primaryColor)">
+              <span className="font-semibold text-(--accentColor)">
                 Location :
               </span>{" "}
               {data.city + ", " + data.state}
@@ -300,7 +300,7 @@ const EventPage = () => {
 
         {/* DESCRIPTION */}
 
-        <div className="ml-auto mr-auto w-15/16">
+        <div className="ml-auto mr-auto w-15/16 border-2 rounded-2xl p-5 border-gray-200 shadow-md">
           <p className="text-4xl font-medium border-b pb-2 border-b-gray-300 text-(--primaryColor)/80">
             Description
           </p>
@@ -310,7 +310,7 @@ const EventPage = () => {
 
         {/* TERMS */}
         {data.termsandconditions&&data.termsandconditions.length>0&&
-        <div className="ml-auto mr-auto w-15/16">
+        <div className="ml-auto mr-auto w-15/16 border-2 rounded-2xl p-5 border-gray-200 shadow-md">
           <p className="text-4xl font-medium border-b pb-2 border-b-gray-300 text-(--primaryColor)/80">
             Terms and Conditions
           </p>
@@ -332,7 +332,7 @@ const EventPage = () => {
         }
         {/* ORGANIZER */}
 
-        <div className="ml-auto mr-auto w-15/16">
+        <div className="ml-auto mr-auto w-15/16 border-2 rounded-2xl p-5 border-gray-200 shadow-md">
           <p className="text-4xl font-medium border-b pb-2 border-b-gray-300 mb-1 text-(--primaryColor)/80">
             Organised by
           </p>

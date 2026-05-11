@@ -191,9 +191,11 @@ const registerForEvent = async (eventId, navigate, eventdata) => {
       return;
     }
     
-    const order = await payRes.json();
+    const obj = await payRes.json();
+    const order = obj.order;
+    const key = obj.key;
     const options = {
-      key : import.meta.env.VITE_RAZOR_PAY_KEY,
+      key : key,
       amount : order.amount,
       currency : "INR",
       name : eventdata.title +" Event",
@@ -272,8 +274,8 @@ const BookingPage = () => {
 
   if (!registered)
     return (
-      <div className="w-full min-h-screen flex justify-center bg-gray-50 p-6">
-        <div className="flex flex-col w-2/5 bg-white rounded-3xl border border-gray-200 shadow-2xl p-7">
+      <div className="w-full min-h-screen flex justify-center p-6">
+        <div className="flex flex-col w-2/5  rounded-3xl border border-gray-200 shadow-2xl p-7">
           {/* =====================================================
               TITLE
           ===================================================== */}
@@ -411,8 +413,8 @@ const BookingPage = () => {
   ===================================================== */
 
   return (
-    <div className="w-full  flex justify-center bg-gray-50 p-6">
-      <div className="flex flex-col items-center w-2/3 bg-white rounded-3xl border border-gray-200 shadow-2xl p-8 ">
+    <div className="w-full  flex justify-center  p-6">
+      <div className="flex flex-col items-center w-2/3  rounded-3xl border border-gray-200 shadow-2xl p-8 ">
         {/* =====================================================
             HEADER
         ===================================================== */}

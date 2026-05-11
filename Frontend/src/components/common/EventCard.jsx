@@ -31,11 +31,11 @@ const EventCard = ({page, item, index, imge }) => {
             {/* div for event Name and tags */}
             <p className="mt-2 line-clamp-2">{item.description}</p> {/* description */}
             <div className="flex w-full justify-start">
-              <p className="flex items-center line-clamp-3 mt-2 mr-auto">
+              <div className="flex items-center line-clamp-1 mt-2 w-7/10">
                 <MapPinned className="mr-2" size={28} />
-                {item.city+", "+item.state}{" "}
-              </p>
-              <p className="flex mr-2 mt-2 font-semibold items-center gap-2">
+                <p className="line-clamp-1">{item.city+", "+item.state}{" "}</p>
+              </div>
+              <p className="flex mr-2 mt-2 font-semibold items-center gap-2  ">
                 <Ticket
                   className=" text-(--accentColor) darkMode:text-(--exColor)"
                   size={30}
@@ -47,7 +47,7 @@ const EventCard = ({page, item, index, imge }) => {
           </div>
         </Link>
       </div>
-    ); //same as the above, just to add extra "filling fast!" tag
+    ); 
   
 };
 export default EventCard;

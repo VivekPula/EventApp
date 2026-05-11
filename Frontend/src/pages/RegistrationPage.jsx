@@ -111,8 +111,8 @@ const RegistrationPage = () => {
   ===================================================== */
 
   return (
-    <div className="w-full h-fit flex justify-center p-8  bg-gray-50">
-      <div className="w-2/3 bg-white rounded-3xl shadow-2xl  border border-gray-200 p-12 ">
+    <div className="w-full h-fit flex justify-center p-8  ">
+      <div className="w-2/3  rounded-3xl shadow-2xl  border border-gray-200 p-12 ">
         {/* =====================================================
             HEADER
         ===================================================== */}

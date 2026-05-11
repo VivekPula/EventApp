@@ -15,7 +15,7 @@ router.post('/createpayment',async (req, res)=>{
             currency : "INR",
             receipt : "receipt-"+Date.now(),
         });
-        res.json(order);
+        res.json({order : order,key : process.env.RAZOR_PAY_KEY});
     }catch(err){
         res.status(400).json({Error : "Payment Failure"});
         console.log("Error : "+err);
