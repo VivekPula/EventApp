@@ -692,6 +692,7 @@ router.post('/getevents',async (req,res)=>{
     
     const eventEIds = await UserEvent.find({ user: userID, role : {$ne : "Organizer"} }, { event: 1 });
     const eventIds = eventEIds.map(id => id.event);
+    const Type = type.map((x) => x.toLowerCase());
     let query = {};
     if (queryString != null && queryString !== "") {
       query.title = { $regex: queryString, $options: 'i' };
@@ -709,14 +710,20 @@ router.post('/getevents',async (req,res)=>{
       query.category = { $in: category };
     }
     if (type && type.length > 0) {
-      query.type = { $in: type }
+      query.eventType = { $in: Type }
     }
     if (prices && prices.length > 0) {
       prices.sort();
-      query.price = {
-        $gte: Number(prices[0].slice(3)),
-        $lte: Number(prices[prices.length - 1].slice(3))
+      if(prices.length==1){
+        query.price = {
+        $lte: Number(prices[0].slice(3)),
+        }
       }
+      else
+        query.price = {
+          $gte: Number(prices[0].slice(3)),
+          $lte: Number(prices[prices.length - 1].slice(3)),
+        };
     }
 
     const events = await Event2.find(query);

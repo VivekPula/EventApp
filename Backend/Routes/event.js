@@ -11,9 +11,8 @@ router.post("/", async (req, res) => {
   try {
     const { language, category, prices, type, queryString, user_id } =
       req.body || {};
-
+    const Type = type.map((x) => x.toLowerCase());
     let query = {};
-
     if (queryString != null && queryString !== "") {
       query.title = { $regex: queryString, $options: "i" };
       console.log(queryString);
@@ -28,15 +27,21 @@ router.post("/", async (req, res) => {
     }
 
     if (type && type.length > 0) {
-      query.type = { $in: type };
+      query.eventType = { $in: Type };
     }
 
     if (prices && prices.length > 0) {
       prices.sort();
-      query.price = {
-        $gte: Number(prices[0].slice(3)),
-        $lte: Number(prices[prices.length - 1].slice(3)),
-      };
+      if(prices.length==1){
+        query.price = {
+        $lte: Number(prices[0].slice(3)),
+        }
+      }
+      else
+        query.price = {
+          $gte: Number(prices[0].slice(3)),
+          $lte: Number(prices[prices.length - 1].slice(3)),
+        };
     }
 
     if (user_id) {
@@ -135,19 +140,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-
-    const eventData = await Event2.findById(id);
-    const eventCreator = await User.findOne({ _id: eventData.user_id });
-
-    res.json({ eventData: eventData, eventCreator: eventCreator });
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Some server error: " + e.message });
-  }
-});
 
 export default router;
 // import express from "express";
