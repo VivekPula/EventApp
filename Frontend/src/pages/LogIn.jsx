@@ -46,8 +46,13 @@ function LogIn() {
     }
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="p-10 px-15 w-1/3 rounded-2xl shadow-2xl">
+    <div className="w-full h-screen flex justify-center items-center relative min-h-screen overflow-hidden">
+      <img
+        src="bgimg.png"
+        alt=""
+        className="absolute inset-0 h-screen w-screen object-cover"
+      />
+      <div className="p-10 px-15 w-1/3 rounded-2xl shadow-2xl z-100">
         <form action="post" onSubmit={handleLogIn} className="flex-col flex">
           <span className="flex mb-5">
             <p className="text-3xl font-bold text-(--primaryColor)">Log</p>

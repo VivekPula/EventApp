@@ -15,166 +15,63 @@ import { useParams } from "react-router-dom";
 /* ── Google Fonts injection ── */
 if (typeof document !== "undefined" && !document.getElementById("pp-fonts")) {
   const link = document.createElement("link");
+
   link.id = "pp-fonts";
   link.rel = "stylesheet";
+
   link.href =
     "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Geist:wght@300;400;500;600&display=swap";
+
   document.head.appendChild(link);
 }
 
-/* ── Injected styles (animations + scoped classes) ── */
+/* ── ONLY animations kept ── */
 if (typeof document !== "undefined" && !document.getElementById("pp-styles")) {
   const style = document.createElement("style");
+
   style.id = "pp-styles";
+
   style.textContent = `
-    .pp-serif  { font-family: 'Fraunces', Georgia, serif; }
-    .pp-sans   { font-family: 'Geist', system-ui, sans-serif; }
+    @keyframes pp-up {
+      from {
+        opacity:0;
+        transform:translateY(20px);
+      }
 
-    @keyframes pp-up   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes pp-fade { from { opacity:0; } to { opacity:1; } }
+      to {
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes pp-fade {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+
     @keyframes pp-glow {
-      0%,100% { box-shadow:0 0 0 3px rgba(171,35,255,0.18),0 0 20px rgba(171,35,255,0.12); }
-      50%      { box-shadow:0 0 0 3px rgba(171,35,255,0.30),0 0 32px rgba(171,35,255,0.22); }
+      0%,100% {
+        box-shadow:
+          0 0 0 3px rgba(171,35,255,0.18),
+          0 0 20px rgba(171,35,255,0.12);
+      }
+
+      50% {
+        box-shadow:
+          0 0 0 3px rgba(171,35,255,0.30),
+          0 0 32px rgba(171,35,255,0.22);
+      }
     }
 
-    .pp-up   { animation: pp-up   0.55s cubic-bezier(0.22,1,0.36,1) both; }
-    .pp-fade { animation: pp-fade 0.25s ease both; }
-    .pp-d1 { animation-delay:0.05s; }
-    .pp-d2 { animation-delay:0.12s; }
-    .pp-d3 { animation-delay:0.19s; }
-
-    /* cards */
-    .pp-card {
-      background: var(--bg, #ffffff);
-      border: 1px solid rgba(0,0,0,0.07);
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      transition: border-color .3s, box-shadow .3s;
-    }
-    .pp-card:hover {
-      border-color: rgba(171,35,255,0.15);
-      box-shadow: 0 16px 56px rgba(171,35,255,0.10);
+    .pp-up {
+      animation: pp-up 0.55s cubic-bezier(0.22,1,0.36,1) both;
     }
 
-    /* stat tiles */
-    .pp-stat {
-      background: rgba(171,35,255,0.04);
-      border: 1px solid rgba(171,35,255,0.09);
-      transition: all .25s cubic-bezier(0.22,1,0.36,1);
-      cursor: default;
-    }
-    .pp-stat:hover {
-      background: rgba(171,35,255,0.09);
-      border-color: rgba(171,35,255,0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 32px rgba(171,35,255,0.12);
-    }
-    .pp-stat:hover .pp-stat-num { color: var(--primary-color, #ab23ff); }
-
-    /* skill chips */
-    .pp-chip {
-      background: rgba(171,35,255,0.06);
-      border: 1px solid rgba(171,35,255,0.14);
-      color: rgba(171,35,255,0.75);
-      transition: all .18s;
-    }
-    .pp-chip:hover {
-      background: rgba(171,35,255,0.13);
-      border-color: rgba(171,35,255,0.40);
-      color: var(--primary-color, #ab23ff);
-    }
-
-    /* tabs */
-    .pp-tab-on  {
-      background: linear-gradient(135deg, var(--primary-color, #ab23ff), #c94dff);
-      color: #fff;
-      box-shadow: 0 2px 16px rgba(171,35,255,0.30);
-    }
-    .pp-tab-off {
-      background: rgba(171,35,255,0.04);
-      color: rgba(0,0,0,0.40);
-      border: 1px solid rgba(171,35,255,0.09);
-    }
-    .pp-tab-off:hover {
-      background: rgba(171,35,255,0.08);
-      color: var(--primary-color, #ab23ff);
-    }
-
-    /* event rows */
-    .pp-event {
-      background: rgba(171,35,255,0.03);
-      border: 1px solid rgba(171,35,255,0.08);
-      transition: all .22s cubic-bezier(0.22,1,0.36,1);
-    }
-    .pp-event:hover {
-      background: rgba(171,35,255,0.07);
-      border-color: rgba(171,35,255,0.18);
-      transform: translateX(5px);
-    }
-    .pp-event:hover .pp-arrow { opacity:1; transform:translateX(0); }
-    .pp-arrow { opacity:0; transform:translateX(-5px); transition:all .2s; color: rgba(171,35,255,0.35); }
-
-    /* avatar */
-    .pp-avatar { animation: pp-glow 3.5s ease-in-out infinite; }
-
-    /* form controls */
-    .pp-input, .pp-textarea {
-      background: rgba(171,35,255,0.04);
-      border: 1px solid rgba(171,35,255,0.15);
-      color: var(--fg, #1a1a2e);
-      font-family: 'Geist', system-ui, sans-serif;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .pp-input::placeholder, .pp-textarea::placeholder {
-      color: rgba(171,35,255,0.35);
-    }
-    .pp-input:focus, .pp-textarea:focus {
-      outline: none;
-      border-color: rgba(171,35,255,0.55);
-      box-shadow: 0 0 0 3px rgba(171,35,255,0.10);
-    }
-    .pp-textarea { resize: none; }
-    .pp-btn-green {
-      background: linear-gradient(135deg, var(--primary-color, #ab23ff), #c94dff);
-      color: #fff;
-      font-family: 'Geist', system-ui, sans-serif;
-      font-weight: 600;
-      transition: all .2s;
-    }
-    .pp-btn-green:hover {
-      box-shadow: 0 4px 20px rgba(171,35,255,0.35);
-      transform: translateY(-1px);
-    }
-
-    .pp-edit-btn {
-      background: rgba(171,35,255,0.06);
-      border: 1px solid rgba(171,35,255,0.12);
-      color: rgba(171,35,255,0.45);
-      transition: all .18s;
-    }
-    .pp-edit-btn:hover {
-      background: rgba(171,35,255,0.12);
-      border-color: rgba(171,35,255,0.40);
-      color: var(--primary-color, #ab23ff);
-    }
-
-    .pp-divider {
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(171,35,255,0.12), transparent);
-    }
-    .pp-accent-line {
-      height:2px;
-      background: linear-gradient(90deg, var(--primary-color, #ab23ff), #c94dff, transparent);
-      border-radius:99px;
-    }
-    .pp-label {
-      font-size:0.68rem;
-      font-weight:600;
-      letter-spacing:0.14em;
-      text-transform:uppercase;
-      color: var(--primary-color, #ab23ff);
-      opacity: 0.75;
+    .pp-fade {
+      animation: pp-fade 0.25s ease both;
     }
   `;
+
   document.head.appendChild(style);
 }
 
@@ -185,9 +82,6 @@ const STAT_ICONS = {
   volunteered: <Zap size={14} />,
 };
 
-/* ══════════════════════════════════════════════
-   PROFILE PAGE
-══════════════════════════════════════════════ */
 function ProfilePage() {
   const { username } = useParams();
 
@@ -199,8 +93,6 @@ function ProfilePage() {
 
   const [loading, setLoading] = useState(true);
 
-  /* ---------------- EDIT STATES ---------------- */
-
   const [editBio, setEditBio] = useState(false);
   const [editSkills, setEditSkills] = useState(false);
   const [editEducation, setEditEducation] = useState(false);
@@ -209,14 +101,13 @@ function ProfilePage() {
   const [tempEducation, setTempEducation] = useState("");
   const [newSkill, setNewSkill] = useState("");
 
-  /* ---------------- FETCH PROFILE ---------------- */
-
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await fetch(`/user/u/${username}`);
 
         const data = await response.json();
+
         console.log(data);
 
         setProfile(data);
@@ -233,13 +124,11 @@ function ProfilePage() {
     fetchProfile();
   }, [username]);
 
-  /* ---------------- LOADING ---------------- */
-
   if (loading) {
     return (
-      <div className="p-6" style={{ color: "var(--primary-color, #ab23ff)" }}>
+      <div className="p-6" style={{ color: "var(--primaryColor)" }}>
         <span
-          className="pp-sans text-xs tracking-widest uppercase animate-pulse"
+          className="animate-pulse font-['Geist'] text-xs uppercase tracking-widest"
           style={{ color: "rgba(171,35,255,0.55)" }}
         >
           Loading profile…
@@ -252,11 +141,7 @@ function ProfilePage() {
     return <div className="p-6 text-red-500">Profile not found</div>;
   }
 
-  /* ---------------- OWNER CHECK ---------------- */
-
   const isOwner = loggedInUser === profile.username;
-
-  /* ---------------- UPDATE PROFILE API ---------------- */
 
   const updateProfile = async (updatedFields) => {
     try {
@@ -291,73 +176,83 @@ function ProfilePage() {
     }
   };
 
-  /* ---------------- SAVE BIO ---------------- */
-
   const saveBio = async () => {
     const success = await updateProfile({ bio: tempBio });
+
     if (success) setEditBio(false);
   };
 
-  /* ---------------- SAVE EDUCATION ---------------- */
-
   const saveEducation = async () => {
-    const success = await updateProfile({ education: tempEducation });
+    const success = await updateProfile({
+      education: tempEducation,
+    });
+
     if (success) setEditEducation(false);
   };
-
-  /* ---------------- ADD SKILL ---------------- */
 
   const addSkill = async () => {
     if (!newSkill.trim()) return;
 
     const updatedSkills = [...profile.skills, newSkill];
 
-    const success = await updateProfile({ skills: updatedSkills });
+    const success = await updateProfile({
+      skills: updatedSkills,
+    });
 
     if (success) {
-      setProfile((prev) => ({ ...prev, skills: updatedSkills }));
+      setProfile((prev) => ({
+        ...prev,
+        skills: updatedSkills,
+      }));
+
       setNewSkill("");
     }
   };
 
-  /* ---------------- REMOVE SKILL ---------------- */
-
   const removeSkill = async (skill) => {
     const updatedSkills = profile.skills.filter((s) => s !== skill);
 
-    const success = await updateProfile({ skills: updatedSkills });
+    const success = await updateProfile({
+      skills: updatedSkills,
+    });
 
     if (success) {
-      setProfile((prev) => ({ ...prev, skills: updatedSkills }));
+      setProfile((prev) => ({
+        ...prev,
+        skills: updatedSkills,
+      }));
     }
   };
 
   const initials = (profile.username || "??").slice(0, 2).toUpperCase();
 
-  /* ─────────────────────────────────────────
-     RENDER
-  ───────────────────────────────────────── */
   return (
     <div
-      className="space-y-8 flex flex-col flex-1 justify-center items-center pt-8 pb-10"
+      className="flex flex-1 flex-col items-center justify-center space-y-8 pt-8 pb-10"
       style={{ background: "var(--bg-back, #f5f3ff)" }}
     >
       {/* ================= SECTION 1 ================= */}
-      <div className="pp-card pp-sans rounded-2xl w-full max-w-2xl pp-up pp-d1 overflow-hidden">
-        {/* top accent stripe */}
-        <div className="pp-accent-line" />
+      <div
+        className="pp-up w-full max-w-2xl overflow-hidden rounded-2xl border bg-white font-['Geist'] transition-all duration-300 hover:border-[rgba(171,35,255,0.15)] hover:shadow-[0_16px_56px_rgba(171,35,255,0.10)]"
+        style={{
+          borderColor: "rgba(0,0,0,0.07)",
+          boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+        }}
+      >
+        {/* accent line */}
+        <div className="h-[2px] rounded-full bg-[linear-gradient(90deg,var(--primaryColor),#c94dff,transparent)]" />
 
-        <div className="p-7 space-y-6">
+        <div className="space-y-6 p-7">
           {/* identity row */}
           <div className="flex items-center gap-5">
             {/* avatar */}
             <div
-              className="pp-avatar shrink-0 rounded-full flex items-center justify-center pp-serif"
+              className="flex shrink-0 items-center justify-center rounded-full font-['Fraunces'] animate-[pp-glow_3.5s_ease-in-out_infinite]"
               style={{
                 width: 66,
                 height: 66,
                 background:
-                  "linear-gradient(135deg, var(--primary-color, #ab23ff) 0%, #c94dff 100%)",
+                  "linear-gradient(135deg, var(--primaryColor) 0%, #c94dff 100%)",
                 color: "#fff",
                 fontSize: 24,
                 fontWeight: 600,
@@ -368,7 +263,7 @@ function ProfilePage() {
 
             <div>
               <h1
-                className="pp-serif leading-tight"
+                className="font-['Fraunces'] leading-tight"
                 style={{
                   fontSize: "1.85rem",
                   color: "var(--fg, #1a1a2e)",
@@ -378,8 +273,9 @@ function ProfilePage() {
               >
                 {profile.username}
               </h1>
+
               <p
-                className="pp-sans text-sm mt-0.5"
+                className="mt-0.5 font-['Geist'] text-sm"
                 style={{
                   color: "rgba(171,35,255,0.45)",
                   letterSpacing: "0.025em",
@@ -392,11 +288,14 @@ function ProfilePage() {
 
           {/* ABOUT */}
           <div>
-            <div className="flex justify-between items-center mb-3">
-              <span className="pp-label">About</span>
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--primaryColor)] opacity-75">
+                About
+              </span>
+
               {isOwner && (
                 <button
-                  className="pp-edit-btn w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer"
+                  className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-[rgba(171,35,255,0.12)] bg-[rgba(171,35,255,0.06)] text-[rgba(171,35,255,0.45)] transition-all duration-200 hover:border-[rgba(171,35,255,0.40)] hover:bg-[rgba(171,35,255,0.12)] hover:text-[var(--primaryColor)]"
                   onClick={() => setEditBio(true)}
                 >
                   <Pencil size={13} />
@@ -405,24 +304,25 @@ function ProfilePage() {
             </div>
 
             {editBio ? (
-              <div className="space-y-3 pp-fade">
+              <div className="pp-fade space-y-3">
                 <textarea
                   value={tempBio}
                   onChange={(e) => setTempBio(e.target.value)}
                   rows={4}
                   placeholder="Write something about yourself…"
-                  className="pp-textarea w-full p-3 rounded-xl text-sm"
+                  className="w-full resize-none rounded-xl border border-[rgba(171,35,255,0.15)] bg-(--tertiary-color) p-3 font-['Geist'] text-sm text-[var(--fg,#1a1a2e)] transition-all duration-200 placeholder:text-[rgba(171,35,255,0.35)] focus:border-[rgba(171,35,255,0.55)] focus:outline-none focus:ring-4 focus:ring-[rgba(171,35,255,0.10)]"
                 />
+
                 <button
                   onClick={saveBio}
-                  className="pp-btn-green px-5 py-2 rounded-full text-xs tracking-wide"
+                  className="rounded-full bg-[linear-gradient(135deg,var(--primaryColor),#c94dff)] px-5 py-2 font-['Geist'] text-xs font-semibold tracking-wide text-white transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_4px_20px_rgba(171,35,255,0.35)]"
                 >
                   Save changes
                 </button>
               </div>
             ) : (
               <p
-                className="pp-sans text-sm leading-relaxed"
+                className="font-['Geist'] text-sm leading-relaxed"
                 style={{
                   color: profile.bio
                     ? "var(--fg, #1a1a2e)"
@@ -439,26 +339,38 @@ function ProfilePage() {
       </div>
 
       {/* ================= SECTION 2 ================= */}
-      <div className="pp-card pp-sans rounded-2xl w-full max-w-2xl pp-up pp-d2 p-7 space-y-6">
+      <div
+        className="pp-up w-full max-w-2xl space-y-6 rounded-2xl border bg-white p-7 font-['Geist'] transition-all duration-300 hover:border-[rgba(171,35,255,0.15)] hover:shadow-[0_16px_56px_rgba(171,35,255,0.10)]"
+        style={{
+          borderColor: "rgba(0,0,0,0.07)",
+          boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+        }}
+      >
         {/* STATS */}
         <div>
-          <p className="pp-label mb-4">Activity</p>
+          <p className="mb-4 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--primaryColor)] opacity-75">
+            Activity
+          </p>
+
           <div className="grid grid-cols-3 gap-3">
             {Object.entries(profile.stats).map(([key, value]) => (
-              <div key={key} className="pp-stat rounded-xl p-4 text-center">
+              <div
+                key={key}
+                className="cursor-default rounded-xl border border-[rgba(171,35,255,0.09)] p-4 text-center transition-all duration-200 hover:-translate-y-1 hover:border-[rgba(171,35,255,0.35)]  hover:shadow-[0_10px_32px_rgba(171,35,255,0.12)]"
+              >
                 <div
-                  className="mx-auto mb-2.5 rounded-lg flex items-center justify-center"
+                  className="mx-auto mb-2.5 flex items-center justify-center rounded-lg text-(--primaryColor)"
                   style={{
                     width: 30,
                     height: 30,
                     background: "rgba(171,35,255,0.10)",
-                    color: "var(--primary-color, #ab23ff)",
                   }}
                 >
                   {STAT_ICONS[key] || <Zap size={14} />}
                 </div>
+
                 <p
-                  className="pp-stat-num pp-serif transition-colors duration-200"
+                  className="font-['Fraunces'] transition-colors duration-200"
                   style={{
                     fontSize: "1.6rem",
                     color: "var(--fg, #1a1a2e)",
@@ -467,12 +379,12 @@ function ProfilePage() {
                 >
                   {value}
                 </p>
+
                 <p
-                  className="pp-sans capitalize mt-1"
+                  className="mt-1 font-['Geist'] capitalize text-black/70"
                   style={{
                     fontSize: "0.68rem",
                     letterSpacing: "0.09em",
-                    color: "rgba(171,35,255,0.45)",
                   }}
                 >
                   {key}
@@ -482,15 +394,18 @@ function ProfilePage() {
           </div>
         </div>
 
-        <div className="pp-divider" />
+        <div className="h-px bg-[linear-gradient(90deg,transparent,rgba(171,35,255,0.12),transparent)]" />
 
         {/* SKILLS */}
         <div>
-          <div className="flex justify-between items-center mb-3">
-            <span className="pp-label">Skills</span>
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--primaryColor)] opacity-75">
+              Skills
+            </span>
+
             {isOwner && (
               <button
-                className="pp-edit-btn w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer"
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-[rgba(171,35,255,0.12)] bg-[rgba(171,35,255,0.06)] text-[rgba(171,35,255,0.45)] transition-all duration-200 hover:border-[rgba(171,35,255,0.40)] hover:bg-[rgba(171,35,255,0.12)] hover:text-[var(--primaryColor)]"
                 onClick={() => setEditSkills(!editSkills)}
               >
                 <Pencil size={13} />
@@ -503,13 +418,14 @@ function ProfilePage() {
               profile.skills.map((skill, idx) => (
                 <div
                   key={idx}
-                  className="pp-chip flex items-center px-3 py-1.5 rounded-full text-xs font-medium"
+                  className="flex items-center rounded-full border border-[rgba(171,35,255,0.14)] bg-white px-3 py-1.5 text-xs font-medium text-black/70 transition-all duration-200 hover:border-[rgba(171,35,255,0.40)] hover:bg-[rgba(171,35,255,0.13)] hover:text-[var(--primaryColor)]"
                 >
                   {skill}
+
                   {editSkills && (
                     <X
                       size={12}
-                      className="ml-2 cursor-pointer opacity-50 hover:opacity-100 hover:text-red-400 transition-all"
+                      className="ml-2 cursor-pointer opacity-50 transition-all hover:text-red-400 hover:opacity-100"
                       onClick={() => removeSkill(skill)}
                     />
                   )}
@@ -518,7 +434,7 @@ function ProfilePage() {
             ) : (
               <p
                 className="text-xs italic"
-                style={{ color: "rgba(171,35,255,0.30)" }}
+                style={{ color: "--tertiaryColor" }}
               >
                 No skills listed yet.
               </p>
@@ -526,17 +442,18 @@ function ProfilePage() {
           </div>
 
           {editSkills && (
-            <div className="mt-3 flex gap-2 pp-fade">
+            <div className="pp-fade mt-3 flex gap-2">
               <input
                 value={newSkill}
                 onChange={(e) => setNewSkill(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addSkill()}
-                className="pp-input flex-1 px-4 py-2 rounded-full text-xs"
+                className="flex-1 rounded-full border border-[rgba(171,35,255,0.15)] bg-(--tertiary-color) px-4 py-2 font-['Geist'] text-xs text-[var(--fg,#1a1a2e)] transition-all duration-200 placeholder:text-[rgba(171,35,255,0.35)] focus:border-[rgba(171,35,255,0.55)] focus:outline-none focus:ring-4 focus:ring-[rgba(171,35,255,0.10)]"
                 placeholder="Add skill"
               />
+
               <button
                 onClick={addSkill}
-                className="pp-btn-green px-4 py-2 rounded-full text-xs"
+                className="rounded-full bg-[linear-gradient(135deg,var(--primaryColor),#c94dff)] px-4 py-2 font-['Geist'] text-xs font-semibold text-white transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_4px_20px_rgba(171,35,255,0.35)]"
               >
                 Add
               </button>
@@ -544,15 +461,18 @@ function ProfilePage() {
           )}
         </div>
 
-        <div className="pp-divider" />
+        <div className="h-px bg-[linear-gradient(90deg,transparent,rgba(171,35,255,0.12),transparent)]" />
 
         {/* EDUCATION */}
         <div>
-          <div className="flex justify-between items-center mb-3">
-            <span className="pp-label">Education</span>
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--primaryColor)] opacity-75">
+              Education
+            </span>
+
             {isOwner && (
               <button
-                className="pp-edit-btn w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer"
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-[rgba(171,35,255,0.12)] bg-[rgba(171,35,255,0.06)] text-[rgba(171,35,255,0.45)] transition-all duration-200 hover:border-[rgba(171,35,255,0.40)] hover:bg-[rgba(171,35,255,0.12)] hover:text-[var(--primaryColor)]"
                 onClick={() => setEditEducation(true)}
               >
                 <Pencil size={13} />
@@ -561,16 +481,17 @@ function ProfilePage() {
           </div>
 
           {editEducation ? (
-            <div className="space-y-3 pp-fade">
+            <div className="pp-fade space-y-3">
               <input
                 value={tempEducation}
                 onChange={(e) => setTempEducation(e.target.value)}
                 placeholder="e.g. B.Sc. Computer Science, MIT"
-                className="pp-input w-full px-4 py-2.5 rounded-xl text-sm"
+                className="w-full rounded-xl border border-[rgba(171,35,255,0.15)] bg-(--tertiary-color) px-4 py-2.5 font-['Geist'] text-sm text-[var(--fg,#1a1a2e)] transition-all duration-200 placeholder:text-[rgba(171,35,255,0.35)] focus:border-[rgba(171,35,255,0.55)] focus:outline-none focus:ring-4 focus:ring-[rgba(171,35,255,0.10)]"
               />
+
               <button
                 onClick={saveEducation}
-                className="pp-btn-green px-5 py-2 rounded-full text-xs tracking-wide"
+                className="rounded-full bg-[linear-gradient(135deg,var(--primaryColor),#c94dff)] px-5 py-2 font-['Geist'] text-xs font-semibold tracking-wide text-white transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_4px_20px_rgba(171,35,255,0.35)]"
               >
                 Save changes
               </button>
@@ -578,18 +499,19 @@ function ProfilePage() {
           ) : (
             <div className="flex items-center gap-3">
               <div
-                className="shrink-0 rounded-xl flex items-center justify-center"
+                className="flex shrink-0 items-center justify-center rounded-xl"
                 style={{
                   width: 36,
                   height: 36,
                   background: "rgba(171,35,255,0.08)",
-                  color: "var(--primary-color, #ab23ff)",
+                  color: "var(--primaryColor)",
                 }}
               >
                 <BookOpen size={15} />
               </div>
+
               <p
-                className="pp-sans text-sm"
+                className="font-['Geist'] text-sm"
                 style={{
                   color: profile.education
                     ? "var(--fg, #1a1a2e)"
@@ -606,14 +528,21 @@ function ProfilePage() {
       </div>
 
       {/* ================= EVENT HISTORY ================= */}
-      <div className="pp-card pp-sans rounded-2xl w-full max-w-2xl pp-up pp-d3 p-7 space-y-6">
-        <p className="pp-label">Event History</p>
+      <div
+        className="pp-up w-full max-w-2xl space-y-6 rounded-2xl border bg-white p-7 font-['Geist'] transition-all duration-300 hover:border-[rgba(171,35,255,0.15)] hover:shadow-[0_16px_56px_rgba(171,35,255,0.10)]"
+        style={{
+          borderColor: "rgba(0,0,0,0.07)",
+          boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
+        }}
+      >
+        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--primaryColor)] opacity-75">
+          Event History
+        </p>
 
-        {/* TABS */}
+        {/* tabs */}
         <div
-          className="flex gap-1.5 p-1 rounded-xl"
+          className="flex gap-1.5 rounded-xl p-1 bg-(--secondaryColor)/20"
           style={{
-            background: "rgba(171,35,255,0.04)",
             border: "1px solid rgba(171,35,255,0.08)",
           }}
         >
@@ -621,8 +550,10 @@ function ProfilePage() {
             <button
               key={tab}
               onClick={() => setActiveHistoryTab(tab)}
-              className={`flex-1 py-2 px-3 rounded-[9px] text-xs font-semibold transition-all duration-200 cursor-pointer pp-sans ${
-                activeHistoryTab === tab ? "pp-tab-on" : "pp-tab-off"
+              className={`flex-1 rounded-[9px] px-3 py-2 text-xs font-semibold transition-all duration-200 ${
+                activeHistoryTab === tab
+                  ? "bg-[linear-gradient(135deg,var(--primaryColor),#c94dff)] text-white shadow-[0_2px_16px_rgba(171,35,255,0.30)]"
+                  : "border border-[rgba(171,35,255,0.09)] bg-(--tertiary-color) text-black/40 hover:bg-[rgba(171,35,255,0.08)] hover:text-[var(--primaryColor)]"
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -630,7 +561,6 @@ function ProfilePage() {
           ))}
         </div>
 
-        {/* ACTIVE TAB */}
         <EventSection
           title={activeHistoryTab}
           data={profile.history[activeHistoryTab]}
@@ -647,10 +577,10 @@ const EventSection = ({ title, data, showRating }) => {
   if (!data || data.length === 0) {
     return (
       <div
-        className="pp-sans text-center py-10 text-sm"
+        className="py-10 text-center font-['Geist'] text-sm"
         style={{ color: "rgba(171,35,255,0.30)" }}
       >
-        <div className="text-3xl mb-2 opacity-30">📭</div>
+        <div className="mb-2 text-3xl opacity-30">📭</div>
         No {title} events yet.
       </div>
     );
@@ -661,7 +591,7 @@ const EventSection = ({ title, data, showRating }) => {
       {data.map((event, i) => (
         <div
           key={event.id}
-          className="pp-event rounded-xl px-5 py-4 flex items-center justify-between gap-3 pp-fade"
+          className="group pp-fade flex items-center justify-between gap-3 rounded-xl border border-(--primaryColor)/25 px-5 py-4 transition-all duration-200 hover:translate-x-[5px] hover:border-[rgba(171,35,255,0.18)] hover:bg-[rgba(171,35,255,0.07)]"
           style={{ animationDelay: `${i * 0.05}s` }}
         >
           {/* status dot */}
@@ -670,46 +600,58 @@ const EventSection = ({ title, data, showRating }) => {
             style={{
               width: 7,
               height: 7,
-              background: "var(--primary-color, #ab23ff)",
+              background: "var(--primaryColor)",
               opacity: 0.45,
             }}
           />
 
           {/* info */}
-          <div className="flex-1 min-w-0">
+          <div className="min-w-0 flex-1">
             <h4
-              className="pp-sans text-sm font-medium truncate"
-              style={{ color: "var(--fg, #1a1a2e)", opacity: 0.78 }}
+              className="truncate font-['Geist'] text-sm font-medium"
+              style={{
+                color: "var(--fg, #1a1a2e)",
+                opacity: 0.78,
+              }}
             >
               {event.title}
             </h4>
+
             {!showRating && (
               <div
-                className="flex items-center gap-1.5 mt-0.5"
-                style={{ color: "rgba(171,35,255,0.40)", fontSize: 11 }}
+                className="mt-0.5 flex items-center gap-1.5"
+                style={{
+                  color: "rgba(171,35,255,0.40)",
+                  fontSize: 11,
+                }}
               >
                 <Calendar size={11} />
+
                 <span>{event.date}</span>
               </div>
             )}
           </div>
 
-          {/* rating badge */}
+          {/* rating */}
           {showRating && (
             <div
-              className="flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold shrink-0"
+              className="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
               style={{
                 background: "rgba(171,35,255,0.10)",
-                color: "var(--primary-color, #ab23ff)",
+                color: "var(--primaryColor)",
               }}
             >
               <Star size={11} fill="currentColor" />
+
               {event.rating}
             </div>
           )}
 
-          {/* chevron */}
-          <ChevronRight size={14} className="pp-arrow shrink-0" />
+          {/* arrow */}
+          <ChevronRight
+            size={14}
+            className="shrink-0 translate-x-[-5px] text-[rgba(171,35,255,0.35)] opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+          />
         </div>
       ))}
     </div>

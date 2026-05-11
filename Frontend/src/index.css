@@ -13,8 +13,9 @@ html,body{
 
 :root{
   --accentColor:#8000ff;
-  --primaryColor:#ab23ff;
-  --secondaryColor:#eedeff;
+  --primaryColor:#8B5CF6;
+  --secondaryColor:#E9D5FF;
+  --tertiaryColor: #efefef;
   --exColor:#88ff00;
   --bg:white;
   --bg-back:#fdfefe;
