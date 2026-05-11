@@ -8,7 +8,7 @@ import Profile from "./Profile";
 const NavBar = ({ className = "" }) => {
   const redirectPath = useLocation().pathname; // To redirect back to this location after signup/login
   const { user } = useAuth();
-  const [query,setQuery] = useState("");
+  const [query, setQuery] = useState("");
   const { toggleTheme } = useContext(ThemeContext);
   const [themeName, changeThemeName] = useState("light");
   const [iconName, changeIconName] = useState(<Sun />);
@@ -27,11 +27,12 @@ const NavBar = ({ className = "" }) => {
         id="MainBar"
         className="flex  items-center w-19/20 h-20 ml-auto mr-auto  border-b-gray-300 border-b"
       >
-        <div
-          style={{ fontFamily: "pristina" }}
-          className="h-15 text-center pt-2 text-5xl font-serif overflow-clip text-(--primaryColor)"
-        >
-          <p> Event App</p>
+        <div className="flex items-center">
+          <img
+            src="/eventlogo.png"
+            alt="EventFind logo"
+            className="h-12 w-auto object-contain"
+          />
         </div>
         <div
           id="searchBox"
@@ -41,25 +42,24 @@ const NavBar = ({ className = "" }) => {
             type="text"
             placeholder="Search"
             className="w-full border-0 bg-transparent focus:ring-0 text-(--fg) placeholder-(--fg)"
-            onChange={(e)=>setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => {
-              if( e.key === "Enter"){
-                if(redirectPath!=="/history")
-                  navigate("/",{state:{refresh:query}});
-                else
-                  navigate("/history",{state:{refresh:query}});
+              if (e.key === "Enter") {
+                if (redirectPath !== "/history")
+                  navigate("/", { state: { refresh: query } });
+                else navigate("/history", { state: { refresh: query } });
               }
             }}
           />
-          <Search className="mr-8 cursor-pointer" 
-              size={25} 
-              onClick={()=>{
-                if(redirectPath!=="/history")
-                  navigate("/",{state:{refresh:query}});
-                else
-                  navigate("/history",{state:{refresh:query}});
-              }}
-              />
+          <Search
+            className="mr-8 cursor-pointer"
+            size={25}
+            onClick={() => {
+              if (redirectPath !== "/history")
+                navigate("/", { state: { refresh: query } });
+              else navigate("/history", { state: { refresh: query } });
+            }}
+          />
         </div>
         <div className="flex justify-around items-center gap-3 ml-auto">
           <div className="ml-auto  flex items-center justify-between text-xl ">

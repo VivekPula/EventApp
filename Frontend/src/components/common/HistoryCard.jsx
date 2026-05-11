@@ -10,7 +10,7 @@ const HistoryCard = ({ item, index, imge }) => {
   return (
     <div
       key={index}
-      className="flex flex-row rounded-3xl m-5 w-full h-[25vh] gap-2 bg-(--secondaryColor)/70 darkMode:bg-(--primaryColor)/70 "
+      className="flex flex-row rounded-3xl m-5 w-full h-[25vh] gap-2 bg-(--secondaryColor)/50 darkMode:bg-(--primaryColor)/70 "
     >
       <Link to={linkPath} className="flex w-full h-full items-center">
         <div className="m-2 relative flex h-9/10 w-1/3 rounded-3xl overflow-clip items-center justify-center border-2 border-purple-200">
