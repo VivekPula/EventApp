@@ -25,6 +25,7 @@ function HostNewPage() {
     date: "",
     time: "",
     duration: "",
+    eventType: "paid",
     price: 0,
     totaltickets: 0,
 
@@ -60,8 +61,10 @@ function HostNewPage() {
     data.append("time", eventform.time);
 
     data.append("duration", eventform.duration);
+    data.append("eventType", eventform.eventType);
 
-    data.append("price", eventform.price);
+    // data.append("price", eventform.price);
+    data.append("price", eventform.eventType === "free" ? 0 : eventform.price);
 
     data.append("totaltickets", eventform.totaltickets);
 
@@ -148,15 +151,32 @@ function HostNewPage() {
      HANDLE CHANGE
   ========================================================= */
 
+  // const handleChange = (e) => {
+  //   setEventForm({
+  //     ...eventform,
+
+  //     [e.target.name]:
+  //       e.target.type === "number" ? Number(e.target.value) : e.target.value,
+  //   });
+  // };
+
   const handleChange = (e) => {
+    const { name, value, type } = e.target;
+
+    if (name === "eventType") {
+      setEventForm({
+        ...eventform,
+        eventType: value,
+        price: value === "free" ? 0 : eventform.price,
+      });
+      return;
+    }
+
     setEventForm({
       ...eventform,
-
-      [e.target.name]:
-        e.target.type === "number" ? Number(e.target.value) : e.target.value,
+      [name]: type === "number" ? Number(value) : value,
     });
   };
-
   /* =========================================================
      REMOVE COVER IMAGE
   ========================================================= */
@@ -361,7 +381,54 @@ function HostNewPage() {
 
             {/* PRICE + TICKETS */}
 
-            <div className="flex flex-row">
+
+
+            <div className="grid grid-cols-3 gap-5 my-2.5">
+              <div className="flex flex-col">
+                <label>Event Type*</label>
+
+                <select
+                  className="border p-2.5 mt-1 rounded-xl text-black w-full"
+                  name="eventType"
+                  value={eventform.eventType}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="paid">Paid</option>
+                  <option value="free">Free</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col">
+                <label>Price of ticket Rs*</label>
+
+                <input
+                  type="number"
+                  className={`border p-2.5 mt-1 rounded-xl text-black w-full ${eventform.eventType === "free" ? "bg-gray-200 cursor-not-allowed" : ""
+                    }`}
+                  name="price"
+                  value={eventform.eventType === "free" ? 0 : eventform.price}
+                  onChange={handleChange}
+                  disabled={eventform.eventType === "free"}
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label>Total tickets*</label>
+
+                <input
+                  type="number"
+                  value={eventform.totaltickets}
+                  name="totaltickets"
+                  className="border p-2.5 mt-1 rounded-xl text-black w-full"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* <div className="flex flex-row">
               <div className="flex flex-col my-2.5">
                 <label>Price of ticket Rs*</label>
 
@@ -387,7 +454,7 @@ function HostNewPage() {
                   required
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* VOLUNTEERS */}
 
