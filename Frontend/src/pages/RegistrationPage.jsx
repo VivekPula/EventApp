@@ -111,32 +111,32 @@ const RegistrationPage = () => {
   ===================================================== */
 
   return (
-    <div className="w-full h-fit flex justify-center p-8  bg-gray-50">
-      <div className="w-2/3 bg-white rounded-3xl shadow-2xl  border border-gray-200 p-12 ">
+    <div className="w-full h-fit flex justify-center p-10 bg-gray-50 darkMode:bg-transparent">
+      <div className="w-full bg-white darkMode:bg-(--primaryColor)/30 rounded-3xl shadow-lg border border-gray-100 darkMode:border-(--primaryColor)/40 p-14">
         {/* =====================================================
             HEADER
         ===================================================== */}
 
-        <div className="border-b pb-5 mb-6 flex justify-between items-start">
+        <div className="border-b border-gray-100 darkMode:border-(--primaryColor)/40 pb-6 mb-8 flex justify-between items-start">
           <div>
-            <p className="text-4xl font-bold text-(--primaryColor)">
+            <p className="text-4xl font-bold text-(--primaryColor) darkMode:text-(--secondaryColor)">
               {eventData.title}
             </p>
 
-            <p className="text-gray-500 mt-2 text-lg">Your Event Pass</p>
+            <p className="text-gray-500 darkMode:text-(--secondaryColor)/70 mt-2 text-lg">Your Event Pass</p>
           </div>
 
           <div className="flex flex-col items-end gap-3">
-            <p className="text-lg font-semibold">
+            <p className="text-lg font-semibold darkMode:text-(--secondaryColor) flex items-center gap-2">
               Status :
               <span
-                className={`ml-2 px-4 py-1 rounded-full text-sm font-medium capitalize ${statusClass}`}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize ${statusClass}`}
               >
                 {statusText}
               </span>
             </p>
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 darkMode:text-(--secondaryColor)/70">
               Registered :{" "}
               {registrationData.createdAt
                 ? registrationData.createdAt.slice(0, 10) +
@@ -156,12 +156,12 @@ const RegistrationPage = () => {
               LEFT SIDE
           ===================================================== */}
 
-          <div className="w-2/3 flex flex-col gap-4">
+          <div className="w-full flex flex-col gap-5">
             {/* REGISTRATION ID */}
 
-            <div className="rounded-2xl border-2 border-gray-200 p-4">
-              <p className="flex gap-3 items-center text-lg break-all">
-                <TicketCheck className="text-(--accentColor)" />
+            <div className="rounded-2xl border border-gray-200 darkMode:border-(--primaryColor)/40 bg-gray-50 darkMode:bg-(--primaryColor)/20 p-5">
+              <p className="flex gap-3 items-center text-lg break-all darkMode:text-(--secondaryColor)">
+                <TicketCheck className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
 
                 <span className="font-semibold text-(--accentColor)">
                   Registration ID :
@@ -173,30 +173,38 @@ const RegistrationPage = () => {
 
             {/* INFO GRID */}
 
-            <div className="rounded-2xl border-2 border-gray-200 p-5 flex gap-6">
+            <div className="rounded-2xl border border-gray-200 darkMode:border-(--primaryColor)/40 bg-gray-50 darkMode:bg-(--primaryColor)/20 p-6 flex gap-8">
               {/* LEFT */}
 
-              <div className="w-1/2 flex flex-col gap-5 text-lg">
+              <div className="w-1/2 flex flex-col gap-6 text-lg darkMode:text-(--secondaryColor)">
                 <p className="flex gap-3 items-center">
-                  <User className="text-(--accentColor)" />
+                  <User className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Name :</span>
 
                   {userData?.username || "Unknown User"}
                 </p>
 
                 <p className="flex gap-3 items-center">
-                  <Calendar className="text-(--accentColor)" />
+                  <Calendar className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Date :</span>
 
                   {eventData.date}
                 </p>
 
                 <p className="flex gap-3 items-center">
-                  <Clock className="text-(--accentColor)" />
+                  <Clock className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Time :</span>
 
                   {eventData.time}
                 </p>
 
                 <p className="flex gap-3 items-center">
-                  <Hourglass className="text-(--accentColor)" />
+                  <Hourglass className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Duration :</span>
 
                   {eventData.duration}
                 </p>
@@ -204,27 +212,35 @@ const RegistrationPage = () => {
 
               {/* RIGHT */}
 
-              <div className="w-1/2 flex flex-col gap-5 text-lg">
+              <div className="w-1/2 flex flex-col gap-6 text-lg darkMode:text-(--secondaryColor)">
                 <p className="flex gap-3 items-center">
-                  <Languages className="text-(--accentColor)" />
+                  <Languages className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Language :</span>
 
                   {eventData.language}
                 </p>
 
                 <p className="flex gap-3 items-center">
-                  <Grid3x2 className="text-(--accentColor)" />
+                  <Grid3x2 className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Category :</span>
 
                   {eventData.category}
                 </p>
 
                 <p className="flex gap-3 items-center">
-                  <IndianRupee className="text-(--accentColor)" />
+                  <IndianRupee className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Price :</span>
 
                   {eventData.price}
                 </p>
 
                 <p className="flex gap-3 items-center capitalize">
-                  <ShieldCheck className="text-(--accentColor)" />
+                  <ShieldCheck className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                  <span className="font-semibold text-(--accentColor)">Role :</span>
 
                   {registrationData.role}
                 </p>
@@ -233,9 +249,11 @@ const RegistrationPage = () => {
 
             {/* LOCATION */}
 
-            <div className="rounded-2xl border-2 border-gray-200 p-4">
-              <p className="flex gap-3 items-center text-lg">
-                <MapPin className="text-(--accentColor)" />
+            <div className="rounded-2xl border border-gray-200 darkMode:border-(--primaryColor)/40 bg-gray-50 darkMode:bg-(--primaryColor)/20 p-5">
+              <p className="flex gap-3 items-center text-lg darkMode:text-(--secondaryColor)">
+                <MapPin className="text-(--accentColor) bg-white darkMode:bg-(--secondaryColor)/90 rounded-full p-1.5 shadow-sm" size={34} />
+
+                <span className="font-semibold text-(--accentColor)">Location :</span>
 
                 {eventData.city + ", " + eventData.state}
               </p>
@@ -244,7 +262,7 @@ const RegistrationPage = () => {
             {/* CHECK IN */}
 
             {registrationData.checkedInAt && (
-              <div className="rounded-2xl border-2 border-green-200 bg-green-50 p-4">
+              <div className="rounded-2xl border border-green-200 bg-green-50 p-5">
                 <p className="text-green-700 font-medium">
                   Checked In At :{" "}
                   {registrationData.checkedInAt.slice(0, 10) +
@@ -259,10 +277,10 @@ const RegistrationPage = () => {
               QR SIDE
           ===================================================== */}
 
-          <div className="w-1/3 flex flex-col items-center justify-center border-2 border-gray-200 rounded-3xl p-6">
+          <div className="w-1/3 flex flex-col items-center justify-center border border-gray-200 darkMode:border-(--primaryColor)/40 bg-gray-50 darkMode:bg-(--primaryColor)/20 rounded-3xl p-8 gap-3">
             <QRCodeCanvas value={registrationData.qrData} size={220} />
 
-            <p className="mt-5 text-sm text-gray-500 text-center">
+            <p className="mt-3 text-sm text-gray-500 darkMode:text-(--secondaryColor)/70 text-center">
               Show this QR at event entry
             </p>
           </div>
@@ -272,4 +290,4 @@ const RegistrationPage = () => {
   );
 };
 
-export default RegistrationPage;
+export default RegistrationPage;  

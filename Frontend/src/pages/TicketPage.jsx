@@ -66,9 +66,9 @@ const TicketPage = () => {
   }
 
   return (
-    <div className="w-full flex justify-center p-6 bg-gray-50">
-      <div className="w-2/3 bg-white rounded-3xl shadow-2xl border border-gray-200 p-8">
-        <div className="border-b pb-4 mb-6 flex justify-between">
+    <div className="w-full flex justify-center p-10 bg-gray-50">
+      <div className=" bg-white rounded-3xl shadow-lg border border-gray-100 p-12">
+        <div className="border-b border-gray-100 pb-6 mb-8 flex justify-between">
             <div >
             <p className="text-4xl font-bold text-(--primaryColor)">
                 {eventData.title}
@@ -76,11 +76,11 @@ const TicketPage = () => {
 
             <p className="text-gray-500 mt-2">Your Event Ticket</p>
             </div>
-            <div className=" text-2xl mr-5 flex flex-col justify-center gap-1 ">
-            <p className="font-semibold">
+            <div className=" text-2xl mr-5 flex flex-col justify-center items-end gap-2 ">
+            <p className="font-semibold flex items-center gap-2">
               Status :{" "}
                 <span
-                    className={`px-3 py-1 rounded-full text-xl font-medium ${
+                    className={`px-4 py-1.5 rounded-full text-xl font-medium ${
                     ticketData.status === "participated"
                         ? "bg-green-100 text-green-700"
                         : "bg-yellow-100 text-yellow-700"
@@ -101,55 +101,55 @@ const TicketPage = () => {
         </div>
 
         <div className="flex gap-10">
-          <div className="w-2/3 text-lg flex flex-col ">
+          <div className=" text-lg flex flex-col gap-4 ">
                 
-            <p className="flex gap-2 items-center flex-wrap p-2 rounded-xl border-2 border-gray-200">
-              <TicketCheck className="text-(--accentColor)"  /> <span className="text-(--accentColor) font-semibold">Ticket-Id : </span>
+            <p className="flex gap-3 items-center flex-wrap p-4 rounded-2xl border border-gray-200 bg-gray-50">
+              <TicketCheck className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} />  <span className="text-(--accentColor) font-semibold">Ticket-Id : </span>
               {ticketData.Tid}
             </p>
-            <div className="flex  z-10 rounded-xl p-2 my-2 border-2 border-gray-200">
-            <div className="w-1/2 flex flex-col h-full gap-4">
-            <p className="flex gap-2 items-center ">
-              <User className="text-(--accentColor)" /> :{" "}
+            <div className="flex z-10 rounded-2xl p-5 gap-6 border border-gray-200 bg-gray-50">
+            <div className="w-1/2 flex flex-col h-full gap-5">
+            <p className="flex gap-3 items-center ">
+              <User className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Name :</span>{" "}
               {userData?.name || ticketData.name}
             </p>
-            <p className="flex gap-2 items-center">
-              <Hourglass className="text-(--accentColor)" /> :{" "}
+            <p className="flex gap-3 items-center">
+              <Hourglass className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Duration :</span>{" "}
               {eventData.duration}
             </p>
             
 
-            <p className="flex gap-2 items-center">
-              <Calendar className="text-(--accentColor)" /> : {eventData.date}
+            <p className="flex gap-3 items-center">
+              <Calendar className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Date :</span> {eventData.date}
             </p>
 
-            <p className="flex gap-2 items-center">
-              <Clock className="text-(--accentColor)" /> : {eventData.time} pm
+            <p className="flex gap-3 items-center">
+              <Clock className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Time :</span> {eventData.time} pm
             </p>
             </div>
-            <div className="w-1/2 flex flex-col h-full gap-4">
+            <div className="w-1/2 flex flex-col h-full gap-5">
             
             
 
-            <p className="flex gap-2 items-center">
-              <Languages className="text-(--accentColor)" /> :{" "}
+            <p className="flex gap-3 items-center">
+              <Languages className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Language :</span>{" "}
               {eventData.language}
             </p>
 
-            <p className="flex gap-2 items-center">
-              <Grid3x2 className="text-(--accentColor)" /> :{" "}
+            <p className="flex gap-3 items-center">
+              <Grid3x2 className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Category :</span>{" "}
               {eventData.category}
             </p>
 
-            <p className="flex gap-2 items-center">
-              <IndianRupee className="text-(--accentColor)" /> :{" "}
+            <p className="flex gap-3 items-center">
+              <IndianRupee className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Price :</span>{" "}
               {eventData.price}
             </p>
             </div>
             </div>
-            <div className="rounded-xl p-2 border-2 border-gray-200">
-            <p className="flex gap-2 items-center col-span-2">
-              <MapPin className="text-(--accentColor)" /> :{" "}
+            <div className="rounded-2xl p-4 border border-gray-200 bg-gray-50 flex flex-col gap-2">
+            <p className="flex gap-3 items-center col-span-2">
+              <MapPin className="text-(--accentColor) bg-white rounded-full p-1.5 shadow-sm" size={32} /> <span className="text-(--accentColor) font-semibold">Location :</span>{" "}
               {eventData.city + ", " + eventData.state}
             </p>
 
@@ -165,13 +165,13 @@ const TicketPage = () => {
             </div>
           </div>
 
-          <div className="w-1/3 flex flex-col items-center justify-center border rounded-2xl p-5">
+          <div className="w-1/3 flex flex-col items-center justify-center border border-gray-200 bg-gray-50 rounded-2xl p-6 gap-3">
            
             
             <QRCodeCanvas value={ticketData.Tid} size={220} />
 
-            <p className="mt-4 text-sm text-gray-500 text-center">
-              Show this QR at event entry
+            <p className="mt-3 text-sm text-gray-500 text-center">
+              Show this QR at  entry
             </p>
           </div>
         </div>

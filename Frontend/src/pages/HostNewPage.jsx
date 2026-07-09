@@ -190,21 +190,21 @@ function HostNewPage() {
   console.log(eventform);
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-8/10 bg-(--secondaryColor)/50 darkMode:bg-(--primaryColor)/60 my-2 rounded-2xl pb-5">
-        <div className="text-5xl font-bold text-center py-7.5">
+    <div className="w-full flex justify-center px-4">
+      <div className="w-9/10 bg-(--secondaryColor)/50 darkMode:bg-(--primaryColor)/60 my-6 rounded-2xl pb-8 shadow-sm">
+        <div className="text-5xl font-bold text-center py-7.5 text-(--primaryColor) darkMode:text-(--secondaryColor)">
           Create Event
         </div>
 
-        <div className="createeventform mx-50 p-5">
-          <form className="flex flex-col text-xl" onSubmit={handleSubmit}>
+        <div className="createeventform mx-50 p-8 bg-white darkMode:bg-(--primaryColor)/40 rounded-2xl">
+          <form className="flex flex-col text-xl gap-y-1" onSubmit={handleSubmit}>
             {/* TITLE */}
 
-            <label className="font-semibold">Title*</label>
+            <label className="font-semibold mb-1">Title*</label>
 
             <input
               type="text"
-              className="border mt-1 p-2.5 w-full mb-2.5 rounded-xl text-black"
+              className="border border-gray-200 mt-1 p-3 w-full mb-4 rounded-xl text-black bg-gray-50"
               value={eventform.title}
               name="title"
               onChange={handleChange}
@@ -214,12 +214,12 @@ function HostNewPage() {
 
             {/* CATEGORY + LANGUAGE */}
 
-            <div className="flex flex-row">
-              <div className="flex flex-col my-2.5">
-                <label>Category*</label>
+            <div className="flex flex-row gap-x-6">
+              <div className="flex flex-col mb-4">
+                <label className="mb-1">Category*</label>
 
                 <select
-                  className="border p-2.5 mt-1 rounded-xl w-50 text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl w-50 text-black bg-gray-50"
                   name="category"
                   value={eventform.category}
                   onChange={handleChange}
@@ -251,11 +251,11 @@ function HostNewPage() {
                 </select>
               </div>
 
-              <div className="flex flex-col my-2.5 ml-5">
-                <label>language*</label>
+              <div className="flex flex-col mb-4">
+                <label className="mb-1">language*</label>
 
                 <select
-                  className="border p-2.5 mt-1 rounded-xl w-50 text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl w-50 text-black bg-gray-50"
                   name="language"
                   value={eventform.language}
                   onChange={handleChange}
@@ -276,13 +276,13 @@ function HostNewPage() {
 
             {/* LOCATION */}
 
-            <div className="flex flex-row">
-              <div className="flex flex-col my-2.5">
-                <label>state*</label>
+            <div className="flex flex-row gap-x-7.5">
+              <div className="flex flex-col mb-4">
+                <label className="mb-1">state*</label>
 
                 <input
                   type="text"
-                  className="border p-2.5 mt-1 rounded-xl text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                   name="state"
                   value={eventform.state}
                   onChange={handleChange}
@@ -290,12 +290,12 @@ function HostNewPage() {
                 />
               </div>
 
-              <div className="flex flex-col my-2.5 ml-7.5">
-                <label>city*</label>
+              <div className="flex flex-col mb-4">
+                <label className="mb-1">city*</label>
 
                 <input
                   type="text"
-                  className="border p-2.5 mt-1 rounded-xl text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                   name="city"
                   value={eventform.city}
                   onChange={handleChange}
@@ -306,15 +306,15 @@ function HostNewPage() {
 
             {/* DATE + TIME */}
 
-            <div className="start-timings">
-              <label>Event starts at*</label>
+            <div className="start-timings mb-4">
+              <label className="mb-1 block">Event starts at*</label>
 
-              <div className="flex flex-row gap-x-2.5">
+              <div className="flex flex-row gap-x-5">
                 <input
                   type="date"
                   value={eventform.date}
                   name="date"
-                  className="border p-2.5 my-2.5 rounded-xl text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                   onChange={handleChange}
                   required
                 />
@@ -323,7 +323,7 @@ function HostNewPage() {
                   type="time"
                   value={eventform.time}
                   name="time"
-                  className="border p-2.5 my-2.5 rounded-xl text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                   onChange={handleChange}
                   required
                 />
@@ -332,7 +332,7 @@ function HostNewPage() {
                   type="text"
                   value={eventform.duration}
                   name="duration"
-                  className="border p-2.5 my-2.5 rounded-xl text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                   onChange={handleChange}
                   placeholder="duration"
                   required
@@ -342,9 +342,9 @@ function HostNewPage() {
 
             {/* COVER IMAGE */}
 
-            <label>upload cover image*</label>
+            <label className="mb-1">upload cover image*</label>
 
-            <div className="coverimage-upload h-37.5 w-100 my-2.5 relative bg-gray-100 flex flex-col justify-center items-center border-2 border-dotted rounded-xl">
+            <div className="coverimage-upload h-37.5 w-100 mb-4 relative bg-gray-50 flex flex-col justify-center items-center gap-2 border-2 border-dotted border-gray-300 rounded-xl overflow-hidden">
               {coverImage === null ? (
                 <>
                   <img src={uploadimage} className="h-12.5 w-12.5" />
@@ -358,11 +358,11 @@ function HostNewPage() {
                 </>
               ) : (
                 <>
-                  <img src={coverImageurl} className="h-full w-full" />
+                  <img src={coverImageurl} className="h-full w-full object-cover" />
 
                   <button
                     type="button"
-                    className="absolute top-0 right-0 border-2 bg-amber-50"
+                    className="absolute top-2 right-2 border border-gray-200 bg-white rounded-full h-8 w-8 flex items-center justify-center shadow-sm"
                     onClick={HandleCoverImgRemove}
                   >
                     ❌
@@ -383,12 +383,12 @@ function HostNewPage() {
 
 
 
-            <div className="grid grid-cols-3 gap-5 my-2.5">
+            <div className="grid grid-cols-3 gap-5 mb-4">
               <div className="flex flex-col">
-                <label>Event Type*</label>
+                <label className="mb-1">Event Type*</label>
 
                 <select
-                  className="border p-2.5 mt-1 rounded-xl text-black w-full"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black w-full bg-gray-50"
                   name="eventType"
                   value={eventform.eventType}
                   onChange={handleChange}
@@ -400,11 +400,11 @@ function HostNewPage() {
               </div>
 
               <div className="flex flex-col">
-                <label>Price of ticket Rs*</label>
+                <label className="mb-1">Price of ticket Rs*</label>
 
                 <input
                   type="number"
-                  className={`border p-2.5 mt-1 rounded-xl text-black w-full ${eventform.eventType === "free" ? "bg-gray-200 cursor-not-allowed" : ""
+                  className={`border border-gray-200 p-3 mt-1 rounded-xl text-black w-full ${eventform.eventType === "free" ? "bg-gray-200 cursor-not-allowed" : "bg-gray-50"
                     }`}
                   name="price"
                   value={eventform.eventType === "free" ? 0 : eventform.price}
@@ -415,13 +415,13 @@ function HostNewPage() {
               </div>
 
               <div className="flex flex-col">
-                <label>Total tickets*</label>
+                <label className="mb-1">Total tickets*</label>
 
                 <input
                   type="number"
                   value={eventform.totaltickets}
                   name="totaltickets"
-                  className="border p-2.5 mt-1 rounded-xl text-black w-full"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black w-full bg-gray-50"
                   onChange={handleChange}
                   required
                 />
@@ -458,11 +458,11 @@ function HostNewPage() {
 
             {/* VOLUNTEERS */}
 
-            <div className="flex flex-col my-2.5">
-              <label className="font-semibold">Need Volunteers?</label>
+            <div className="flex flex-col mb-4">
+              <label className="font-semibold mb-1">Need Volunteers?</label>
 
               <select
-                className="border p-2.5 mt-1 rounded-xl text-black"
+                className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                 value={eventform.volunteersEnabled}
                 onChange={(e) =>
                   setEventForm({
@@ -479,8 +479,8 @@ function HostNewPage() {
             </div>
 
             {eventform.volunteersEnabled && (
-              <div className="flex flex-col my-2.5">
-                <label className="font-semibold">
+              <div className="flex flex-col mb-4">
+                <label className="font-semibold mb-1">
                   Number of Volunteers Required
                 </label>
 
@@ -490,21 +490,21 @@ function HostNewPage() {
                   name="volunteersRequiredCount"
                   value={eventform.volunteersRequiredCount}
                   onChange={handleChange}
-                  className="border p-2.5 mt-1 rounded-xl text-black"
+                  className="border border-gray-200 p-3 mt-1 rounded-xl text-black bg-gray-50"
                 />
               </div>
             )}
 
             {/* DESCRIPTION */}
 
-            <label>Description*</label>
+            <label className="mb-1">Description*</label>
 
             <textarea
               rows={3}
               maxLength={300}
               value={eventform.description}
               name="description"
-              className="border text-xl p-2.5 w-full my-2.5 rounded-xl text-black"
+              className="border border-gray-200 text-xl p-3 w-full mb-4 rounded-xl text-black bg-gray-50"
               onChange={handleChange}
               required
             />
@@ -513,7 +513,7 @@ function HostNewPage() {
 
             <button
               type="submit"
-              className="bg-violet-500 text-white p-2.5 w-full rounded-xl"
+              className="bg-violet-500 text-white p-3 w-full rounded-xl font-medium"
             >
               submit
             </button>

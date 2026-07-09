@@ -7,7 +7,6 @@ const HomePage = ()=>{
     const location = useLocation();
     const refresh = location.state?.refresh;
     useEffect(()=>{
-
     },[refresh]);
     return (
         <div className="w-full">
