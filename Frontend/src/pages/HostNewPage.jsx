@@ -43,10 +43,14 @@ function HostNewPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // console.log(eventform.termsandconditions)
+
     const str = eventform.termsandconditions
       .split("\n")
       .map((s)=>s.trim())
       .filter((s)=>s.length>0);
+
     eventform.termsandconditions = str;
     const data = new FormData();
 

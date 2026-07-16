@@ -45,10 +45,16 @@ router.post("/", async (req, res) => {
     }
 
     if (user_id) {
+      // console.log(`server side user id  ${user_id}`);
+      
       query.user_id = user_id;
+    }else{
+      console.log('home events search');
     }
 
     const events = await Event2.find(query);
+    //  console.log(events);
+    
     res.json(events);
   } catch (e) {
     console.log(e);

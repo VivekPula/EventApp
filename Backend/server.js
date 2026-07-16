@@ -39,3 +39,11 @@ app.use("/payment",paymentRoute);
 app.listen(port, () => {
   console.log(`listening in ${port}`);
 });
+
+
+app.get('/',(req,res)=>{
+   res.status(200).json({
+    status: "OK",
+    message: "Server is running"
+  });
+})
